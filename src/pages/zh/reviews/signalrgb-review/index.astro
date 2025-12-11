@@ -1,0 +1,136 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "SignalRGB 评测：功能、性能与付费模式";
+const PAGE_DESCRIPTION =
+  "评测 SignalRGB 这款功能丰富的 RGB 控制软件，包括屏幕同步质量、预设效果、资源占用表现以及免费 + 订阅模式在实际使用中的体验。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/reviews/signalrgb-review/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            评测 – SignalRGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            SignalRGB 评测：功能丰富的 RGB 控制平台
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            SignalRGB 提供强大的屏幕同步与特效系统，并采用免费 + 订阅的商业模式。
+            本文会综合考察灯效质量、性能占用以及付费机制在日常使用中的实际体验。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">亮点概览</h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>屏幕同步与特效系统表现突出。</li>
+            <li>内置大量预设与类似社区作品的效果库。</li>
+            <li>采用免费 + 订阅模式，部分布局和高级特效需要付费解锁。</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            性能表现与使用体验
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            为了实现较华丽的界面与特效，SignalRGB
+            对系统资源的占用通常会高于更「轻量化」的控制器。
+            对于主流游戏 PC 来说这通常不是问题，但如果你希望后台占用尽可能低，Skydimo 或 OpenRGB 会更合适。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">价格与付费体验</h2>
+          <p class="text-sm text-offset sm:text-base">
+            SignalRGB 采用免费 + 订阅模式，免费档已经可以满足基础灯光需求，
+            但部分更复杂的特效与布局仅对付费用户开放。
+            有些用户会觉得界面内的付费提示略显「存在感」，这一点在选择前也值得考虑。
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            如果你主要关注屏幕同步，可以将本文与
+            <a
+              href="/zh/comparisons/rgb-software-screen-sync/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              屏幕同步 RGB 软件对比
+            </a>
+            以及
+            <a
+              href="/zh/comparisons/skydimo-vs-signalrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo 对比 SignalRGB
+            </a>
+            一起参考。
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

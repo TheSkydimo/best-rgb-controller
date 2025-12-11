@@ -1,0 +1,159 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "如何选择一款 RGB 控制软件";
+const PAGE_DESCRIPTION =
+  "通过一个简单的三步框架，系统地评估 RGB 控制软件的设备支持、功能特性、性能与隐私，再做出选择，而不是反复安装卸载。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/guides/how-to-choose-rgb-software/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            指南 – 如何选择 RGB 控制软件
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            如何选择一款 RGB 控制软件
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            与其反复安装多款 RGB 工具、每次都重新配置，不如用一个简单的决策框架，
+            在更换软件前先筛选出真正适合自己的候选。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            第一步：梳理你的硬件清单
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            先列出你真正关心的 RGB 设备：键盘、鼠标、耳机、灯带、风扇、一体水冷、内存、显卡以及主板灯带区域。
+            这份清单比任何营销文案都更重要。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            接着，对照每款候选软件的
+            <strong class="font-semibold">官方兼容列表</strong>
+            ，再参考本站的
+            <a
+              href="/zh/compatibility/device-support-matrix/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              设备支持矩阵
+            </a>
+            ，筛掉明显不现实的选项。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            第二步：想清楚你真正会用到哪些功能
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            很多用户其实只需要静态色和简单动态效果，而另一些用户则把屏幕同步、音乐律动和预设场景视为刚需。
+            诚实地问问自己：哪些功能是「必须要有」、哪些是「有更好」？
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            在这一步，可以结合
+            <a
+              href="/zh/reviews/skydimo-review/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo 评测
+            </a>
+            与
+            <a
+              href="/zh/reviews/openrgb-review/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              OpenRGB 评测
+            </a>
+            等文章，了解不同工具在功能上的取舍。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            第三步：综合考虑性能占用与隐私
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            RGB 控制软件不应该变成另一个「游戏启动器」。
+            优先考虑那些对资源占用透明、不会过度采集数据、并尽量减少广告与捆绑的工具。
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            在完成以上三步后，可以结合我们的
+            <a
+              href="/zh/comparisons/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              RGB 软件对比文章
+            </a>
+            ，在 Skydimo、SignalRGB、OpenRGB 等具体方案之间做最后选择。
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

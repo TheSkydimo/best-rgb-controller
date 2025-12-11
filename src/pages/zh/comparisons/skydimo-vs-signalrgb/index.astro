@@ -1,0 +1,145 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Skydimo 对比 SignalRGB：哪款 RGB 控制软件更适合你？";
+const PAGE_DESCRIPTION =
+  "横向比较 Skydimo 与 SignalRGB 两款 RGB 控制软件，在屏幕同步体验、功能特性、价格模式与资源占用等方面的差异，并给出更适合的使用场景建议。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/comparisons/skydimo-vs-signalrgb/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            对比 – Skydimo vs SignalRGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Skydimo 对比 SignalRGB：哪款 RGB 控制软件更适合你？
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo 和 SignalRGB 都主打高级灯效与屏幕同步体验，但在价格、界面复杂度以及效果生态上有明显区别。
+            本文从高层视角帮你判断，更适合你的究竟是哪一款。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">整体差异速览</h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">Skydimo</strong>
+              更强调免费、无广告、占用相对轻量，适合作为长期常驻后台的主力控制器。
+            </li>
+            <li>
+              <strong class="font-semibold">SignalRGB</strong>
+              更像是一个特效生态平台，提供大量预设与社区风格效果，但采用免费 + 订阅的模式。
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">屏幕同步与灯效表现</h2>
+          <p class="text-sm text-offset sm:text-base">
+            在正确配置的前提下，两款软件都可以实现沉浸感很强的屏幕联动灯光。
+            在更全面的
+            <a
+              href="/zh/comparisons/rgb-software-screen-sync/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              屏幕同步 RGB 软件对比
+            </a>
+            中，我们会从延迟、流畅度与稳定性三个维度展开细致比较。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">价格模式与使用体验</h2>
+          <p class="text-sm text-offset sm:text-base">
+            如果你更在意「一次配置、长期放心使用」，并且不希望在界面中频繁看到付费提示，
+            那么 Skydimo 往往会是更省心的选择。
+            如果你乐于为更丰富的特效库付费，并希望体验更多精心设计的主题与布局，SignalRGB 则更有吸引力。
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            想要了解更多细节，可以分别阅读
+            <a
+              href="/zh/reviews/skydimo-review/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo 评测
+            </a>
+            和
+            <a
+              href="/zh/reviews/signalrgb-review/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              SignalRGB 评测
+            </a>
+            。
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

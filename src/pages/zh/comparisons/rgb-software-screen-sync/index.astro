@@ -1,0 +1,127 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "屏幕同步 RGB 软件对比：响应速度与流畅度";
+const PAGE_DESCRIPTION =
+  "从延迟、流畅度与设置复杂度三个维度，对多款常见 RGB 控制软件的屏幕同步模式进行定性对比，帮助你判断哪款更适合自己的装机方案。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/comparisons/rgb-software-screen-sync/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            对比 – 屏幕同步 RGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            屏幕同步 RGB 软件对比：延迟、流畅度与易用性
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            屏幕联动灯光可以显著提升游戏和观影时的沉浸感。
+            本文重点比较多款控制软件在屏幕同步模式下的主观体验，包括响应速度、颜色过渡的顺滑程度，以及初次配置的复杂度。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            好用的屏幕同步应该关注哪些指标？
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>画面变化到灯光响应之间的实际延迟。</li>
+            <li>颜色过渡是否平滑，是否容易出现「一卡一卡」的感觉。</li>
+            <li>对 CPU / GPU 资源的占用情况。</li>
+            <li>是否容易选择正确的显示器与采样区域。</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Skydimo、SignalRGB 与其他方案
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            在合理设置的前提下，Skydimo 与 SignalRGB 都可以实现
+            <strong class="font-semibold">低延迟、较平滑</strong>
+            的屏幕同步效果。部分厂商工具和开源方案同样可以胜任，但可调参数往往更少，或者需要更多手动配置。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            如果你把屏幕同步视为绝对优先级，可以先阅读
+            <a
+              href="/zh/comparisons/skydimo-vs-signalrgb/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo 对比 SignalRGB
+            </a>
+            ，再结合我们的
+            <a
+              href="/zh/guides/reduce-screen-sync-lag/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              减少屏幕同步延迟指南
+            </a>
+            ，一步步把体验调到更理想的状态。
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

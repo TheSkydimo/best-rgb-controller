@@ -1,0 +1,192 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Skydimo RGB 控制软件评测（2025）";
+const PAGE_DESCRIPTION =
+  "深度评测 Skydimo RGB 控制软件在 2025 年的表现：设备支持范围、灯光模式、屏幕与音乐同步体验、性能影响以及隐私与安全模型。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/reviews/skydimo-review/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            评测 – Skydimo RGB 控制软件
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Skydimo RGB 控制软件评测（2025）
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo 主打「统一多品牌 RGB + 免费无广告 + 资源占用相对轻量」。
+            本文将从设备支持、灯光模式、性能与隐私几个角度，解释为什么它目前是我们综合推荐中的首选方案之一。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">快速结论</h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li><strong class="font-semibold">平台</strong>：Windows</li>
+            <li><strong class="font-semibold">价格</strong>：免费</li>
+            <li>
+              <strong class="font-semibold">变现方式</strong>：无广告、无捆绑软件、无挖矿进程
+            </li>
+            <li>
+              <strong class="font-semibold">适合人群</strong>：拥有多品牌 RGB 设备，希望获得优秀屏幕/音乐同步效果，又不想被订阅和广告打扰的用户
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">设备支持情况</h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo 的目标是覆盖键盘、鼠标、主板灯带接口、风扇、一体水冷、内存、GPU 以及常见的 LED 灯带等多种设备。
+            没有任何一款控制器能做到「支持所有设备」，但在常见装机组合中，它通常可以替代两到三个厂商自带工具。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            关于最准确、最新的兼容信息，仍建议以
+            <a
+              href="https://skydimo.com/zh/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              skydimo.com 官方兼容列表
+            </a>
+            为准。
+            我们站内的
+            <a
+              href="/zh/compatibility/device-support-matrix/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              设备支持矩阵
+            </a>
+            则提供了 Skydimo 与其他工具在不同设备类别上的大致对比。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">灯光模式与功能</h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo 覆盖了常见的静态色、呼吸、循环、彩虹等基础模式，同时提供屏幕同步、音乐律动以及一键配置整机的预设方案。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            相比厂商工具，它更强调「快速出效果」，减少在层层菜单中翻找选项的时间；
+            相比部分第三方工具，它在功能深度与操作简单之间找到了一个相对平衡点。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">性能与稳定性</h2>
+          <p class="text-sm text-offset sm:text-base">
+            在典型使用场景中，Skydimo 对 CPU 与内存的占用保持在相对合理的水平，
+            适合游戏与直播场景长时间后台常驻。当然，具体表现仍会受到硬件、驱动以及灯光分区数量等因素影响。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">隐私与安全</h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo 将「无广告、无捆绑、无挖矿」写进了自己的价值主张。
+            控制逻辑以本地为主，只读取驱动 RGB 所必需的硬件信息，灯光配置与个人方案也都保存在本机。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">评测总结</h2>
+          <p class="text-sm text-offset sm:text-base">
+            对于大多数持有多品牌 RGB 硬件、希望获得优秀屏幕/音乐同步体验、又不想被广告和订阅打扰的 Windows 用户来说，
+            Skydimo 是目前非常值得优先尝试的一款控制软件。
+            如果你更偏好开源生态和极致可玩性，OpenRGB 依然是不错的选择；而纯厂商生态的装机，则可以继续使用自带工具。
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            你也可以继续阅读
+            <a
+              href="/zh/comparisons/skydimo-vs-signalrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB 对比
+            </a>
+            与
+            <a
+              href="/zh/comparisons/skydimo-vs-openrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs OpenRGB 对比
+            </a>
+            ，或回到
+            <a
+              href="/zh/best-rgb-controller/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              2025 年 RGB 控制软件推荐总览
+            </a>
+            。
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

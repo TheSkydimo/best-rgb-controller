@@ -1,0 +1,137 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "让不同品牌的 RGB 灯光实现同步";
+const PAGE_DESCRIPTION =
+  "当你的键盘、鼠标、主板和灯带来自不同品牌时，本指南通过「主控软件选择」「分组思路」和「屏幕/音乐同步调优」三步，尽量统一整套灯光效果。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/guides/unify-rgb-across-brands/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            指南 – 跨品牌 RGB 同步
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            让不同品牌的 RGB 灯光实现同步
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            键盘和鼠标来自一个品牌，风扇和灯带是另一家，主板又是第三家，这是很常见的装机现实。
+            本文会告诉你如何在这种「混搭」前提下，尽量让整套灯光看起来协调统一。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            第一步：确定一款「主控软件」
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            先在 Skydimo、SignalRGB、OpenRGB 等第三方控制器中选出一款作为「主控」，
+            尽量让它接管大部分设备。能关闭的厂商灯效功能尽量关闭，以避免多套软件抢同一个设备。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            第二步：按区域给设备分组
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            与其让每个设备都独立配置，不如根据实际视觉区域来分组，例如「桌面外设」「机箱内部」「环境灯带」等，
+            每一组内部采用类似的色调和效果，整体观感会干净很多。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            第三步：测试屏幕同步和音乐律动
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            基础颜色调整好之后，可以开启主控软件的屏幕同步与音乐律动模式进行测试。
+            如果你感觉明显有延迟或卡顿，可以参考
+            <a
+              href="/zh/guides/reduce-screen-sync-lag/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              减少屏幕同步延迟指南
+            </a>
+            ，从刷新率、采样方式等方面做针对性优化。
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            想从更宏观的角度理解为什么跨品牌同步这么难，可以阅读
+            <a
+              href="/zh/rgb-ecosystem/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              RGB 生态概览
+            </a>
+            一文。
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

@@ -1,0 +1,131 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Skydimo 对比 OpenRGB：易用性 vs 开源可玩性";
+const PAGE_DESCRIPTION =
+  "对比 Skydimo 与 OpenRGB 两款 RGB 控制软件，在易用程度、灵活性、性能与适合人群上的差异，帮助你判断更适合自己的方案。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/comparisons/skydimo-vs-openrgb/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            对比 – Skydimo vs OpenRGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Skydimo 对比 OpenRGB：易用性 vs 开源可玩性
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            两款软件的目标都类似：用一套工具统一多品牌 RGB 设备，但路线完全不同。
+            本文重点对比谁更适合「装好就用」的用户，谁更适合喜欢折腾的进阶玩家。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            什么时候更适合选 Skydimo
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            如果你想要的是一款
+            <strong class="font-semibold">免费的、无广告的、安装配置都相对省心</strong>
+            的控制软件，希望快速完成设备识别与屏幕/音乐同步，而不打算研究太多参数，
+            那么 Skydimo 更贴近日常装机用户的需求。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            什么时候更适合选 OpenRGB
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            如果你更看重
+            <strong class="font-semibold">开源生态、极高的可定制性</strong>
+            ，并且愿意阅读文档、查论坛帖子、自己尝试各种配置，那么 OpenRGB 会更有发挥空间。
+            它能暴露更多底层选项，对喜欢 DIY 和自动化的玩家很有吸引力。
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            想看更完整的体验，可以参考
+            <a
+              href="/zh/reviews/skydimo-review/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo 评测
+            </a>
+            与
+            <a
+              href="/zh/reviews/openrgb-review/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              OpenRGB 评测
+            </a>
+            ，再结合自己的使用习惯做决定。
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

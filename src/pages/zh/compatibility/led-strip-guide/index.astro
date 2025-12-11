@@ -1,0 +1,122 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB 灯带支持指南：RGB 与 ARGB 有何不同？";
+const PAGE_DESCRIPTION =
+  "在把灯带插上主板或控制器之前，先搞清楚 12V RGB 与 5V ARGB 的区别、常见接口类型以及安全接线注意事项，避免烧灯带。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/compatibility/led-strip-guide/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            兼容性 – RGB 灯带指南
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB 灯带支持指南：RGB 与 ARGB 有何不同？
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            在给灯带通电之前，先了解清楚 12V RGB 与 5V ARGB 的基础差异，可以帮你避免很多麻烦甚至硬件损坏。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            一分钟看懂 RGB 与 ARGB
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">12V RGB</strong>：整条灯带所有灯珠颜色一致，通常是
+              4 针接口。
+            </li>
+            <li>
+              <strong class="font-semibold">5V ARGB</strong>：每颗（或每小段）灯珠可以单独控制，通常是
+              3 针接口。
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            安全接线小贴士
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            切记不要把 5V ARGB 灯带插到 12V RGB 接口上——这很可能会直接烧毁整条灯带。
+            接线时务必确认电压与针脚布局完全匹配，并留意接口上的箭头、标记「D」的 Data 针脚等符号。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            如果你发现灯带或主板接口在软件中始终不显示，可以结合
+            <a
+              href="/zh/compatibility/fix-rgb-not-detected/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              主板 RGB 不被识别排查指南
+            </a>
+            一起查看。
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
