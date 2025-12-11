@@ -1,0 +1,131 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import { DEFAULT_LOCALE } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale = DEFAULT_LOCALE;
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "How to Reduce Lag in RGB Screen Sync";
+const PAGE_DESCRIPTION =
+  "Checklist for reducing lag in RGB screen‑sync modes: capture method, refresh rate, performance settings and controller‑specific tweaks.";
+
+const navItems = [
+  { title: "Best Picks", url: "/#best-picks" },
+  { title: "Reviews", url: "/reviews/" },
+  { title: "Comparisons", url: "/comparisons/" },
+  { title: "Guides", url: "/guides/" },
+  { title: "Device Compatibility", url: "/compatibility/" },
+  { title: "FAQ", url: "/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/guides/reduce-screen-sync-lag/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-5xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Guide – Reduce Screen‑Sync Lag
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            How to reduce lag in RGB screen sync
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            If your screen‑linked lighting feels a beat behind what&apos;s happening on‑screen,
+            walk through this checklist to improve responsiveness without sacrificing too much
+            performance.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            1. Check capture method and monitor selection
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Make sure your controller is capturing the correct display (especially on multi‑monitor
+            setups) and, where the software allows, prefer more direct capture modes over slower
+            fallbacks.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            2. Tune update rate and smoothing
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Many controllers let you adjust how often LEDs update and how aggressively colours are
+            smoothed. Higher update rates can feel more responsive but cost more CPU; heavy
+            smoothing can make things feel delayed even when latency is technically low.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            3. Avoid unnecessary background load
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Close other overlays and heavy background tasks that might interfere with capture.
+            Screen‑sync is particularly sensitive to GPU and compositing overhead, so keep other
+            visual tools to a minimum when testing.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            For tool‑specific impressions, see the
+            <a
+              href="/comparisons/rgb-software-screen-sync/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              screen‑sync comparison
+            </a>
+            and individual reviews.
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

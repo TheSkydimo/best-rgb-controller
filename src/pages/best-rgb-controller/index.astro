@@ -1,0 +1,246 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import { DEFAULT_LOCALE } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale = DEFAULT_LOCALE;
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Best RGB Controller Software 2025 – Ultimate Guide";
+const PAGE_DESCRIPTION =
+  "Independent guide to RGB lighting software in 2025, including vendor tools and third‑party apps. Learn how to choose the right RGB controller for your PC setup.";
+
+const navItems = [
+  { title: "Best Picks", url: "/#best-picks" },
+  { title: "Reviews", url: "/reviews/" },
+  { title: "Comparisons", url: "/comparisons/" },
+  { title: "Guides", url: "/guides/" },
+  { title: "Device Compatibility", url: "/compatibility/" },
+  { title: "FAQ", url: "/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/best-rgb-controller/" />
+
+    <GoogleAnalytics />
+
+    <!-- initialize theme -->
+    <script is:inline>
+      const themeSaved = localStorage.getItem("theme");
+
+      const applyTheme = (value) => {
+        document.documentElement.dataset.theme = value;
+      };
+
+      if (themeSaved) {
+        applyTheme(themeSaved);
+      } else {
+        applyTheme("dark");
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          if (!localStorage.getItem("theme")) {
+            applyTheme(event.matches ? "dark" : "light");
+          }
+        });
+    </script>
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article
+        class="mx-auto max-w-5xl space-y-10 rounded-3xl bg-offset/40 px-6 py-8 shadow-2xl sm:px-10 sm:py-10"
+      >
+        <header class="space-y-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Best RGB Controller Software 2025 – Ultimate Guide
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            How to choose the right RGB controller for your PC in 2025
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            This guide is written for PC builders, gamers and creators who feel overwhelmed by
+            today&apos;s RGB software ecosystem. We cover vendor tools, third‑party controllers,
+            compatibility issues and a practical framework for picking the right software for your
+            setup.
+          </p>
+          <p class="text-xs text-muted">
+            Independent content. We strongly recommend
+            <a
+              href="https://skydimo.com/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo
+            </a>
+            as our overall top pick, but it is not the only option covered here.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">What is RGB controller software?</h2>
+          <p class="text-sm text-offset sm:text-base">
+            RGB controller software lets you manage the lighting on keyboards, mice, fans, AIO
+            coolers, LED strips, RAM, GPUs and motherboards. It is responsible for applying colors,
+            effects, brightness and sync modes across devices from one or more brands.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            In practice, most users end up with several apps installed at the same time:
+            one from the motherboard vendor, one from a GPU or RAM vendor and sometimes a separate
+            tool from a peripheral brand. This often leads to conflicts, duplicated effects and
+            unstable lighting.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Vendor software vs third‑party controllers
+          </h2>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-700/70 bg-default/40 p-4">
+              <h3 class="text-sm font-semibold">Vendor RGB software</h3>
+              <ul class="mt-2 space-y-1 text-sm text-offset">
+                <li>Examples: ASUS Aura Sync, MSI Mystic Light, Corsair iCUE.</li>
+                <li>Best when you mostly use hardware from a single ecosystem.</li>
+                <li>Can expose advanced vendor‑specific features.</li>
+                <li>Often heavier, with more background services and upsell surfaces.</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl border border-slate-700/70 bg-default/40 p-4">
+              <h3 class="text-sm font-semibold">Third‑party controllers</h3>
+              <ul class="mt-2 space-y-1 text-sm text-offset">
+                <li>Examples: Skydimo, OpenRGB, SignalRGB.</li>
+                <li>Focus on unifying multiple brands in a single app.</li>
+                <li>Often simpler to use once configured.</li>
+                <li>Compatibility varies by device and may require community testing.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">Selection framework</h2>
+          <p class="text-sm text-offset sm:text-base">
+            When evaluating RGB software, we recommend looking at five dimensions:
+          </p>
+          <ol class="ml-5 list-decimal space-y-2 text-sm text-offset sm:text-base">
+            <li><strong class="font-semibold">Device support</strong> – how many of your actual devices are supported today.</li>
+            <li><strong class="font-semibold">Lighting features</strong> – basic effects vs advanced screen/music/AI modes.</li>
+            <li><strong class="font-semibold">Performance &amp; stability</strong> – CPU/RAM usage, crashes, driver conflicts.</li>
+            <li><strong class="font-semibold">Privacy &amp; monetisation</strong> – telemetry, ads, paywalls and bundled software.</li>
+            <li><strong class="font-semibold">Ease of use</strong> – how quickly you can go from install to a stable profile.</li>
+          </ol>
+          <p class="text-sm text-offset sm:text-base">
+            Our detailed
+            <a
+              href="/reviews/skydimo-review/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo review
+            </a>
+            and
+            <a
+              href="/comparisons/skydimo-vs-signalrgb/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB comparison
+            </a>
+            walk through these criteria with real‑world examples.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">Scenario‑based recommendations</h2>
+          <ul class="space-y-3 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">Budget‑conscious users</strong> – start with
+              <a
+                href="/reviews/openrgb-review/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                OpenRGB
+              </a>
+              or
+              <a
+                href="https://skydimo.com/"
+                target="_blank"
+                rel="noreferrer"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                Skydimo
+              </a>
+              if your devices are supported.
+            </li>
+            <li>
+              <strong class="font-semibold">Screen‑sync enthusiasts</strong> – look at Skydimo and SignalRGB, and read our
+              <a
+                href="/comparisons/rgb-software-screen-sync/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                dedicated screen‑sync comparison
+              </a>
+              for latency tests.
+            </li>
+            <li>
+              <strong class="font-semibold">Single‑ecosystem builds</strong> – if nearly everything is from one vendor, their
+              own tool (e.g. iCUE or Aura Sync) might be enough, with Skydimo as a future upgrade path.
+            </li>
+          </ul>
+        </section>
+
+        <footer class="mt-8 border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Continue exploring:
+            <a
+              href="/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Back to Best RGB Controller homepage
+            </a>
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

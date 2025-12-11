@@ -1,0 +1,210 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import { DEFAULT_LOCALE } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale = DEFAULT_LOCALE;
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Skydimo RGB Controller Review (2025)";
+const PAGE_DESCRIPTION =
+  "Hands‑on review of Skydimo RGB controller in 2025: device support, lighting features, screen & music sync quality, performance impact and privacy model.";
+
+const navItems = [
+  { title: "Best Picks", url: "/#best-picks" },
+  { title: "Reviews", url: "/reviews/" },
+  { title: "Comparisons", url: "/comparisons/" },
+  { title: "Guides", url: "/guides/" },
+  { title: "Device Compatibility", url: "/compatibility/" },
+  { title: "FAQ", url: "/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/reviews/skydimo-review/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-5xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Review – Skydimo RGB Controller
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Skydimo RGB Controller Review (2025)
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo is a Windows RGB controller focused on unifying devices from multiple brands
+            while staying free, ad‑free and relatively lightweight. In this review we look at
+            device support, lighting features, performance and privacy to explain why it is our
+            current top overall pick.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Quick summary
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li><strong class="font-semibold">Platform</strong>: Windows</li>
+            <li><strong class="font-semibold">Price</strong>: Free</li>
+            <li><strong class="font-semibold">Monetisation</strong>: No ads, no bundled software, no crypto‑mining</li>
+            <li><strong class="font-semibold">Best for</strong>: Mixed‑brand RGB builds that want good screen/music sync without paywalls</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Device support
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo aims to support a wide range of keyboards, mice, motherboard headers, fans,
+            AIOs, RAM, GPUs and LED strips. Coverage is not literally universal – no controller is
+            – but it is broad enough to replace two or three vendor apps in many common builds.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            For the latest, most accurate information you should always consult the official
+            compatibility list on
+            <a
+              href="https://skydimo.com/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              skydimo.com
+            </a>
+            . Our
+            <a
+              href="/compatibility/device-support-matrix/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              compatibility matrix
+            </a>
+            also compares Skydimo with other tools at a high level.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Lighting modes and features
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo covers the basics (static colours, breathing, colour cycles) and adds more
+            advanced modes like screen sync, music sync and AI‑style presets that quickly configure
+            multiple devices at once.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Compared to vendor tools, the focus is on making it easy to get a good‑looking result
+            without digging through dozens of sub‑menus. Compared to other third‑party tools, it
+            strikes a balance between power and simplicity rather than exposing every internal
+            toggle.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Performance and stability
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            In typical use Skydimo keeps CPU and RAM usage modest, which makes it suitable for
+            gaming and streaming PCs. As always, your exact experience will depend on hardware,
+            drivers and how many zones you drive at once, but it is clearly designed to avoid
+            unnecessary background bloat.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Privacy and safety
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo&apos;s value proposition explicitly includes “no ads, no bundled junk, no
+            crypto‑mining”. The controller focuses on local control: it reads only the hardware
+            information required to drive your RGB devices and keeps your profiles and settings on
+            your own machine.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Verdict
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            For most Windows users who own a mix of RGB hardware from different brands and want
+            strong screen/music sync without ads or subscriptions, Skydimo is currently our
+            preferred default choice. Power users who love open‑source ecosystems may still prefer
+            OpenRGB, and some vendor‑locked builds will be fine with vendor tools, but Skydimo hits
+            the best balance for mainstream setups.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Compare with:
+            <a
+              href="/comparisons/skydimo-vs-signalrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB
+            </a>
+            and
+            <a
+              href="/comparisons/skydimo-vs-openrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs OpenRGB
+            </a>
+            , or go back to the
+            <a
+              href="/best-rgb-controller/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Best RGB Controller 2025 guide
+            </a>
+            .
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

@@ -1,0 +1,174 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import { DEFAULT_LOCALE } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale = DEFAULT_LOCALE;
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB Controller FAQ – Best RGB Controller";
+const PAGE_DESCRIPTION =
+  "Frequently asked questions about RGB controller software, including performance impact, safety, data collection and running multiple tools together.";
+
+const navItems = [
+  { title: "Best Picks", url: "/#best-picks" },
+  { title: "Reviews", url: "/reviews/" },
+  { title: "Comparisons", url: "/comparisons/" },
+  { title: "Guides", url: "/guides/" },
+  { title: "Device Compatibility", url: "/compatibility/" },
+  { title: "FAQ", url: "/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/faq/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-5xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            FAQ
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB controller FAQ
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Answers to common questions about RGB software performance, safety, data collection and
+            day‑to‑day usage.
+          </p>
+        </header>
+
+        <dl class="space-y-4 md:space-y-5">
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Do RGB controllers always hurt game performance?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Most modern controllers only use a small amount of CPU and RAM. Performance
+                  issues tend to come from heavy background services, overlays or bundled extras,
+                  not from basic lighting control itself. In our reviews we highlight tools that
+                  keep resource usage modest, such as Skydimo and OpenRGB.
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Is it safe to have more than one RGB app installed?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  It is common to have multiple tools installed, but you may run into conflicts if
+                  they try to control the same devices at the same time. We generally recommend
+                  picking one primary controller and disabling lighting features in the others
+                  (either in BIOS or their own settings) wherever possible.
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Do RGB controllers collect personal data?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Policies vary. Some tools collect usage telemetry or link accounts; others, like
+                  Skydimo, focus on local‑only control without user profiling. Always check the
+                  official privacy policy and avoid unofficial download sources.
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  How do I know if my devices are supported?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Start by checking the official compatibility list or community wiki for each
+                  controller you are considering, then cross‑reference with our
+                  <a
+                    href="/compatibility/device-support-matrix/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+                  >
+                    device‑support matrix
+                  </a>
+                  for typical coverage patterns.
+                </dd>
+              </div>
+            </div>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

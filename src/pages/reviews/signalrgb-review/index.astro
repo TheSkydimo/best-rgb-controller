@@ -1,0 +1,139 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import { DEFAULT_LOCALE } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale = DEFAULT_LOCALE;
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "SignalRGB Review – Features, Performance & Pricing";
+const PAGE_DESCRIPTION =
+  "Review of SignalRGB: powerful RGB controller with screen sync and a freemium model. We look at lighting quality, latency, resource usage and pay‑to‑access friction.";
+
+const navItems = [
+  { title: "Best Picks", url: "/#best-picks" },
+  { title: "Reviews", url: "/reviews/" },
+  { title: "Comparisons", url: "/comparisons/" },
+  { title: "Guides", url: "/guides/" },
+  { title: "Device Compatibility", url: "/compatibility/" },
+  { title: "FAQ", url: "/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/reviews/signalrgb-review/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-5xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Review – SignalRGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            SignalRGB Review – powerful RGB controller with a freemium model
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            SignalRGB offers a feature‑rich RGB platform with advanced effects and screen‑sync
+            modes. In this review we look at lighting quality, performance and the impact of its
+            paid tiers on everyday usage.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Highlights
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>Strong screen‑sync and effect system.</li>
+            <li>Plenty of presets and community‑style effects.</li>
+            <li>Freemium model with some features and layouts behind a paywall.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Performance and experience
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            In exchange for its visual polish, SignalRGB can be heavier on resources than simpler
+            controllers. This is usually fine on modern gaming PCs, but users who care about
+            absolute minimal background footprint may prefer lighter alternatives such as Skydimo
+            or OpenRGB.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Pricing and pay‑to‑access concerns
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            SignalRGB uses a free+paid model. The free tier can be enough for basic setups, but
+            some advanced effects and layouts are restricted to paying users. Community discussions
+            sometimes criticise how visible these pay‑to‑access elements are inside the UI.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            If you are primarily interested in screen sync, compare this review with our
+            <a
+              href="/comparisons/rgb-software-screen-sync/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              dedicated screen‑sync comparison
+            </a>
+            and the
+            <a
+              href="/comparisons/skydimo-vs-signalrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB
+            </a>
+            article.
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

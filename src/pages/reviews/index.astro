@@ -1,0 +1,169 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import { DEFAULT_LOCALE } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale = DEFAULT_LOCALE;
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB Controller Software Reviews – Best RGB Controller";
+const PAGE_DESCRIPTION =
+  "In‑depth reviews of Skydimo, OpenRGB, SignalRGB and major vendor RGB tools. Device support, features, performance and privacy analysed for real PC builds.";
+
+const navItems = [
+  { title: "Best Picks", url: "/#best-picks" },
+  { title: "Reviews", url: "/reviews/" },
+  { title: "Comparisons", url: "/comparisons/" },
+  { title: "Guides", url: "/guides/" },
+  { title: "Device Compatibility", url: "/compatibility/" },
+  { title: "FAQ", url: "/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/reviews/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-5xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Reviews
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB controller software reviews
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Neutral, practical reviews of the most common RGB tools, focused on how they behave on
+            real hardware: device support, lighting quality, performance impact and privacy model.
+          </p>
+        </header>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a href="/reviews/skydimo-review/" class="hover:text-primary">
+                Skydimo RGB Controller Review (2025)
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Our in‑depth look at Skydimo&apos;s device coverage, screen &amp; music sync quality,
+              performance footprint and privacy stance.
+            </p>
+            <p class="text-xs text-muted">
+              Strong overall pick for most mixed‑brand Windows builds.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a href="/reviews/openrgb-review/" class="hover:text-primary">
+                OpenRGB Review – Pros, cons &amp; ideal users
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Open‑source RGB controller with no background services and deep customisation options.
+              Great if you enjoy tweaking and don&apos;t mind some manual work.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a href="/reviews/signalrgb-review/" class="hover:text-primary">
+                SignalRGB Review – Feature‑rich with paid tiers
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Powerful effect system and screen sync modes with a freemium model. We examine value,
+              performance and pay‑to‑access friction.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              Vendor ecosystem reviews
+            </h2>
+            <p class="text-sm text-offset">
+              We also track vendor‑specific tools such as Corsair iCUE, ASUS Aura Sync and MSI
+              Mystic Light to understand how they fit into the wider ecosystem.
+            </p>
+            <p class="text-xs text-muted">
+              Dedicated articles coming soon. For now, see the
+              <a
+                href="/best-rgb-controller/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                main 2025 guide
+              </a>
+              and
+              <a
+                href="/compatibility/device-support-matrix/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                compatibility matrix
+              </a>
+              .
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="mx-auto mt-16 max-w-5xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-lg font-semibold tracking-tight">
+          Where to go next
+        </h2>
+        <p class="mt-2 text-sm text-offset">
+          If you are just starting your research, read the
+          <a
+            href="/best-rgb-controller/"
+            class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+          >
+            Best RGB Controller 2025 – Ultimate Guide
+          </a>
+          first, then dive into the Skydimo, OpenRGB or SignalRGB reviews depending on which tools
+          you are considering.
+        </p>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
