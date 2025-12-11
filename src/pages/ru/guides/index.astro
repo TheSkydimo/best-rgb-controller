@@ -1,0 +1,145 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Гайды по RGB‑контроллерам – Best RGB Controller";
+const PAGE_DESCRIPTION =
+  "Пошаговые инструкции по выбору ПО для RGB‑подсветки, синхронизации подсветки между разными брендами и снижению задержки в режимах Screen Sync.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/ru/guides/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/ru/guides/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-7xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Гайды
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Гайды и инструкции по RGB‑контроллерам
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Эти материалы сосредоточены на реальных задачах: выбрать подходящее ПО, заставить
+            устройства разных брендов работать синхронно и избавиться от лагов в режимах
+            синхронизации с экраном.
+          </p>
+        </header>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/guides/how-to-choose-rgb-software/"
+                class="hover:text-primary"
+              >
+                Как выбрать программу для управления RGB‑подсветкой
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Полноценный фреймворк для выбора софта, который помогает сбалансировать совместимость
+              устройств, набор функций, производительность, приватность и стоимость.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/guides/unify-rgb-across-brands/"
+                class="hover:text-primary"
+              >
+                Как синхронизировать подсветку устройств разных брендов
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Стратегии построения единой системы подсветки, когда клавиатура, мышь, вентиляторы и
+              LED‑ленты относятся к разным экосистемам.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/guides/reduce-screen-sync-lag/"
+                class="hover:text-primary"
+              >
+                Как уменьшить задержку в режимах Screen Sync
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Чек‑лист по диагностике и настройке более отзывчивой подсветки, синхронизированной с
+              экраном, на разных разрешениях и частотах обновления.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              Профили и пресеты подсветки (в разработке)
+            </h2>
+            <p class="text-sm text-offset">
+              В будущем мы планируем публиковать готовые идеи RGB‑профилей и пресетов, которые вы
+              сможете воспроизвести в своём любимом контроллере.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

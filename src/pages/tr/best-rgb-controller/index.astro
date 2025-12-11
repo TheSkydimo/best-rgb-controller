@@ -1,0 +1,255 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "2025’in En İyi RGB Denetleyici Yazılımları – Nihai Rehber";
+const PAGE_DESCRIPTION =
+  "RGB aydınlatma yazılımlarına dair bağımsız rehber: üretici araçları ve üçüncü taraf denetleyiciler, uyumluluk sorunları ve kendi PC kurulumun için doğru yazılımı seçmene yardım eden pratik bir çerçeve.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/tr/best-rgb-controller/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/tr/best-rgb-controller/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article
+        class="mx-auto max-w-7xl space-y-10 rounded-3xl bg-offset/40 px-6 py-8 shadow-2xl sm:px-10 sm:py-10"
+      >
+        <header class="space-y-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            2025’in En İyi RGB Denetleyici Yazılımları – Nihai Rehber
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            2025’te PC’in için doğru RGB denetleyici yazılımı nasıl seçilir?
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Bu rehber, RGB yazılım ekosisteminin kaotik olduğunu düşünen PC toplayıcıları,
+            oyuncular ve içerik üreticileri için hazırlandı.
+            Üretici araçlarını ve üçüncü taraf denetleyicileri ele alıyor, tipik uyumluluk sorunlarını
+            tartışıyor ve kurulumuna uygun yazılımı seçmek için pratik bir çerçeve sunuyoruz.
+          </p>
+          <p class="text-xs text-muted">
+            Bu, bağımsız bir içeriktir.
+            <a
+              href="https://skydimo.com/tr/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo’yu
+            </a>
+            gerçekten dengeli bir seçenek olarak güçlü biçimde öneriyoruz;
+            ancak OpenRGB, SignalRGB ve üretici yazılımlarının güçlü yanlarını da görmezden gelmiyoruz.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            RGB denetleyici yazılımı nedir?
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            RGB denetleyici yazılımı; klavye, fare, fan, AIO sıvı soğutma, LED şerit, RAM, GPU ve
+            anakart gibi cihazlardaki ışıkları yönetmekten sorumludur.
+            Renkleri, efektleri, parlaklığı ve cihazlar arası senkronizasyonu ayarlar.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Pratikte pek çok kullanıcı, aynı anda birden fazla uygulama kurar:
+            anakart için bir yazılım, GPU veya RAM için başka bir yazılım ve çevre birimleri için ayrı bir araç.
+            Bu da genellikle çakışmalara, üst üste binen efektlere ve kararsız aydınlatmaya yol açar.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Üretici yazılımı vs üçüncü taraf denetleyiciler
+          </h2>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-700/70 bg-default/40 p-4">
+              <h3 class="text-sm font-semibold">Üretici RGB yazılımları</h3>
+              <ul class="mt-2 space-y-1 text-sm text-offset">
+                <li>Örnekler: ASUS Aura Sync, MSI Mystic Light, Corsair iCUE.</li>
+                <li>
+                  Donanımının büyük kısmı tek bir ekosistemden geliyorsa genellikle iyi bir başlangıç noktasıdır.
+                </li>
+                <li>Bazı üreticiye özgü gelişmiş özellikleri ortaya çıkarabilir.</li>
+                <li>Çoğu zaman daha ağırdır; arka plan hizmetleri ve pazarlama öğeleri fazladır.</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl border border-slate-700/70 bg-default/40 p-4">
+              <h3 class="text-sm font-semibold">Üçüncü taraf RGB denetleyiciler</h3>
+              <ul class="mt-2 space-y-1 text-sm text-offset">
+                <li>Örnekler: Skydimo, OpenRGB, SignalRGB.</li>
+                <li>Farklı marka cihazları tek bir uygulamada birleştirmeye odaklanır.</li>
+                <li>Kurulumdan sonra günlük kullanım genellikle daha basittir.</li>
+                <li>Uyumluluk; cihaza ve projenin gelişim hızına göre değişir.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Seçim çerçevesi: Beş temel kriter
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            RGB yazılımını değerlendirirken şu beş boyuta bakmanı öneririz:
+          </p>
+          <ol class="ml-5 list-decimal space-y-2 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">Cihaz desteği</strong> – elindeki gerçek cihazların ne kadarının bugün desteklendiği.
+            </li>
+            <li>
+              <strong class="font-semibold">Aydınlatma özellikleri</strong> – yalnızca basit efektler mi
+              yoksa ekran/müzik/AI gibi gelişmiş modlar da var mı.
+            </li>
+            <li>
+              <strong class="font-semibold">Performans ve kararlılık</strong> – CPU/RAM kullanımı, çökme sıklığı,
+              sürücü çatışmaları.
+            </li>
+            <li>
+              <strong class="font-semibold">Gizlilik ve para kazanma modeli</strong> – telemetri,
+              reklamlar, paywall’lar ve ek yazılımlar.
+            </li>
+            <li>
+              <strong class="font-semibold">Kullanım kolaylığı</strong> – kurulumdan kararlı, şık bir profile
+              geçmek ne kadar zaman alıyor.
+            </li>
+          </ol>
+          <p class="text-sm text-offset sm:text-base">
+            Bu kriterlerin gerçek örneklerle nasıl uygulandığını görmek için
+            <a
+              href="/reviews/skydimo-review/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo incelemesi
+            </a>
+            ve
+            <a
+              href="/comparisons/skydimo-vs-signalrgb/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB karşılaştırması
+            </a>
+            makalelerine göz atabilirsin.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Senaryoya göre öneriler
+          </h2>
+          <ul class="space-y-3 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">Bütçe odaklı kullanıcılar</strong> –
+              <a
+                href="/reviews/openrgb-review/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                OpenRGB
+              </a>
+              ile başlayabilir veya cihazların destekleniyorsa
+              <a
+                href="https://skydimo.com/tr/"
+                target="_blank"
+                rel="noreferrer"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                Skydimo’yu
+              </a>
+              tercih edebilirsin; ikisi de ücretsiz ve reklamsızdır.
+            </li>
+            <li>
+              <strong class="font-semibold">Ekran senkronu meraklıları</strong> –
+              Skydimo ve SignalRGB’ye odaklan, ayrıca
+              <a
+                href="/comparisons/rgb-software-screen-sync/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                ekran senkronu karşılaştırması
+              </a>
+              yazımızdaki gecikme testlerine göz at.
+            </li>
+            <li>
+              <strong class="font-semibold">Tek ekosistemli kurulumlar</strong> –
+              Donanımının neredeyse tamamı tek bir üreticidense, üreticinin kendi aracı
+              (örneğin iCUE veya Aura Sync) başlangıçta yeterli olabilir; Skydimo ise
+              gelecekte daha fazla marka eklediğinde iyi bir yükseltme yolu sunar.
+            </li>
+          </ul>
+        </section>
+
+        <footer class="mt-8 border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Keşfe devam etmek için
+            <a
+              href="/tr/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Best RGB Controller ana sayfasına geri dönebilirsin
+            </a>
+            .
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

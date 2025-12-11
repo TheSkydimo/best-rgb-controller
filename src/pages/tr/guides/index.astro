@@ -1,0 +1,145 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB denetleyici rehberleri – Best RGB Controller";
+const PAGE_DESCRIPTION =
+  "RGB yazılımı seçme, farklı markalar arasında ışıkları senkronize etme ve ekran senkronu gecikmesini azaltma gibi konularda adım adım rehberler.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/tr/guides/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/tr/guides/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-7xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Rehberler
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB denetleyici rehberleri ve eğitimleri
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Bu makaleler, doğru RGB yazılımını seçmek, farklı marka cihazları birlikte çalıştırmak
+            ve ekran senkronu modlarındaki gecikme gibi yaygın sorunları adım adım çözmek için
+            hazırlanmıştır.
+          </p>
+        </header>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/guides/how-to-choose-rgb-software/"
+                class="hover:text-primary"
+              >
+                RGB denetleyici yazılımı nasıl seçilir?
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Cihaz uyumluluğu, özellikler, performans, gizlilik ve maliyet arasında denge kurmana
+              yardımcı olan kapsamlı bir seçim çerçevesi.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/guides/unify-rgb-across-brands/"
+                class="hover:text-primary"
+              >
+                Farklı markalar arasındaki RGB ışıkları nasıl senkronize edilir?
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Klavye, fare, fanlar ve LED şeritler farklı ekosistemlerden geldiğinde bile tek bir
+              uyumlu ışık düzeni kurmak için uygulanabilir stratejiler.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/guides/reduce-screen-sync-lag/"
+                class="hover:text-primary"
+              >
+                RGB ekran senkronu gecikmesi nasıl azaltılır?
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Farklı çözünürlük ve yenileme hızlarında, ekranla eşleşen aydınlatmayı daha akıcı ve
+              tepkisel hâle getirmek için kontrol listesi.
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              RGB profilleri ve hazır ayarlar (yakında)
+            </h2>
+            <p class="text-sm text-offset">
+              İleride, tercih ettiğin denetleyicide kolayca yeniden oluşturabileceğin örnek profil
+              fikirleri ve hazır ayarlar paylaşmayı planlıyoruz.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

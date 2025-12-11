@@ -1,0 +1,255 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Лучшее ПО для RGB‑подсветки 2025 – полный гид";
+const PAGE_DESCRIPTION =
+  "Независимый гид по программам для RGB‑подсветки в 2025 году. Фирменное ПО и сторонние контроллеры, типичные проблемы совместимости и практическая схема выбора подходящего решения для вашей сборки.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/ru/best-rgb-controller/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/best-rgb-controller/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article
+        class="mx-auto max-w-7xl space-y-10 rounded-3xl bg-offset/40 px-6 py-8 shadow-2xl sm:px-10 sm:py-10"
+      >
+        <header class="space-y-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Лучшее ПО для RGB‑подсветки 2025 – полный гид
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Как выбрать контроллер RGB‑подсветки для ПК в 2025 году
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Этот материал написан для тех, кто устал от хаоса в мире RGB‑ПО.
+            Мы рассматриваем фирменные утилиты производителей и сторонние контроллеры,
+            обсуждаем типичные проблемы совместимости и предлагаем практическую схему выбора
+            программного обеспечения под вашу конфигурацию.
+          </p>
+          <p class="text-xs text-muted">
+            Это независимый обзор.
+            Мы действительно рекомендуем
+            <a
+              href="https://skydimo.com/ru/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo
+            </a>
+            как один из самых сбалансированных вариантов,
+            но также отмечаем сильные стороны OpenRGB, SignalRGB и фирменных решений.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Что такое ПО для управления RGB‑подсветкой?
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Контроллер RGB‑подсветки управляет цветами, эффектами, яркостью и синхронизацией между
+            устройствами: клавиатурами, мышами, вентиляторами, СЖО, LED‑лентами, ОЗУ, видеокартами и материнскими платами.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            На практике многие пользователи ставят сразу несколько программ:
+            одну от производителя материнской платы, другую от видеокарты или ОЗУ и ещё одну от бренда периферии.
+            Это приводит к конфликтам, дублирующимся эффектам и нестабильной подсветке.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Фирменное ПО против сторонних контроллеров
+          </h2>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-700/70 bg-default/40 p-4">
+              <h3 class="text-sm font-semibold">Фирменные RGB‑утилиты</h3>
+              <ul class="mt-2 space-y-1 text-sm text-offset">
+                <li>Примеры: ASUS Aura Sync, MSI Mystic Light, Corsair iCUE.</li>
+                <li>Хороший выбор, если почти всё железо в системе — от одного производителя.</li>
+                <li>Иногда дают доступ к уникальным функциям и режимам подсветки.</li>
+                <li>Часто более тяжёлые, с большим количеством фоновых служб и маркетинговых элементов.</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl border border-slate-700/70 bg-default/40 p-4">
+              <h3 class="text-sm font-semibold">Сторонние контроллеры</h3>
+              <ul class="mt-2 space-y-1 text-sm text-offset">
+                <li>Примеры: Skydimo, OpenRGB, SignalRGB.</li>
+                <li>Сосредоточены на объединении устройств разных брендов в одном приложении.</li>
+                <li>После настройки обычно проще в повседневной работе.</li>
+                <li>Степень совместимости зависит от конкретных моделей и темпа развития проекта.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Схема выбора: пять ключевых критериев
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Мы рекомендуем оценивать RGB‑ПО по пяти направлениям:
+          </p>
+          <ol class="ml-5 list-decimal space-y-2 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">Поддержка устройств</strong> — насколько хорошо
+              программа работает именно с вашим текущим набором железа.
+            </li>
+            <li>
+              <strong class="font-semibold">Функции подсветки</strong> — базовые эффекты
+              против расширенных режимов вроде синхронизации с экраном, музыкой и AI‑пресетов.
+            </li>
+            <li>
+              <strong class="font-semibold">Производительность и стабильность</strong> — нагрузка
+              на CPU/ОЗУ, частота вылетов, наличие конфликтов с драйверами.
+            </li>
+            <li>
+              <strong class="font-semibold">Приватность и монетизация</strong> — телеметрия,
+              рекламные блоки, paywall‑элементы и навязанное ПО.
+            </li>
+            <li>
+              <strong class="font-semibold">Удобство использования</strong> — сколько времени
+              нужно, чтобы от установки дойти до стабильного, красивого профиля подсветки.
+            </li>
+          </ol>
+          <p class="text-sm text-offset sm:text-base">
+            Подробные примеры можно найти в
+            <a
+              href="/reviews/skydimo-review/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              обзоре Skydimo
+            </a>
+            и
+            <a
+              href="/comparisons/skydimo-vs-signalrgb/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              сравнении Skydimo и SignalRGB
+            </a>
+            , где мы шаг за шагом проходимся по этим критериям.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Рекомендации по сценариям использования
+          </h2>
+          <ul class="space-y-3 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">Пользователи с ограниченным бюджетом</strong> —
+              начните с
+              <a
+                href="/reviews/openrgb-review/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                OpenRGB
+              </a>
+              или рассмотрите
+              <a
+                href="https://skydimo.com/ru/"
+                target="_blank"
+                rel="noreferrer"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                Skydimo
+              </a>
+              , если ваши устройства поддерживаются — оба варианта бесплатны и без рекламы.
+            </li>
+            <li>
+              <strong class="font-semibold">Любители экранной синхронизации</strong> —
+              обратите внимание на Skydimo и SignalRGB, а также на наш
+              <a
+                href="/comparisons/rgb-software-screen-sync/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                отдельный обзор Screen Sync‑режимов
+              </a>
+              с тестами задержки.
+            </li>
+            <li>
+              <strong class="font-semibold">Сборки в рамках одной экосистемы</strong> —
+              если почти все компоненты от одного вендора, фирменное ПО (например, iCUE или Aura Sync)
+              может оказаться вполне достаточным, а Skydimo при этом остаётся хорошим вариантом для
+              будущего апгрейда и унификации.
+            </li>
+          </ul>
+        </section>
+
+        <footer class="mt-8 border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Продолжить изучение:
+            <a
+              href="/ru/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              вернуться на главную Best RGB Controller
+            </a>
+            .
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

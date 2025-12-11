@@ -1,0 +1,161 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Сравнения RGB‑контроллеров – Best RGB Controller";
+const PAGE_DESCRIPTION =
+  "Сравнения Skydimo, SignalRGB, OpenRGB и фирменных RGB‑утилит. Смотрим на отличия в экранной синхронизации, поддержке устройств, цене, приватности и удобстве использования.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/ru/comparisons/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/comparisons/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-7xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Сравнения
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Сравнения RGB‑контроллеров
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Если вы выбираете между Skydimo, SignalRGB, OpenRGB или фирменным ПО от вендора,
+            эти статьи помогут понять реальные компромиссы: охват устройств, задержку экранной
+            синхронизации, ценовую модель, приватность и удобство работы.
+          </p>
+        </header>
+
+        <div class="mt-6 space-y-4">
+          <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/comparisons/skydimo-vs-signalrgb/"
+                class="hover:text-primary"
+              >
+                Skydimo vs SignalRGB – что лучше для топовых сборок?
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Прямое сравнение возможностей, пресетов, качества экранной синхронизации и
+              долгосрочной стоимости для пользователей, которым важна картинка и «вау‑эффект».
+            </p>
+          </article>
+
+          <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/comparisons/skydimo-vs-openrgb/"
+                class="hover:text-primary"
+              >
+                Skydimo vs OpenRGB – удобный контроллер против «инструментального набора»
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              В каких случаях стоит выбрать простой и аккуратный интерфейс,
+              а когда имеет смысл потратить время на освоение более ручного подхода OpenRGB.
+            </p>
+          </article>
+
+          <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/comparisons/rgb-software-screen-sync/"
+                class="hover:text-primary"
+              >
+                Сравнение ПО для экранной синхронизации – тесты задержки
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              Специализированные бенчмарки в режиме Screen Sync на разных разрешениях и в разных
+              играх, с акцентом на отзывчивость и плавность.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="mx-auto mt-16 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-lg font-semibold tracking-tight">
+          Связанные материалы
+        </h2>
+        <p class="mt-2 text-sm text-offset">
+          Чтобы посмотреть на экосистему RGB в целом, загляните в
+          <a
+            href="/ru/best-rgb-controller/"
+            class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+          >
+            основной гид 2025 года
+          </a>
+          и
+          <a
+            href="/ru/rgb-ecosystem/"
+            class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+          >
+            обзор RGB‑экосистемы
+          </a>
+          .
+        </p>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

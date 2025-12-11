@@ -1,0 +1,172 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB 生态系统概览 2025 – 最佳 RGB 控制器";
+const PAGE_DESCRIPTION =
+  "解释为什么 RGB 生态如此割裂，厂商自带软件、第三方控制器与底层协议之间的关系，以及像 Skydimo 这样的工具在其中扮演的角色。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/zh/rgb-ecosystem/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/rgb-ecosystem/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            RGB 生态系统概览 – 2025
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            为什么 RGB 生态如此割裂？第三方控制软件能改变什么
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            从外部看起来，RGB 灯光似乎很简单：接上设备、安装一个软件，就能享受五彩灯效。
+            但真实情况是，RGB 控制依赖各家厂商的私有协议、固件细节和封闭生态。
+            这篇文章尝试把全局图景讲清楚，帮你更理性地规划自己的灯光方案。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            厂商协议、SDK 与锁定效应
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            许多主板、显卡和外设厂商都有自己的 RGB 协议、控制软件，甚至 SDK。
+            理想情况下，这些 SDK 文档齐全，第三方工具可以比较优雅地接入；
+            但也有不少厂商完全没有公开文档，只能依赖社区项目（比如 OpenRGB）反向工程。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            结果就是一个「拼布式」生态：键盘软件也许能管到鼠标，但管不到风扇；
+            主板软件能调灯带，但不一定能管内存。
+            像 Skydimo 这样的第三方控制器试图在这些层之上搭一个统一界面，把很多底层细节隐藏起来。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            为什么「统一 RGB」在技术上很难
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            即便协议已经搞清楚，不同设备在灯珠布局、分区数量、固件 Bug 和时序要求上也各不相同。
+            一个控制器在 A 品牌键盘上表现完美，却可能在 B 品牌上出现闪烁或延迟，只因为数据包格式或刷新间隔略有差异。
+            这也是为什么兼容设备列表如此重要、为什么没有哪款软件能真正做到「支持一切」。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            屏幕同步和音乐律动又增加了一层复杂度：
+            需要快速采集屏幕或音频数据、实时计算颜色，还要高效地驱动多台设备，
+            同时尽量少占用 CPU，避免拉高游戏的输入延迟。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Skydimo 等第三方控制器扮演的角色
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo、OpenRGB、SignalRGB 等第三方工具存在的根本原因，是大部分玩家的整机并不是「全家桶」。
+            它们尝试在不同品牌之间搭桥，同时在功能上提供比大多数厂商工具更现代的联动模式。
+            代价是你需要信任它们的兼容性层和更新节奏，而不仅仅依赖单一厂商的产品线规划。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            我们的
+            <a
+              href="/zh/best-rgb-controller/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              2025 年 RGB 控制软件总指南
+            </a>
+            和
+            <a
+              href="/zh/compatibility/device-support-matrix/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              设备兼容矩阵
+            </a>
+            共同展示了在当前阶段，Skydimo 在很多场景下能提供不错的整体平衡，
+            同时也承认其他工具在部分维度上的优势。
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            下一步可以：
+            <a
+              href="/zh/compatibility/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              查看设备兼容性指南
+            </a>
+            ，或
+            <a
+              href="/zh/comparisons/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              对比具体 RGB 控制软件
+            </a>
+            。
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

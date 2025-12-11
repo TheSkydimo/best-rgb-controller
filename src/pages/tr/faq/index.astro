@@ -1,0 +1,181 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB denetleyici SSS – Best RGB Controller";
+const PAGE_DESCRIPTION =
+  "RGB denetleyici yazılımlarının performans etkisi, güvenliği, veri toplama davranışları ve birden fazla aracı aynı anda çalıştırma hakkında sık sorulan soruların yanıtları.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/tr/faq/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/tr/faq/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-7xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            SSS
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB denetleyici yazılımları hakkında sık sorulan sorular
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Burada, RGB yazılımının FPS’e etkisi, güvenlik, veri toplama ve aynı anda birden
+            fazla aracı kullanma gibi konularda sık gelen soruları yanıtlıyoruz.
+          </p>
+        </header>
+
+        <dl class="space-y-4 md:space-y-5">
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  RGB denetleyici yazılımlar her zaman oyun performansını düşürür mü?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Çoğu modern denetleyici yalnızca az miktarda CPU ve RAM kullanır.
+                  Ciddi performans sorunları genellikle ağır arka plan hizmetleri, katmanlar veya
+                  ek bileşenlerden kaynaklanır; temel aydınlatma denetiminden değil.
+                  İncelemelerimizde, Skydimo ve OpenRGB gibi kaynak kullanımını makul tutan araçları özellikle vurguluyoruz.
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Aynı anda birden fazla RGB yazılımı yüklü olması sorun yaratır mı?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Birden fazla aracı kurmak yaygındır, ancak aynı cihazları aynı anda
+                  kontrol etmeye çalıştıklarında çakışmalar yaşanabilir.
+                  Genellikle bir ana denetleyici seçmeni ve mümkün olduğunca diğer yazılımlarda
+                  aydınlatma özelliklerini (BIOS veya kendi ayarları üzerinden) devre dışı
+                  bırakmanı öneririz.
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  RGB denetleyici yazılımları kişisel verilerimi toplar mı?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Farklı uygulamaların politikaları büyük oranda değişir.
+                  Bazı araçlar kullanım telemetrisi toplar veya hesap girişi ister;
+                  diğerleri (örneğin Skydimo) daha çok yerel denetime ve kullanıcı profil çıkarmamaya odaklanır.
+                  En iyisi, resmi gizlilik politikasını okumak ve yazılımı yalnızca güvenilir indirme
+                  kaynaklarından edinmektir.
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Bir yazılımın cihazlarımı destekleyip desteklemediğini nasıl anlarım?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Önce düşündüğün her kontrolcü için resmi uyumluluk listesine veya topluluk
+                  tarafından hazırlanan wiki sayfalarına bak, sonra da farklı yazılımların tipik
+                  kapsamını görmek için
+                  <a
+                    href="/tr/compatibility/device-support-matrix/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+                  >
+                    cihaz destek matrisimizi
+                  </a>
+                  kontrol et.
+                </dd>
+              </div>
+            </div>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

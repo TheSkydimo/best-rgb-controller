@@ -20,12 +20,12 @@ const { copy, languageOptions } = pageData;
 const DOWNLOAD_URL = "https://skydimo.com/ru/download";
 
 const navItems = [
-  { title: "Выбор редакции", url: "#best-picks" },
-  { title: "Обзоры", url: "/reviews/" },
-  { title: "Сравнения", url: "/comparisons/" },
-  { title: "Гайды", url: "/guides/" },
-  { title: "Совместимость", url: "/compatibility/" },
-  { title: "FAQ", url: "/faq/" },
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
 ];
 ---
 
@@ -86,119 +86,52 @@ const navItems = [
     />
 
     <main class="px-8 pt-16 pb-24">
-      <!-- Hero -->
+      <!-- Hero / Above the fold -->
       <section
-        class="mx-auto grid max-w-7xl gap-12 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 px-8 py-12 shadow-2xl lg:px-12 lg:py-16"
+        class="mx-auto max-w-7xl space-y-6 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 px-8 py-12 text-left shadow-2xl lg:px-12 lg:py-16"
         aria-labelledby="hero-heading"
       >
-        <div class="flex flex-col justify-center gap-6">
-          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            Лучшее ПО для RGB‑подсветки 2025 года
-          </p>
-          <h1
-            id="hero-heading"
-            class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+          Лучшее ПО для RGB‑подсветки 2025 года
+        </p>
+        <h1
+          id="hero-heading"
+          class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+        >
+          Независимые обзоры, сравнения и рекомендации по RGB‑ПО
+        </h1>
+        <p class="max-w-2xl text-balance text-sm text-offset sm:text-base">
+          best-rgb-controller.com — bağımsız bir içerik sitesidir ve RGB aydınlatma yazılımlarına
+          odaklanır. Üretici araçlarını ve üçüncü taraf denetleyicileri inceler, güçlü ve zayıf
+          yönlerini karşılaştırır ve kendi PC kurulumun için doğru RGB çözümünü seçmene yardımcı olur.
+        </p>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+          <a
+            href="/ru/best-rgb-controller/"
+            class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
           >
-            Независимые обзоры и сравнения RGB‑контроллеров
-          </h1>
-          <p class="max-w-2xl text-balance text-sm text-offset sm:text-base">
-            best-rgb-controller.com — небольшой независимый сайт, посвящённый программам для RGB‑подсветки.
-            Мы разбираем фирменные утилиты и сторонние контроллеры, чтобы помочь вам выбрать лучшее решение для своей сборки ПК.
-          </p>
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <a
-              href="/best-rgb-controller/"
-              class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
-            >
-              Открыть рейтинг и гид 2025 года
-            </a>
-            <a
-              href="/reviews/"
-              class="inline-flex items-center justify-center rounded-full border border-offset px-6 py-3 text-sm font-semibold text-offset transition hover:border-primary hover:text-primary"
-            >
-              Просмотреть все обзоры
-            </a>
-          </div>
-          <p class="mt-2 max-w-2xl text-xs text-muted">
-            Мы действительно рекомендуем
-            <a
-              href="https://skydimo.com/ru/"
-              target="_blank"
-              rel="noreferrer"
-              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
-            >
-              Skydimo
-            </a>
-            как основной контроллер RGB‑подсветки для многих пользователей Windows, но также честно рассказываем про OpenRGB, SignalRGB и фирменные решения.
-          </p>
-          <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
-            <div class="inline-flex items-center gap-1">
-              <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span>Более 200 000 пользователей по всему миру</span>
-            </div>
-            <div class="inline-flex items-center gap-1">
-              <span class="inline-block h-1.5 w-1.5 rounded-full bg-sky-400" />
-              <span>Полностью бесплатно, без рекламы и майнинга</span>
-            </div>
-            <div class="inline-flex items-center gap-1">
-              <span class="inline-block h-1.5 w-1.5 rounded-full bg-violet-400" />
-              <span>Синхронизация с экраном и музыкой</span>
-            </div>
-            <div class="inline-flex items-center gap-1">
-              <span class="inline-block h-1.5 w-1.5 rounded-full bg-rose-400" />
-              <span>Поддержка более 1000 RGB‑устройств</span>
-            </div>
-          </div>
+            Открыть рейтинг и гид 2025 года
+          </a>
+          <a
+            href="/reviews/"
+            class="inline-flex items-center justify-center rounded-full border border-offset px-6 py-3 text-sm font-semibold text-offset transition hover:border-primary hover:text-primary"
+          >
+            Просмотреть все обзоры
+          </a>
         </div>
-        <div class="flex items-center justify-center">
-          <div class="relative h-80 w-full max-w-2xl overflow-hidden rounded-3xl border border-slate-700/70 bg-slate-900/80 p-1 shadow-[0_0_80px_rgba(56,189,248,0.35)]">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.6),_transparent_55%),_radial-gradient(circle_at_bottom,_rgba(244,63,94,0.4),_transparent_55%)]" />
-            <div class="relative h-full w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-black/60">
-              <Image
-                src={moonImage}
-                alt="Абстрактный фон с RGB‑подсветкой"
-                class="h-full w-full object-cover opacity-90 mix-blend-screen"
-                loading="eager"
-              />
-              <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.65),_transparent_70%)]" />
-              <div class="pointer-events-none absolute inset-x-8 top-6 flex items-center justify-between text-[10px] font-medium text-slate-100/80">
-                <div class="flex items-center gap-1.5">
-                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
-                  <span>Синхронизация с экраном</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.8)]" />
-                  <span>Синхронизация с музыкой</span>
-                </div>
-                <div class="hidden items-center gap-1.5 sm:flex">
-                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-violet-400 shadow-[0_0_12px_rgba(139,92,246,0.8)]" />
-                  <span>AI‑подсветка</span>
-                </div>
-              </div>
-              <div class="absolute inset-x-0 bottom-0 space-y-2 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 text-xs">
-                <p class="font-semibold text-white">
-                  Профиль подсветки: <span class="text-primary">Game Night – синхронизация с экраном</span>
-                </p>
-                <p class="text-[11px] text-slate-200">
-                  Активна синхронизация с экраном, музыкой и AI‑эффектами. Объединены клавиатура, мышь, вентиляторы и LED‑ленты.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Privacy & Security -->
-      <section class="mx-auto mt-16 max-w-6xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
-        <h2 class="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
-          Конфиденциальность и безопасность
-        </h2>
-        <p class="mt-2 max-w-3xl text-sm text-offset">
-          Skydimo создаётся с упором на безопасность и уважение к приватности: без рекламы, без
-          навязанных программ, без майнинга и без сбора персональных данных или телеметрии
-          использования. Приложение работает полностью локально на вашем ПК, считывает только
-          необходимую для управления RGB‑устройствами аппаратную информацию, а все профили подсветки
-          и настройки хранятся исключительно на вашем компьютере.
+        <p class="mt-2 max-w-2xl text-xs text-muted">
+          Мы действительно рекомендуем
+          <a
+            href="https://skydimo.com/ru/"
+            target="_blank"
+            rel="noreferrer"
+            class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+          >
+            Skydimo
+          </a>
+          как один из самых сбалансированных контроллеров RGB‑подсветки — по возможностям,
+          совместимости и отношению к приватности. Но это не единственный инструмент, о котором мы
+          рассказываем на этом сайте.
         </p>
       </section>
 
@@ -680,20 +613,6 @@ const navItems = [
             Скачать Skydimo для Windows (безопасно, без рекламы)
           </a>
         </div>
-      </section>
-
-      <!-- Privacy & Security -->
-      <section class="mx-auto mt-16 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
-        <h2 class="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
-          Конфиденциальность и безопасность
-        </h2>
-        <p class="mt-2 text-sm text-offset">
-          Skydimo создаётся с упором на безопасность и уважение к приватности: без рекламы, без
-          навязанных программ, без майнинга и без сбора персональных данных или телеметрии
-          использования. Приложение работает полностью локально на вашем ПК, считывает только
-          необходимую для управления RGB‑устройствами аппаратную информацию, а все профили подсветки
-          и настройки хранятся исключительно на вашем компьютере.
-        </p>
       </section>
 
       <!-- Footer note above global footer -->

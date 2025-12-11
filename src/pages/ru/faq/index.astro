@@ -1,0 +1,180 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "FAQ по RGB‑контроллерам – Best RGB Controller";
+const PAGE_DESCRIPTION =
+  "Ответы на частые вопросы о производительности, безопасности, сборе данных и одновременной работе нескольких программ для управления RGB‑подсветкой.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/ru/faq/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/ru/faq/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-7xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            FAQ
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Часто задаваемые вопросы о ПО для RGB‑подсветки
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Здесь мы собрали ответы на самые частые вопросы о влиянии RGB‑контроллеров на FPS,
+            безопасности, сборе данных и одновременной работе нескольких программ.
+          </p>
+        </header>
+
+        <dl class="space-y-4 md:space-y-5">
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Всегда ли ПО для RGB‑подсветки снижает производительность в играх?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Большинство современных контроллеров потребляет лишь небольшой объём CPU и ОЗУ.
+                  Серьёзные просадки производительности чаще связаны с тяжёлыми фоновыми службами,
+                  оверлеями и дополнительными модулями, а не с базовым управлением подсветкой.
+                  В наших обзорах мы отдельно выделяем инструменты с умеренным потреблением ресурсов,
+                  такие как Skydimo и OpenRGB.
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Можно ли держать установлено несколько программ для RGB‑подсветки одновременно?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Так делают многие пользователи, однако конфликты возможны, если несколько программ
+                  пытаются управлять одними и теми же устройствами.
+                  Обычно мы рекомендуем выбрать один основной контроллер и по возможности отключить
+                  функции подсветки в остальных (через BIOS или настройки самих программ).
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Собирает ли ПО для RGB‑подсветки мои персональные данные?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Политика разных приложений сильно отличается.
+                  Некоторые решения собирают телеметрию использования или требуют учётную запись,
+                  другие — например, Skydimo — делают упор на локальное управление без профилирования
+                  пользователя. Лучше всего ознакомиться с официальной политикой конфиденциальности
+                  и скачивать программы только с проверенных источников.
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Как понять, поддерживает ли та или иная программа мои устройства?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Начните с официального списка совместимых устройств или вики‑страницы сообщества
+                  по каждому контроллеру, который вы рассматриваете, а затем сверяйтесь с нашей
+                  <a
+                    href="/ru/compatibility/device-support-matrix/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+                  >
+                    матрицей поддержки устройств
+                  </a>
+                  , чтобы увидеть типичные паттерны совместимости.
+                </dd>
+              </div>
+            </div>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
