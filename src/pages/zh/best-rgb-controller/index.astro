@@ -1,0 +1,245 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "2025 年最佳 RGB 控制软件终极指南";
+const PAGE_DESCRIPTION =
+  "面向装机玩家与内容创作者的独立 RGB 控制软件选型指南，涵盖厂商自带工具与第三方控制器，帮你在 2025 年为自己的 PC 找到合适的灯光方案。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/zh/best-rgb-controller/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/best-rgb-controller/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article
+        class="mx-auto max-w-7xl space-y-10 rounded-3xl bg-offset/40 px-6 py-8 shadow-2xl sm:px-10 sm:py-10"
+      >
+        <header class="space-y-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            2025 年最佳 RGB 控制软件终极指南
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            如何在 2025 年为你的 PC 选择合适的 RGB 控制软件
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            本文面向感觉 RGB 软件生态“太乱”的装机玩家、游戏玩家与内容创作者。
+            我们会同时覆盖厂商品牌工具与第三方控制器，讨论常见的兼容性问题，
+            并给出一套实用的选型框架，帮助你为自己的配置找到合适的软件。
+          </p>
+          <p class="text-xs text-muted">
+            本文为独立内容。我们确实会强烈推荐
+            <a
+              href="https://skydimo.com/zh/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo
+            </a>
+            作为当前综合表现最均衡的选择之一，但文中也会同时介绍其他工具的优缺点。
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            什么是 RGB 控制软件？
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            RGB 控制软件负责管理键盘、鼠标、机箱风扇、一体水冷、灯带、内存、显卡和主板等设备的灯光。
+            它决定了颜色、效果、亮度以及各设备之间的同步方式。
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            在实践中，很多用户往往会同时安装好几个软件：
+            主板厂商一个、显卡或内存厂商一个，再加上外设品牌的控制软件。
+            这很容易导致冲突、效果叠加和灯光状态不稳定。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            厂商自带软件 vs 第三方控制器
+          </h2>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-700/70 bg-default/40 p-4">
+              <h3 class="text-sm font-semibold">厂商 RGB 软件</h3>
+              <ul class="mt-2 space-y-1 text-sm text-offset">
+                <li>代表：ASUS Aura Sync、MSI Mystic Light、Corsair iCUE 等。</li>
+                <li>当你的绝大多数硬件来自同一生态时往往是不错的起点。</li>
+                <li>可以解锁部分厂商特有的高级功能。</li>
+                <li>通常更“重”，后台服务较多，也可能带有更多营销与付费入口。</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl border border-slate-700/70 bg-default/40 p-4">
+              <h3 class="text-sm font-semibold">第三方 RGB 控制器</h3>
+              <ul class="mt-2 space-y-1 text-sm text-offset">
+                <li>代表：Skydimo、OpenRGB、SignalRGB 等。</li>
+                <li>重点是将多品牌设备统一到一个软件中管理。</li>
+                <li>一旦配置好，日常使用往往更简单。</li>
+                <li>兼容性依设备而异，有时需要结合社区反馈来确认支持情况。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            选型框架：五个关键维度
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            在评估 RGB 软件时，我们建议重点关注以下五个维度：
+          </p>
+          <ol class="ml-5 list-decimal space-y-2 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">设备支持</strong> – 目前真正支持你手上设备的程度。
+            </li>
+            <li>
+              <strong class="font-semibold">灯光功能</strong> – 仅基础效果，还是包含屏幕同步、音乐律动、AI 智能预设等高级模式。
+            </li>
+            <li>
+              <strong class="font-semibold">性能与稳定性</strong> – CPU / 内存占用、是否容易崩溃、是否与其他驱动冲突。
+            </li>
+            <li>
+              <strong class="font-semibold">隐私与变现方式</strong> – 是否采集遥测、是否有广告或付费墙、是否捆绑其他软件。
+            </li>
+            <li>
+              <strong class="font-semibold">易用程度</strong> – 从安装到配置好一套稳定灯效需要多久、操作是否直观。
+            </li>
+          </ol>
+          <p class="text-sm text-offset sm:text-base">
+            想看结合实际案例的详细分析，可以参考我们的
+            <a
+              href="/reviews/skydimo-review/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo 详细评测
+            </a>
+            ，以及
+            <a
+              href="/comparisons/skydimo-vs-signalrgb/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB 对比
+            </a>
+            ，其中会按照这些维度逐项展开。
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            场景化推荐
+          </h2>
+          <ul class="space-y-3 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">预算敏感用户</strong> –
+              可以优先考虑
+              <a
+                href="/reviews/openrgb-review/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                OpenRGB
+              </a>
+              ，或在设备支持的前提下选择
+              <a
+                href="https://skydimo.com/zh/"
+                target="_blank"
+                rel="noreferrer"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                Skydimo
+              </a>
+              这类免费、无广告的方案。
+            </li>
+            <li>
+              <strong class="font-semibold">屏幕同步爱好者</strong> –
+              可以重点关注 Skydimo 与 SignalRGB，并结合
+              <a
+                href="/comparisons/rgb-software-screen-sync/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                屏幕同步对比文章
+              </a>
+              中的延迟测试结果做选择。
+            </li>
+            <li>
+              <strong class="font-semibold">单一生态装机</strong> –
+              如果你的绝大部分硬件来自同一品牌，厂商自带工具（如 iCUE 或 Aura Sync）可能已经够用，
+              后续可以再考虑像 Skydimo 这样的第三方方案作为升级路径。
+            </li>
+          </ul>
+        </section>
+
+        <footer class="mt-8 border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            你可以继续浏览：
+            <a
+              href="/zh/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              返回最佳 RGB 控制软件首页
+            </a>
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

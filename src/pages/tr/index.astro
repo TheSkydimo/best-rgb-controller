@@ -17,14 +17,15 @@ const locale: Locale = "tr";
 const pageData = buildPageData(locale, site);
 const { copy, languageOptions } = pageData;
 
-// Türkçe kullanıcılar Türkçe indirme sayfasına gider
 const DOWNLOAD_URL = "https://skydimo.com/tr/download";
 
 const navItems = [
-  { title: "Aydınlatma modları", url: "#modes" },
-  { title: "Cihaz desteği", url: "#devices" },
-  { title: "Neden Skydimo", url: "#why-skydimo" },
-  { title: "SSS", url: "#faq" },
+  { title: "Editörün seçimi", url: "#best-picks" },
+  { title: "İncelemeler", url: "/reviews/" },
+  { title: "Karşılaştırmalar", url: "/comparisons/" },
+  { title: "Rehberler", url: "/guides/" },
+  { title: "Uyumluluk", url: "/compatibility/" },
+  { title: "SSS", url: "/faq/" },
 ];
 ---
 <!doctype html>
@@ -75,8 +76,6 @@ const navItems = [
   >
     <Header
       navItems={navItems}
-      downloadUrl={DOWNLOAD_URL}
-      downloadLabel="İndir"
       locale={locale}
       navLabel={copy.nav.ariaLabel}
       openLabel={copy.nav.openLabel}
@@ -92,34 +91,43 @@ const navItems = [
       >
         <div class="flex flex-col justify-center gap-6">
           <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            Windows için en iyi ücretsiz RGB aydınlatma yazılımı
+            2025’in en iyi RGB denetleyici yazılımları
           </p>
           <h1
             id="hero-heading"
             class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
           >
-            Tüm PC cihazların için ücretsiz RGB aydınlatma denetleyicisi
+            Bağımsız RGB yazılım incelemeleri ve karşılaştırmaları
           </h1>
           <p class="max-w-2xl text-balance text-sm text-offset sm:text-base">
-            Farklı markalara ait 1000+ RGB cihazı, tek bir ücretsiz ve güvenli aydınlatma uygulamasıyla kontrol edin.
-            Işıkları oyunlar, müzik ve filmlerle saniyeler içinde senkronize edin.
+            best-rgb-controller.com, RGB aydınlatma yazılımlarına odaklanan küçük ama bağımsız bir sitedir.
+            Üretici araçlarını ve üçüncü taraf denetleyicileri karşılaştırarak, kendi PC kurulumun için en uygun çözümü seçmene yardımcı olur.
           </p>
           <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <a
-              href={DOWNLOAD_URL}
+              href="/best-rgb-controller/"
               class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
             >
-              Skydimo’yu Windows için indir (güvenli, reklamsız)
+              2025 sıralamasını ve kapsamlı rehberi gör
             </a>
             <a
-              href="https://skydimo.com/tr/"
+              href="/reviews/"
               class="inline-flex items-center justify-center rounded-full border border-offset px-6 py-3 text-sm font-semibold text-offset transition hover:border-primary hover:text-primary"
             >
-              Neden Skydimo’yu önerdiğimizi öğren &rarr;
+              Tüm incelemelere göz at
             </a>
           </div>
-          <p class="mt-2 text-xs text-muted">
-            Güvenli indirme için resmi site skydimo.com adresine yönlendirileceksin.
+          <p class="mt-2 max-w-2xl text-xs text-muted">
+            Biz
+            <a
+              href="https://skydimo.com/tr/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo’yu
+            </a>
+            çoğu Windows kullanıcısı için bir numaralı RGB denetleyici olarak öneriyoruz, ancak OpenRGB, SignalRGB ve üretici çözümlerinin güçlü yanlarını da dürüstçe anlatıyoruz.
           </p>
           <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
             <div class="inline-flex items-center gap-1">

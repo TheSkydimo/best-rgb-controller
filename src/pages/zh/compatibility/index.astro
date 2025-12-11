@@ -1,0 +1,152 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB 软件兼容性指南 – 最佳 RGB 控制器";
+const PAGE_DESCRIPTION =
+  "RGB 控制软件兼容性中心：了解不同工具倾向支持哪些品牌与设备类型，如何读懂 ARGB 接口，以及当主板或灯带不被识别时可以如何排查。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/zh/compatibility/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/compatibility/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-7xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            设备兼容
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB 软件兼容性与硬件指南
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            并不是所有控制器都支持所有设备。
+            这个兼容性中心会解释典型的支持模式、ARGB 接口的工作原理，以及当主板或灯带不被识别时可以尝试的排查步骤。
+          </p>
+        </header>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/compatibility/device-support-matrix/"
+                class="hover:text-primary"
+              >
+                设备支持列表与软件覆盖范围
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              从整体上梳理不同控制器通常会优先支持哪些品牌与硬件类别
+              （键盘、鼠标、风扇、灯带、内存、显卡与主板等）。
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/compatibility/fix-rgb-not-detected/"
+                class="hover:text-primary"
+              >
+                主板 RGB 灯光不被识别时如何排查
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              总结常见的 BIOS 设置、线材、接口与软件层面问题，帮助你在控制软件中正确显示所有灯光区域。
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/compatibility/led-strip-guide/"
+                class="hover:text-primary"
+              >
+                RGB 灯带支持指南 – RGB 与 ARGB 的区别
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              在接线前，先搞清楚 12V RGB 与 5V ARGB 的差异、主板针脚定义以及安全接线方法。
+            </p>
+          </article>
+
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              生态系统概览
+            </h2>
+            <p class="text-sm text-offset">
+              想进一步理解为什么 RGB 生态如此割裂、第三方工具（例如 Skydimo）如何切入，
+              可以阅读
+              <a
+                href="/zh/rgb-ecosystem/"
+                class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+              >
+                RGB 生态系统概览
+              </a>
+              一文。
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

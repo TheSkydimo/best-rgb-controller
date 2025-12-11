@@ -1,0 +1,157 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB 软件对比 – 最佳 RGB 控制器";
+const PAGE_DESCRIPTION =
+  "Skydimo、SignalRGB、OpenRGB 以及厂商自带 RGB 工具的横向对比，重点聚焦屏幕同步、设备支持、价格与隐私等维度，帮你在更换软件前看清差异。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/zh/comparisons/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/zh/comparisons/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-7xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            对比
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB 控制软件横向对比
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            如果你正在 Skydimo、SignalRGB、OpenRGB 或厂商自带工具之间犹豫，
+            这些对比文章会从设备覆盖、屏幕同步延迟、价格、隐私和易用性等角度，帮你看清真实取舍。
+          </p>
+        </header>
+
+        <div class="mt-6 space-y-4">
+          <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/comparisons/skydimo-vs-signalrgb/"
+                class="hover:text-primary"
+              >
+                Skydimo vs SignalRGB – 高端灯光方案哪家更适合你？
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              面向追求屏幕同步与丰富预设的玩家，从功能、预设、屏幕同步质量和长期价格等方面做一对一对比。
+            </p>
+          </article>
+
+          <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/comparisons/skydimo-vs-openrgb/"
+                class="hover:text-primary"
+              >
+                Skydimo vs OpenRGB – 友好控制器 vs 进阶玩家工具箱
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              分析什么时候更适合用上手简单的一站式控制器，什么时候值得投入时间学习更“原始”的 OpenRGB。
+            </p>
+          </article>
+
+          <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h2 class="text-base font-semibold">
+              <a
+                href="/comparisons/rgb-software-screen-sync/"
+                class="hover:text-primary"
+              >
+                屏幕同步 RGB 软件对比 – 延迟与流畅度测试
+              </a>
+            </h2>
+            <p class="text-sm text-offset">
+              针对不同分辨率与游戏场景，专门测试多款软件在屏幕联动模式下的延迟、流畅度与稳定性。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="mx-auto mt-16 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-lg font-semibold tracking-tight">
+          相关内容
+        </h2>
+        <p class="mt-2 text-sm text-offset">
+          想从更宏观的角度理解整个 RGB 软件生态，可以先阅读
+          <a
+            href="/zh/best-rgb-controller/"
+            class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+          >
+            2025 年 RGB 控制软件总指南
+          </a>
+          ，以及
+          <a
+            href="/zh/rgb-ecosystem/"
+            class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+          >
+            RGB 生态系统概览
+          </a>
+          。
+        </p>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

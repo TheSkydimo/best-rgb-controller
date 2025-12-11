@@ -17,14 +17,15 @@ const locale: Locale = "ru";
 const pageData = buildPageData(locale, site);
 const { copy, languageOptions } = pageData;
 
-// Русскоязычные пользователи переходят на русскую страницу загрузки
 const DOWNLOAD_URL = "https://skydimo.com/ru/download";
 
 const navItems = [
-  { title: "Режимы подсветки", url: "#modes" },
-  { title: "Поддержка устройств", url: "#devices" },
-  { title: "Почему Skydimo", url: "#why-skydimo" },
-  { title: "FAQ", url: "#faq" },
+  { title: "Выбор редакции", url: "#best-picks" },
+  { title: "Обзоры", url: "/reviews/" },
+  { title: "Сравнения", url: "/comparisons/" },
+  { title: "Гайды", url: "/guides/" },
+  { title: "Совместимость", url: "/compatibility/" },
+  { title: "FAQ", url: "/faq/" },
 ];
 ---
 
@@ -76,8 +77,6 @@ const navItems = [
   >
     <Header
       navItems={navItems}
-      downloadUrl={DOWNLOAD_URL}
-      downloadLabel="Скачать"
       locale={locale}
       navLabel={copy.nav.ariaLabel}
       openLabel={copy.nav.openLabel}
@@ -94,34 +93,43 @@ const navItems = [
       >
         <div class="flex flex-col justify-center gap-6">
           <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            Лучшая бесплатная RGB‑подсветка для Windows‑ПК
+            Лучшее ПО для RGB‑подсветки 2025 года
           </p>
           <h1
             id="hero-heading"
             class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
           >
-            Бесплатный контроллер RGB‑подсветки для всех устройств вашего ПК
+            Независимые обзоры и сравнения RGB‑контроллеров
           </h1>
           <p class="max-w-2xl text-balance text-sm text-offset sm:text-base">
-            Один бесплатный и безопасный инструмент управления подсветкой для более чем 1000 RGB‑устройств разных брендов.
-            Синхронизируйте свет с играми, музыкой и фильмами за считанные секунды.
+            best-rgb-controller.com — небольшой независимый сайт, посвящённый программам для RGB‑подсветки.
+            Мы разбираем фирменные утилиты и сторонние контроллеры, чтобы помочь вам выбрать лучшее решение для своей сборки ПК.
           </p>
           <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <a
-              href={DOWNLOAD_URL}
+              href="/best-rgb-controller/"
               class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
             >
-              Скачать Skydimo для Windows (безопасно, без рекламы)
+              Открыть рейтинг и гид 2025 года
             </a>
             <a
-              href="https://skydimo.com/ru/"
+              href="/reviews/"
               class="inline-flex items-center justify-center rounded-full border border-offset px-6 py-3 text-sm font-semibold text-offset transition hover:border-primary hover:text-primary"
             >
-              Узнать, почему мы рекомендуем Skydimo &rarr;
+              Просмотреть все обзоры
             </a>
           </div>
-          <p class="mt-2 text-xs text-muted">
-            Вы будете перенаправлены на официальный сайт skydimo.com для безопасной загрузки.
+          <p class="mt-2 max-w-2xl text-xs text-muted">
+            Мы действительно рекомендуем
+            <a
+              href="https://skydimo.com/ru/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo
+            </a>
+            как основной контроллер RGB‑подсветки для многих пользователей Windows, но также честно рассказываем про OpenRGB, SignalRGB и фирменные решения.
           </p>
           <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
             <div class="inline-flex items-center gap-1">

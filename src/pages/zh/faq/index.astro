@@ -1,0 +1,175 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB 控制软件常见问题 – 最佳 RGB 控制器";
+const PAGE_DESCRIPTION =
+  "围绕 RGB 控制软件性能、安全性、数据收集以及多软件共存等主题的常见问题解答，帮助你更放心地使用 RGB 软件。";
+
+const navItems = [
+  { title: "编辑推荐", url: "/zh/#best-picks" },
+  { title: "评测", url: "/zh/reviews/" },
+  { title: "对比", url: "/zh/comparisons/" },
+  { title: "使用指南", url: "/zh/guides/" },
+  { title: "设备兼容", url: "/zh/compatibility/" },
+  { title: "常见问题", url: "/zh/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta
+      property="og:url"
+      content="https://best-rgb-controller.com/zh/faq/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://best-rgb-controller.com/zh/faq/" />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <section class="mx-auto max-w-7xl space-y-6">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            FAQ
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB 控制软件常见问题
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            这里整理了一些关于 RGB 软件性能影响、安全性、数据收集以及多工具共存的常见问题，
+            帮助你在日常使用中更加心里有数。
+          </p>
+        </header>
+
+        <dl class="space-y-4 md:space-y-5">
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  RGB 控制软件一定会明显影响游戏帧数吗？
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  大多数现代控制软件本身只会占用极少量 CPU 和内存。
+                  真正造成性能问题的，往往是过于沉重的后台服务、覆盖层或捆绑的其他组件，而不是基本的灯光控制。
+                  在我们的评测中，会特别标注像 Skydimo、OpenRGB 这类资源占用相对克制的工具。
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  同时安装多款 RGB 控制软件会有问题吗？
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  同一台电脑上安装多款 RGB 软件是比较常见的情况，
+                  但如果它们同时尝试控制同一批设备，就容易出现冲突。
+                  我们通常建议选择一个主力控制器，在 BIOS 或各自设置中关闭其他软件的灯光控制功能，尽量避免“抢占”同一设备。
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  RGB 控制软件会收集我的个人数据吗？
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  不同软件的策略差异很大。
+                  有些会收集使用遥测或要求账号登录，而另一些（例如 Skydimo）则更偏向本地控制、不做用户画像。
+                  使用前建议阅读官方隐私政策，并尽量从可信的官方下载渠道获取安装包。
+                </dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div
+                class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary"
+              >
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  怎么判断自己的设备是否被某款 RGB 软件支持？
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  建议先查看每个控制器的官方兼容列表或社区维护的 Wiki，
+                  然后再对照我们的
+                  <a
+                    href="/zh/compatibility/device-support-matrix/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+                  >
+                    设备支持矩阵
+                  </a>
+                  ，了解不同软件在各类硬件上的典型覆盖情况。
+                </dd>
+              </div>
+            </div>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
