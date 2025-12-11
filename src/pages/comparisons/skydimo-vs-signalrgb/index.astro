@@ -10,7 +10,8 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale = DEFAULT_LOCALE;
-const pageData = buildPageData(locale, site);
+// Locale‑agnostic path for this comparison article
+const pageData = buildPageData(locale, site, "/comparisons/skydimo-vs-signalrgb/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "Skydimo vs SignalRGB – Which RGB Controller Is Better?";

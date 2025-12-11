@@ -1,5 +1,6 @@
 import {
-  buildLanguageLinks,
+  buildLanguageLinksForPath,
+  buildLocalizedHref,
   getLocaleHref,
   type LanguageLink,
   type Locale,
@@ -24,12 +25,32 @@ export interface PageData {
 const buildAbsoluteUrl = (path: string, site?: URL): string =>
   site ? new URL(path, site).toString() : path;
 
-export const buildPageData = (locale: Locale, site?: URL): PageData => {
+/**
+ * Build all page‑level i18n data.
+ *
+ * @param locale - active locale for this page
+ * @param site   - Astro site URL (for absolute URLs)
+ * @param path   - locale‑agnostic path of the current page,
+ *                 e.g. "/reviews/skydimo-review/".
+ *                 If omitted, we fall back to locale homepages
+ *                 to keep behaviour backwards‑compatible.
+ */
+export const buildPageData = (
+  locale: Locale,
+  site?: URL,
+  path?: string,
+): PageData => {
   const copy = getTranslations(locale);
-  const languageOptions = buildLanguageLinks();
+  const languageOptions = path
+    ? buildLanguageLinksForPath(path)
+    : // Fallback to locale homepages for existing callers
+      buildLanguageLinksForPath("/");
 
   const head: PageHeadData = {
-    canonical: buildAbsoluteUrl(getLocaleHref(locale), site),
+    canonical: buildAbsoluteUrl(
+      path ? buildLocalizedHref(locale, path) : getLocaleHref(locale),
+      site,
+    ),
     image: buildAbsoluteUrl("og-image.png", site),
     alternates: languageOptions.map((option) => ({
       code: option.code,

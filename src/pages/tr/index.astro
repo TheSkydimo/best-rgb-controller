@@ -11,7 +11,8 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "tr";
-const pageData = buildPageData(locale, site);
+// Locale home page, keep using "/tr/" as canonical and language switch target
+const pageData = buildPageData(locale, site, "/tr/");
 const { copy, languageOptions } = pageData;
 
 const navItems = [

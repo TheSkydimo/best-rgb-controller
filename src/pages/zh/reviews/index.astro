@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "zh";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/reviews/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "RGB 控制软件评测 – 最佳 RGB 控制器";
@@ -81,7 +81,7 @@ const navItems = [
         <div class="mt-6 grid gap-4 md:grid-cols-2">
           <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
             <h2 class="text-base font-semibold">
-              <a href="/reviews/skydimo-review/" class="hover:text-primary">
+              <a href="/zh/reviews/skydimo-review/" class="hover:text-primary">
                 Skydimo RGB 控制软件评测（2025）
               </a>
             </h2>
@@ -96,7 +96,7 @@ const navItems = [
 
           <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
             <h2 class="text-base font-semibold">
-              <a href="/reviews/openrgb-review/" class="hover:text-primary">
+              <a href="/zh/reviews/openrgb-review/" class="hover:text-primary">
                 OpenRGB 评测 – 优势、局限与适用人群
               </a>
             </h2>
@@ -108,7 +108,7 @@ const navItems = [
 
           <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
             <h2 class="text-base font-semibold">
-              <a href="/reviews/signalrgb-review/" class="hover:text-primary">
+              <a href="/zh/reviews/signalrgb-review/" class="hover:text-primary">
                 SignalRGB 评测 – 功能强大但带有付费档位
               </a>
             </h2>

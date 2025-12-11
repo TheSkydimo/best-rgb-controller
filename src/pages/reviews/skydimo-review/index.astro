@@ -10,7 +10,8 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale = DEFAULT_LOCALE;
-const pageData = buildPageData(locale, site);
+// Locale‑agnostic path for this review, used for canonical URL and language switcher links
+const pageData = buildPageData(locale, site, "/reviews/skydimo-review/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "Skydimo RGB Controller Review (2025)";

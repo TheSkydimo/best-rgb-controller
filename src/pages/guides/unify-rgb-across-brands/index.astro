@@ -10,7 +10,11 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale = DEFAULT_LOCALE;
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(
+  locale,
+  site,
+  "/guides/unify-rgb-across-brands/",
+);
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "How to Sync RGB Lights Across Different Brands";

@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "ru";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/guides/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "Гайды по RGB‑контроллерам – Best RGB Controller";

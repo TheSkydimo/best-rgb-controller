@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale = DEFAULT_LOCALE;
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/reviews/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "RGB Controller Software Reviews – Best RGB Controller";

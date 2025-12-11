@@ -10,7 +10,11 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale = DEFAULT_LOCALE;
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(
+  locale,
+  site,
+  "/compatibility/device-support-matrix/",
+);
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "RGB Software Device Support Matrix (High‑Level)";

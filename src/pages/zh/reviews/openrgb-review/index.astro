@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "zh";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/reviews/openrgb-review/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "OpenRGB 评测：优点、短板与适合人群";

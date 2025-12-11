@@ -10,7 +10,11 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "zh";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(
+  locale,
+  site,
+  "/comparisons/rgb-software-screen-sync/",
+);
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "屏幕同步 RGB 软件对比：响应速度与流畅度";

@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "zh";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/comparisons/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "RGB 软件对比 – 最佳 RGB 控制器";
@@ -85,7 +85,7 @@ const navItems = [
           <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
             <h2 class="text-base font-semibold">
               <a
-                href="/comparisons/skydimo-vs-signalrgb/"
+                href="/zh/comparisons/skydimo-vs-signalrgb/"
                 class="hover:text-primary"
               >
                 Skydimo vs SignalRGB – 高端灯光方案哪家更适合你？
@@ -99,7 +99,7 @@ const navItems = [
           <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
             <h2 class="text-base font-semibold">
               <a
-                href="/comparisons/skydimo-vs-openrgb/"
+                href="/zh/comparisons/skydimo-vs-openrgb/"
                 class="hover:text-primary"
               >
                 Skydimo vs OpenRGB – 友好控制器 vs 进阶玩家工具箱
@@ -113,7 +113,7 @@ const navItems = [
           <article class="space-y-1 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
             <h2 class="text-base font-semibold">
               <a
-                href="/comparisons/rgb-software-screen-sync/"
+                href="/zh/comparisons/rgb-software-screen-sync/"
                 class="hover:text-primary"
               >
                 屏幕同步 RGB 软件对比 – 延迟与流畅度测试

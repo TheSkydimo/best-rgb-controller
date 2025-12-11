@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "zh";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/best-rgb-controller/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "2025 年最佳 RGB 控制软件终极指南";
@@ -164,14 +164,14 @@ const navItems = [
           <p class="text-sm text-offset sm:text-base">
             想看结合实际案例的详细分析，可以参考我们的
             <a
-              href="/reviews/skydimo-review/"
+              href="/zh/reviews/skydimo-review/"
               class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
             >
               Skydimo 详细评测
             </a>
             ，以及
             <a
-              href="/comparisons/skydimo-vs-signalrgb/"
+              href="/zh/comparisons/skydimo-vs-signalrgb/"
               class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
             >
               Skydimo vs SignalRGB 对比
@@ -189,7 +189,7 @@ const navItems = [
               <strong class="font-semibold">预算敏感用户</strong> –
               可以优先考虑
               <a
-                href="/reviews/openrgb-review/"
+                href="/zh/reviews/openrgb-review/"
                 class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
               >
                 OpenRGB
@@ -209,7 +209,7 @@ const navItems = [
               <strong class="font-semibold">屏幕同步爱好者</strong> –
               可以重点关注 Skydimo 与 SignalRGB，并结合
               <a
-                href="/comparisons/rgb-software-screen-sync/"
+                href="/zh/comparisons/rgb-software-screen-sync/"
                 class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
               >
                 屏幕同步对比文章

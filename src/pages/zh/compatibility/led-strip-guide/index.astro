@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "zh";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/compatibility/led-strip-guide/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "RGB 灯带支持指南：RGB 与 ARGB 有何不同？";

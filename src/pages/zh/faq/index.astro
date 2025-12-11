@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "zh";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/faq/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "RGB 控制软件常见问题 – 最佳 RGB 控制器";

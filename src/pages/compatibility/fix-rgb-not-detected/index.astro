@@ -10,7 +10,11 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale = DEFAULT_LOCALE;
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(
+  locale,
+  site,
+  "/compatibility/fix-rgb-not-detected/",
+);
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "How to Fix RGB Not Detected on Your Motherboard";

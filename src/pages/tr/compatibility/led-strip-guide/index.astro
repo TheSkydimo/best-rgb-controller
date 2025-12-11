@@ -10,7 +10,7 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "tr";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(locale, site, "/compatibility/led-strip-guide/");
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "RGB LED şerit rehberi: RGB ve ARGB arasındaki fark nedir?";

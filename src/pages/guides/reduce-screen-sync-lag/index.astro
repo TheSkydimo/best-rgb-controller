@@ -10,7 +10,11 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale = DEFAULT_LOCALE;
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(
+  locale,
+  site,
+  "/guides/reduce-screen-sync-lag/",
+);
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "How to Reduce Lag in RGB Screen Sync";

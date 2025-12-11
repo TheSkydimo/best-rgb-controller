@@ -10,7 +10,11 @@ import "~/styles/index.css";
 
 const { generator, site } = Astro;
 const locale: Locale = "zh";
-const pageData = buildPageData(locale, site);
+const pageData = buildPageData(
+  locale,
+  site,
+  "/guides/unify-rgb-across-brands/",
+);
 const { copy, languageOptions } = pageData;
 
 const PAGE_TITLE = "让不同品牌的 RGB 灯光实现同步";
