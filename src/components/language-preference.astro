@@ -40,15 +40,39 @@ const storageKey = "preferredLocale";
       }
     };
 
-    // For this site, we avoid automatic redirects based on browser language
-    // to keep the English landing page as the default. We only remember the
-    // last chosen locale for potential future use.
+    const buildLocalePath = (value) => {
+      if (!value) return "/";
+      return value === defaultLocale ? "/" : `/${value}/`;
+    };
+
+    // Remember the user's last chosen/visited locale
+    // and use it to redirect from the default landing page (`/`)
+    // next time they come back.
     const storedLocale = readStoredLocale();
+
+    // Always remember at least the current page locale on first visit.
     if (!storedLocale) {
-      // First visit: remember the current page locale but do not redirect.
       writeStoredLocale(locale);
-    } else if (storedLocale !== locale && locale !== defaultLocale) {
-      // Visiting a non-default locale: update stored preference.
+      return;
+    }
+
+    const currentPath = window.location.pathname || "/";
+
+    // If user is on the default locale page but has a different preferred locale,
+    // automatically redirect them to their preferred language version.
+    if (locale === defaultLocale && storedLocale !== defaultLocale) {
+      const targetPath = buildLocalePath(storedLocale);
+
+      // Only redirect from the real landing path to avoid surprises on other routes.
+      if (currentPath === "/" || currentPath === "/index.html") {
+        window.location.replace(targetPath);
+        return;
+      }
+    }
+
+    // When user visits a non-default locale page that differs from stored one,
+    // treat this as an explicit preference change and update storage.
+    if (locale !== defaultLocale && storedLocale !== locale) {
       writeStoredLocale(locale);
     }
   })();
