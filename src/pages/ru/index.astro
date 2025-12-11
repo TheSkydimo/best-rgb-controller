@@ -1,13 +1,10 @@
-
 ---
 
 import "@fontsource-variable/inter";
-import { Image } from "astro:assets";
 import Footer from "~/components/footer.astro";
 import GoogleAnalytics from "~/components/google-analytics.astro";
 import Header from "~/components/header.astro";
 import LanguagePreference from "~/components/language-preference.astro";
-import moonImage from "~/assets/Screen.png";
 import type { Locale } from "~/i18n/config";
 import { buildPageData } from "~/i18n/page-data";
 import "~/styles/index.css";
@@ -16,8 +13,6 @@ const { generator, site } = Astro;
 const locale: Locale = "ru";
 const pageData = buildPageData(locale, site);
 const { copy, languageOptions } = pageData;
-
-const DOWNLOAD_URL = "https://skydimo.com/ru/download";
 
 const navItems = [
   { title: "Выбор редакции", url: "/ru/#best-picks" },
@@ -84,7 +79,6 @@ const navItems = [
       languageLabel={copy.language.label}
       languageOptions={languageOptions}
     />
-
     <main class="px-8 pt-16 pb-24">
       <!-- Hero / Above the fold -->
       <section
@@ -101,26 +95,26 @@ const navItems = [
           Независимые обзоры, сравнения и рекомендации по RGB‑ПО
         </h1>
         <p class="max-w-2xl text-balance text-sm text-offset sm:text-base">
-          best-rgb-controller.com — bağımsız bir içerik sitesidir ve RGB aydınlatma yazılımlarına
-          odaklanır. Üretici araçlarını ve üçüncü taraf denetleyicileri inceler, güçlü ve zayıf
-          yönlerini karşılaştırır ve kendi PC kurulumun için doğru RGB çözümünü seçmene yardımcı olur.
+          best-rgb-controller.com — независимый сайт, посвящённый программам для управления
+          RGB‑подсветкой. Мы разбираем фирменные утилиты и сторонние контроллеры, сравниваем их
+          сильные и слабые стороны и помогаем подобрать лучшее решение для вашего ПК.
         </p>
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <a
             href="/ru/best-rgb-controller/"
             class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
           >
-            Открыть рейтинг и гид 2025 года
+            Смотреть рейтинг и гид 2025 года
           </a>
           <a
-            href="/reviews/"
+            href="/ru/reviews/"
             class="inline-flex items-center justify-center rounded-full border border-offset px-6 py-3 text-sm font-semibold text-offset transition hover:border-primary hover:text-primary"
           >
-            Просмотреть все обзоры
+            Все обзоры
           </a>
         </div>
         <p class="mt-2 max-w-2xl text-xs text-muted">
-          Мы действительно рекомендуем
+          Мы рекомендуем
           <a
             href="https://skydimo.com/ru/"
             target="_blank"
@@ -129,499 +123,400 @@ const navItems = [
           >
             Skydimo
           </a>
-          как один из самых сбалансированных контроллеров RGB‑подсветки — по возможностям,
-          совместимости и отношению к приватности. Но это не единственный инструмент, о котором мы
-          рассказываем на этом сайте.
+          как один из самых удачных контроллеров RGB‑подсветки по сочетанию возможностей,
+          совместимости и отношения к приватности. Но это не единственный инструмент, который мы
+          рассматриваем на этом сайте.
         </p>
       </section>
 
-      <!-- Device support / brands -->
+      <!-- Best Picks -->
       <section
-        id="devices"
+        id="best-picks"
         class="mx-auto mt-24 max-w-7xl space-y-6"
-        aria-labelledby="devices-heading"
+        aria-labelledby="best-picks-heading"
       >
         <div class="space-y-3">
           <h2
-            id="devices-heading"
+            id="best-picks-heading"
             class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
           >
-            Работает с уже установленной у вас RGB‑периферией
+            Редакторский выбор RGB‑контроллеров на 2025 год
           </h2>
           <p class="max-w-3xl text-sm text-offset sm:text-base">
-            Skydimo создан, чтобы заменить несколько фирменных утилит и управлять подсветкой устройств разных брендов в одном интерфейсе.
-          </p>
-        </div>
-        <div class="grid gap-4 md:grid-cols-2">
-          <div class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
-              Типы устройств
-            </h3>
-            <ul class="mt-2 space-y-1 text-sm text-offset">
-              <li>Клавиатуры и мыши</li>
-              <li>Корпусные вентиляторы и СЖО</li>
-              <li>LED‑ленты и световые панели</li>
-              <li>Подсветка ОЗУ, видеокарт и материнских плат</li>
-            </ul>
-          </div>
-          <div class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
-              Широкая поддержка брендов
-            </h3>
-            <p class="text-sm text-offset">
-              Skydimo поддерживает устройства популярных игровых и ПК‑брендов, регулярно добавляя новые модели.
-              Среди примеров — Razer, ASUS Aura Sync, MSI Mystic Light, Corsair iCUE, HyperX, Redragon, Logitech G и другие.
-            </p>
-            <p class="mt-2 text-xs text-muted">
-              Совместимость зависит от конкретной модели. Актуальный список смотрите на официальном сайте Skydimo.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Lighting modes -->
-      <section
-        id="modes"
-        class="mx-auto mt-24 max-w-7xl space-y-6"
-        aria-labelledby="modes-heading"
-      >
-        <div class="space-y-3">
-          <h2
-            id="modes-heading"
-            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
-          >
-            Режимы подсветки, выходящие за рамки базовых эффектов
-          </h2>
-          <p class="max-w-3xl text-sm text-offset sm:text-base">
-            В Skydimo есть все привычные RGB‑эффекты, а также мощные режимы синхронизации для игр, музыки и фильмов.
-          </p>
-        </div>
-        <div class="grid gap-4 md:grid-cols-2">
-          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-base font-semibold">Синхронизация с экраном</h3>
-            <p class="text-sm text-offset">
-              Подсветка в реальном времени подстраивается под цвета на экране.
-              Создайте эффект полного погружения в игры, фильмы или просто во время работы за ПК.
-            </p>
-          </article>
-          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-base font-semibold">Синхронизация с музыкой</h3>
-            <p class="text-sm text-offset">
-              Подсветка реагирует на ритм музыки благодаря детектору ударов.
-              Настройте цвета, чувствительность и стили анимации под свой вкус.
-            </p>
-          </article>
-          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-base font-semibold">AI и «умные» эффекты</h3>
-            <p class="text-sm text-offset">
-              Быстро применяйте интеллектуальные пресеты подсветки под конкретную игру, настроение или время суток,
-              не тратя часы на ручную настройку каждого элемента.
-            </p>
-          </article>
-          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-base font-semibold">Гибкое управление устройствами</h3>
-            <p class="text-sm text-offset">
-              Управляйте подсветкой одного выбранного устройства или сразу нескольких,
-              задавая им единый цвет или простой эффект, чтобы оформить всю систему в одном стиле.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- Trust & safety -->
-      <section
-        id="trust"
-        class="mx-auto mt-24 max-w-7xl space-y-6"
-        aria-labelledby="trust-heading"
-      >
-        <div class="space-y-3">
-          <h2
-            id="trust-heading"
-            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
-          >
-            Безопасно, без рекламы и с доверием сотен тысяч пользователей
-          </h2>
-          <p class="max-w-3xl text-sm text-offset sm:text-base">
-            Skydimo — это надёжный контроллер RGB‑подсветки, который можно спокойно установить на основной игровой или рабочий ПК,
-            не опасаясь скрытых «сюрпризов».
-          </p>
-        </div>
-        <ul class="grid gap-4 md:grid-cols-2">
-          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
-            Skydimo уже используют сотни тысяч сборщиков ПК и геймеров по всему миру.
-          </li>
-          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
-            100% бесплатно — без рекламы, без навязчивых дополнений и без криптомайнинга.
-          </li>
-          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
-            Минимальная нагрузка на процессор и память, чтобы ваши игры и стримы оставались плавными.
-          </li>
-          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
-            Загрузка только из доверенных источников, включая официальный сайт Skydimo.
-          </li>
-        </ul>
-        <p class="text-xs text-muted">
-          Каждый релиз проверяется ведущими антивирусными движками перед публикацией.
-        </p>
-      </section>
-
-      <!-- Why Skydimo / comparison -->
-      <section
-        id="why-skydimo"
-        class="mx-auto mt-24 max-w-7xl space-y-6"
-        aria-labelledby="why-heading"
-      >
-        <div class="space-y-3">
-          <h2
-            id="why-heading"
-            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
-          >
-            Почему мы рекомендуем Skydimo как основной контроллер RGB‑подсветки
-          </h2>
-          <p class="max-w-3xl text-sm text-offset sm:text-base">
-            На рынке есть несколько приложений для управления RGB‑подсветкой.
-            Многие из них работают неплохо, но часто имеют ограничения по поддерживаемым устройствам,
-            навязчивые платные функции или запутанный интерфейс.
-          </p>
-          <p class="max-w-3xl text-sm text-offset sm:text-base">
-            Для большинства пользователей Windows Skydimo предлагает удачный баланс возможностей, совместимости и удобства:
+            Эти рекомендации основаны на практических тестах, отзывах сообщества и том, как каждое
+            приложение обращается с производительностью, приватностью и монетизацией.
           </p>
         </div>
         <div class="grid gap-4 md:grid-cols-3">
-          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
-              Широкая поддержка устройств
-            </h3>
-            <ul class="mt-2 space-y-1 text-sm text-offset">
-              <li>Работает с 1000+ устройствами и несколькими брендами.</li>
-              <li>Частые обновления под новое железо.</li>
-            </ul>
+          <article class="space-y-2 rounded-2xl border border-primary/60 bg-primary/5 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              Лучший выбор в целом
+            </p>
+            <h3 class="text-base font-semibold">Skydimo</h3>
+            <p class="text-sm text-offset">
+              Широкая поддержка устройств, отличный экранный и музыкальный синхронизатор и
+              аккуратный интерфейс без рекламы. Подходит как основной контроллер для смешанных
+              конфигураций.
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <a
+                href="/ru/reviews/skydimo-review/"
+                class="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 font-semibold text-white shadow-sm shadow-primary/40 transition hover:bg-primary/90"
+              >
+                Читать обзор
+              </a>
+              <a
+                href="https://skydimo.com/ru/"
+                target="_blank"
+                rel="noreferrer"
+                class="inline-flex items-center justify-center rounded-full border border-offset px-4 py-2 font-semibold text-offset transition hover:border-primary hover:text-primary"
+              >
+                Официальный сайт
+              </a>
+            </div>
           </article>
           <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
-              Современные и мощные функции
-            </h3>
-            <ul class="mt-2 space-y-1 text-sm text-offset">
-              <li>Синхронизация с экраном, музыкой и AI‑подсветкой.</li>
-              <li>Базовый контроль подсветки на уровне устройства с единым цветом и эффектами.</li>
-            </ul>
-          </article>
-          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
-              Безопасно и без головной боли
-            </h3>
-            <ul class="mt-2 space-y-1 text-sm text-offset">
-              <li>Без рекламы, без мусорных дополнений и без майнинга.</li>
-              <li>Чистый интерфейс — от установки до первого эффекта проходят минуты.</li>
-            </ul>
-          </article>
-        </div>
-        <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-700/70 bg-offset/40 p-4">
-          <table class="min-w-full text-left text-xs sm:text-sm">
-            <thead class="text-muted">
-              <tr>
-                <th scope="col" class="py-2 pr-4 font-semibold text-offset">
-                  Сравнение
-                </th>
-                <th scope="col" class="py-2 pr-4 font-semibold text-primary">
-                  Skydimo
-                </th>
-                <th scope="col" class="py-2 pr-4 font-semibold">
-                  OpenRGB
-                </th>
-                <th scope="col" class="py-2 pr-0 font-semibold">
-                  SignalRGB
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-700/60">
-              <tr>
-                <th scope="row" class="py-2 pr-4 font-medium text-offset">
-                  Цена
-                </th>
-                <td class="py-2 pr-4 text-primary">Бесплатно</td>
-                <td class="py-2 pr-4">Бесплатно</td>
-                <td class="py-2 pr-0">Бесплатно + платные тарифы</td>
-              </tr>
-              <tr>
-                <th scope="row" class="py-2 pr-4 font-medium text-offset">
-                  Реклама / майнинг
-                </th>
-                <td class="py-2 pr-4 text-primary">Без рекламы и майнинга</td>
-                <td class="py-2 pr-4">Нет</td>
-                <td class="py-2 pr-0">Возможны платные предложения</td>
-              </tr>
-              <tr>
-                <th scope="row" class="py-2 pr-4 font-medium text-offset">
-                  Синхронизация с экраном
-                </th>
-                <td class="py-2 pr-4 text-primary">Отлично</td>
-                <td class="py-2 pr-4">Хорошо</td>
-                <td class="py-2 pr-0">Хорошо</td>
-              </tr>
-              <tr>
-                <th scope="row" class="py-2 pr-4 font-medium text-offset">
-                  Синхронизация с музыкой
-                </th>
-                <td class="py-2 pr-4 text-primary">Отлично</td>
-                <td class="py-2 pr-4">Базовый уровень</td>
-                <td class="py-2 pr-0">Хорошо</td>
-              </tr>
-              <tr>
-                <th scope="row" class="py-2 pr-4 font-medium text-offset">
-                  Поддержка брендов
-                </th>
-                <td class="py-2 pr-4 text-primary">Очень широкая</td>
-                <td class="py-2 pr-4">Широкая</td>
-                <td class="py-2 pr-0">Широкая</td>
-              </tr>
-              <tr>
-                <th scope="row" class="py-2 pr-4 font-medium text-offset">
-                  Официальный сайт
-                </th>
-                <td class="py-2 pr-4">
-                  <a
-                    href="https://skydimo.com/"
-                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    skydimo.com
-                  </a>
-                </td>
-                <td class="py-2 pr-4">
-                  <a
-                    href="https://openrgb.org/"
-                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    openrgb.org
-                  </a>
-                </td>
-                <td class="py-2 pr-0">
-                  <a
-                    href="https://signalrgb.com/"
-                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    signalrgb.com
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="mt-3 text-[11px] text-muted">
-            Это сравнение основано на публичной информации и типичных сценариях использования.
-            За актуальными подробностями обращайтесь к официальным сайтам проектов.
-          </p>
-          <p class="mt-1 text-[11px] text-muted">
-            В отзывах сообщества также упоминаются pay‑to‑access‑элементы и навязчивые платные
-            предложения в интерфейсе SignalRGB; в качестве примера можно посмотреть это обсуждение
-            на Reddit:
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              Лучший бесплатный и open‑source
+            </p>
+            <h3 class="text-base font-semibold">OpenRGB</h3>
+            <p class="text-sm text-offset">
+              Открытый RGB‑контроллер без навязчивых фоновых служб и с хорошей кросс‑брендовой
+              поддержкой. Подойдёт тем, кто любит тонкую ручную настройку.
+            </p>
             <a
-              href="https://www.reddit.com/r/SignalRGB/comments/1lpe1h2/what_is_up_with_all_the_paytoaccess_stuff/"
-              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
-              target="_blank"
-              rel="noreferrer"
+              href="/ru/reviews/openrgb-review/"
+              class="mt-3 inline-flex text-xs font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
             >
-              reddit.com/r/SignalRGB – «What is up with all the pay‑to‑access stuff?»
+              Читать обзор
             </a>
-            .
-          </p>
-        </div>
-        <div class="mt-6">
-          <a
-            href={DOWNLOAD_URL}
-            class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
-          >
-            Скачать Skydimo для Windows (безопасно, без рекламы)
-          </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              Лучшее для экранной синхронизации
+            </p>
+            <h3 class="text-base font-semibold">Skydimo и SignalRGB</h3>
+            <p class="text-sm text-offset">
+              Если для вас главное — подсветка, привязанная к картинке на экране, эти два
+              приложения стоит добавить в список кандидатов. В нашем сравнении отдельно рассмотрены
+              задержка и плавность работы.
+            </p>
+            <a
+              href="/ru/comparisons/rgb-software-screen-sync/"
+              class="mt-3 inline-flex text-xs font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Сравнение экранной синхронизации
+            </a>
+          </article>
         </div>
       </section>
 
-      <!-- Testimonials -->
+      <!-- Reviews section -->
       <section
         id="reviews"
         class="mx-auto mt-24 max-w-7xl space-y-6"
         aria-labelledby="reviews-heading"
       >
-        <div class="space-y-3">
-          <h2
-            id="reviews-heading"
-            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div class="space-y-3">
+            <h2
+              id="reviews-heading"
+              class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+            >
+              Обзоры программ для RGB‑подсветки
+            </h2>
+            <p class="max-w-3xl text-sm text-offset sm:text-base">
+              Подробные статьи о сильных и слабых сторонах, влиянии на производительность и
+              целевой аудитории каждого популярного RGB‑контроллера.
+            </p>
+          </div>
+          <a
+            href="/ru/reviews/"
+            class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
           >
-            Отзывы пользователей
-          </h2>
+            Все обзоры &rarr;
+          </a>
         </div>
         <div class="grid gap-4 md:grid-cols-3">
-          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
-            <blockquote class="mb-3">
-              «Skydimo заменил три разных фирменных приложения на моём ПК. Теперь это единственный контроллер RGB, который я советую друзьям.»
-            </blockquote>
-            <figcaption class="text-xs text-muted">
-              — Энтузиаст сборки ПК из США
-            </figcaption>
-          </figure>
-          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
-            <blockquote class="mb-3">
-              «Синхронизация с фильмами на ультрашироком мониторе выглядит потрясающе.
-              Настройка заняла меньше пяти минут.»
-            </blockquote>
-            <figcaption class="text-xs text-muted">
-              — Игрок из Великобритании
-            </figcaption>
-          </figure>
-          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
-            <blockquote class="mb-3">
-              «Мне нужно было бесплатное, безопасное и не перегруженное рекламой решение. Skydimo полностью соответствует этим требованиям.»
-            </blockquote>
-            <figcaption class="text-xs text-muted">
-              — Любитель RGB‑подсветки из Индии
-            </figcaption>
-          </figure>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Обзор Skydimo RGB Controller (2025)</h3>
+            <p class="text-sm text-offset">
+              Разбираем поддержку устройств, ключевые функции, отношение к приватности и то,
+              насколько Skydimo удобнее или мощнее фирменных утилит производителей.
+            </p>
+            <a
+              href="/ru/reviews/skydimo-review/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать обзор
+            </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Обзор OpenRGB</h3>
+            <p class="text-sm text-offset">
+              Где OpenRGB раскрывает свой потенциал, где ограничивает, и кому он подойдёт больше
+              всего.
+            </p>
+            <a
+              href="/ru/reviews/openrgb-review/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать обзор
+            </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Обзор SignalRGB</h3>
+            <p class="text-sm text-offset">
+              Мощный контроллер с платными тарифами — оцениваем его ценность, влияние на
+              производительность и удобство использования.
+            </p>
+            <a
+              href="/ru/reviews/signalrgb-review/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать обзор
+            </a>
+          </article>
         </div>
       </section>
 
-      <!-- FAQ + final CTA -->
+      <!-- Comparisons -->
       <section
-        id="faq"
-        class="mx-auto mt-24 max-w-7xl space-y-8"
-        aria-labelledby="faq-heading"
+        id="comparisons"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="comparisons-heading"
       >
-        <div class="space-y-3">
-          <h2
-            id="faq-heading"
-            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
-          >
-            Часто задаваемые вопросы
-          </h2>
-        </div>
-        <dl class="space-y-4 md:space-y-5">
-          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <div class="flex gap-3">
-              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
-                ?
-              </div>
-              <div>
-                <dt class="text-sm font-semibold">Skydimo действительно бесплатен?</dt>
-                <dd class="mt-2 text-sm text-offset">
-                  Да. Skydimo можно бесплатно скачать и использовать.
-                  В приложении нет рекламы, подписок и каких‑либо скрытых платных модулей.
-                </dd>
-              </div>
-            </div>
+        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div class="space-y-3">
+            <h2
+              id="comparisons-heading"
+              class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+            >
+              Сравнения RGB‑контроллеров
+            </h2>
+            <p class="max-w-3xl text-sm text-offset sm:text-base">
+              Ставим рядом Skydimo, SignalRGB, OpenRGB и фирменные утилиты, чтобы вы могли
+              выбрать оптимальный вариант, не переустанавливая десятки программ.
+            </p>
           </div>
-          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <div class="flex gap-3">
-              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
-                ?
-              </div>
-              <div>
-                <dt class="text-sm font-semibold">
-                  Можно ли с помощью Skydimo управлять RGB‑устройствами разных брендов?
-                </dt>
-                <dd class="mt-2 text-sm text-offset">
-                  Да. Одна из ключевых целей Skydimo — дать вам возможность управлять подсветкой
-                  разных брендов в одном приложении, без необходимости держать несколько фирменных
-                  утилит.
-                </dd>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <div class="flex gap-3">
-              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
-                ?
-              </div>
-              <div>
-                <dt class="text-sm font-semibold">
-                  Насколько безопасен этот контроллер RGB для моего ПК?
-                </dt>
-                <dd class="mt-2 text-sm text-offset">
-                  Skydimo спроектирован как лёгкое и безопасное приложение.
-                  В нём нет рекламы, майнинга криптовалют и лишнего установленного ПО.
-                  Каждый релиз проверяется перед публикацией на официальном сайте.
-                </dd>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <div class="flex gap-3">
-              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
-                ?
-              </div>
-              <div>
-                <dt class="text-sm font-semibold">
-                  Собирает ли программа какие‑либо персональные данные с моего ПК?
-                </dt>
-                <dd class="mt-2 text-sm text-offset">
-                  Нет. Skydimo не собирает, не хранит и не передаёт персональную информацию с вашего
-                  компьютера. Приложение считывает только аппаратные данные, необходимые для
-                  управления RGB‑устройствами (например, идентификаторы устройств и поддерживаемые
-                  режимы подсветки). Идентификатор пользователя, история браузера, файлы, приложения
-                  и личный контент не запрашиваются и не собираются. Skydimo полностью работает
-                  локально на вашем ПК и не отправляет телеметрию или данные об использовании на
-                  внешние серверы. Ваши профили подсветки и настройки всегда остаются только на
-                  вашем компьютере.
-                </dd>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <div class="flex gap-3">
-              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
-                ?
-              </div>
-              <div>
-                <dt class="text-sm font-semibold">Работает ли Skydimo с играми и музыкой?</dt>
-                <dd class="mt-2 text-sm text-offset">
-                  Да. В Skydimo есть режим синхронизации с экраном для игр и фильмов,
-                  а также режим синхронизации с музыкой, реагирующий на аудиосигнал с ПК.
-                </dd>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
-            <div class="flex gap-3">
-              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
-                ?
-              </div>
-              <div>
-                <dt class="text-sm font-semibold">Какие системы поддерживаются?</dt>
-                <dd class="mt-2 text-sm text-offset">
-                  Сейчас Skydimo ориентирован на ПК под управлением Windows.
-                  Последний установщик для Windows можно скачать на официальном сайте.
-                </dd>
-              </div>
-            </div>
-          </div>
-        </dl>
-
-        <div class="mt-8 rounded-3xl border border-primary/40 bg-primary/5 px-6 py-8 text-center">
-          <h3 class="text-lg font-semibold">
-            Готовы улучшить свою RGB‑подсветку?
-          </h3>
-          <p class="mt-2 text-sm text-offset">
-            Бесплатно, без рекламы и с поддержкой более 1000 устройств.
-          </p>
           <a
-            href={DOWNLOAD_URL}
-            class="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+            href="/ru/comparisons/"
+            class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
           >
-            Скачать Skydimo для Windows (безопасно, без рекламы)
+            Все сравнения &rarr;
           </a>
         </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Skydimo vs SignalRGB</h3>
+            <p class="text-sm text-offset">
+              Какой вариант лучше подойдёт для мощных конфигураций, где важны экранная
+              синхронизация и эффектные пресеты.
+            </p>
+            <a
+              href="/ru/comparisons/skydimo-vs-signalrgb/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать сравнение
+            </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Skydimo vs OpenRGB</h3>
+            <p class="text-sm text-offset">
+              Удобное «всё в одном» приложение или гибкий open‑source‑инструмент — что выбрать под
+              свои задачи.
+            </p>
+            <a
+              href="/ru/comparisons/skydimo-vs-openrgb/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать сравнение
+            </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">
+              Сравнение ПО для экранной синхронизации RGB
+            </h3>
+            <p class="text-sm text-offset">
+              Отдельный взгляд на задержку, плавность и стабильность экранных режимов подсветки.
+            </p>
+            <a
+              href="/ru/comparisons/rgb-software-screen-sync/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать сравнение
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Guides -->
+      <section
+        id="guides"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="guides-heading"
+      >
+        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div class="space-y-3">
+            <h2
+              id="guides-heading"
+              class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+            >
+              Гайды по выбору и настройке RGB‑ПО
+            </h2>
+            <p class="max-w-3xl text-sm text-offset sm:text-base">
+              Пошаговые инструкции помогут выбрать программу, объединить подсветку разных брендов и
+              решить типичные проблемы вроде задержки экранной синхронизации.
+            </p>
+          </div>
+          <a
+            href="/ru/guides/"
+            class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+          >
+            Все гайды &rarr;
+          </a>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Как выбрать RGB‑контроллер</h3>
+            <p class="text-sm text-offset">
+              Универсальная схема выбора, которую можно применить к любому вендору или стороннему
+              инструменту.
+            </p>
+            <a
+              href="/ru/guides/how-to-choose-rgb-software/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать гид
+            </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">
+              Синхронизация подсветки устройств разных брендов
+            </h3>
+            <p class="text-sm text-offset">
+              Практические советы по тому, как заставить клавиатуру, мышь, вентиляторы и ленты
+              работать как единая система.
+            </p>
+            <a
+              href="/ru/guides/unify-rgb-across-brands/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать гид
+            </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Как уменьшить задержку экранной синхронизации</h3>
+            <p class="text-sm text-offset">
+              Подборка практических настроек, которые делают экранные эффекты более плавными и
+              отзывчивыми.
+            </p>
+            <a
+              href="/ru/guides/reduce-screen-sync-lag/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать гид
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Device compatibility -->
+      <section
+        id="devices"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="devices-heading"
+      >
+        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div class="space-y-3">
+            <h2
+              id="devices-heading"
+              class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+            >
+              Совместимость устройств и аппаратные гайды
+            </h2>
+            <p class="max-w-3xl text-sm text-offset sm:text-base">
+              Помогаем понять, какие классы устройств чаще всего поддерживаются тем или иным
+              ПО, и как устранять типичные проблемы с материнской платой и светодиодными лентами.
+            </p>
+          </div>
+          <a
+            href="/ru/compatibility/"
+            class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+          >
+            Центр совместимости &rarr;
+          </a>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">
+              Матрица поддерживаемых устройств
+            </h3>
+            <p class="text-sm text-offset">
+              Высокоуровневый обзор того, какие семейства ПО чаще всего поддерживают те или иные
+              типы железа.
+            </p>
+            <a
+              href="/ru/compatibility/device-support-matrix/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Смотреть матрицу
+            </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Если материнская плата не видит RGB‑подсветку</h3>
+            <p class="text-sm text-offset">
+              Частые ошибки с BIOS, разъёмами и программами, которые мешают подсветке корректно
+              определяться, и способы их исправить.
+            </p>
+            <a
+              href="/ru/compatibility/fix-rgb-not-detected/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать гид
+            </a>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Руководство по RGB‑лентам и ARGB</h3>
+            <p class="text-sm text-offset">
+              Объясняем разницу между 12 V RGB и 5 V ARGB, типы разъёмов на плате и базовые
+              правила безопасного подключения.
+            </p>
+            <a
+              href="/ru/compatibility/led-strip-guide/"
+              class="text-sm font-semibold text-primary underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+            >
+              Читать гид
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- About this site -->
+      <section class="mx-auto mt-24 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
+          О сайте best-rgb-controller.com
+        </h2>
+        <p class="mt-2 text-sm text-offset">
+          best-rgb-controller.com — независимый проект, посвящённый программам для управления
+          RGB‑подсветкой. Наша цель — дать достаточно полезной информации (обзоры, сравнения и
+          практические гайды), чтобы вы могли осознанно выбирать решения, не заходя на сайт
+          вендора, если только не хотите скачать программу.
+        </p>
+        <p class="mt-2 text-sm text-offset">
+          Мы действительно выделяем Skydimo как один из лучших вариантов, но также честно описываем
+          сильные альтернативы и ссылаемся на официальные ресурсы (Skydimo, OpenRGB, SignalRGB, а
+          также Aura Sync, iCUE, Mystic Light и другие) там, где это уместно. Главная ценность
+          сайта — контент, а внешние ссылки лишь помогают вам принять решение.
+        </p>
       </section>
 
       <!-- Footer note above global footer -->
-      <section class="mx-auto mt-16 max-w-7xl text-center text-[11px] text-muted">
-        <p>
-          © 2025 best-rgb-controller.com – независимый сайт с обзорами RGB‑контроллеров.
-        </p>
+      <section class="mx-auto mt-8 max-w-7xl text-center text-[11px] text-muted">
+        <p>© 2025 best-rgb-controller.com – независимый гид по ПО для RGB‑подсветки.</p>
         <p class="mt-1">
-          Этот сайт рекомендует Skydimo как предпочтительный контроллер RGB‑подсветки и может вести на официальный сайт Skydimo для загрузки.
+          На страницах сайта могут встречаться ссылки на skydimo.com и другие официальные сайты
+          производителей для скачивания программ и проверки совместимости устройств.
         </p>
       </section>
     </main>
