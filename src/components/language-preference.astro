@@ -49,29 +49,46 @@ const storageKey = "preferredLocale";
     // and use it to redirect from the default landing page (`/`)
     // next time they come back.
     const storedLocale = readStoredLocale();
+    const currentPath = window.location.pathname || "/";
 
-    // Always remember at least the current page locale on first visit.
+    // 首次访问：没有存储的偏好语言时，记住当前页面语言即可。
     if (!storedLocale) {
       writeStoredLocale(locale);
       return;
     }
 
-    const currentPath = window.location.pathname || "/";
+    // 如果是站内跳转到默认语言（例如从 /zh/ 点击切换到 /），
+    // 视为用户主动选择英语：更新偏好语言为当前 locale，并不要再自动跳回其它语言。
+    try {
+      const referrer = document.referrer;
+      const referrerUrl = referrer ? new URL(referrer) : null;
+      const isInternalReferrer =
+        referrerUrl && referrerUrl.origin === window.location.origin;
 
-    // If user is on the default locale page but has a different preferred locale,
-    // automatically redirect them to their preferred language version.
+      if (
+        isInternalReferrer &&
+        locale === defaultLocale &&
+        storedLocale !== locale
+      ) {
+        writeStoredLocale(locale);
+        return;
+      }
+    } catch {
+      // 忽略 referrer 解析异常
+    }
+
+    // 对于直接从外部访问首页（没有站内 referrer）且用户首选语言不是默认语言时，
+    // 仍然自动跳转到其首选语言版本。
     if (locale === defaultLocale && storedLocale !== defaultLocale) {
-      const targetPath = buildLocalePath(storedLocale);
-
-      // Only redirect from the real landing path to avoid surprises on other routes.
-      if (currentPath === "/" || currentPath === "/index.html") {
+      const isRootPath = currentPath === "/" || currentPath === "/index.html";
+      if (isRootPath) {
+        const targetPath = buildLocalePath(storedLocale);
         window.location.replace(targetPath);
         return;
       }
     }
 
-    // When user visits a non-default locale page that differs from stored one,
-    // treat this as an explicit preference change and update storage.
+    // 当用户访问一个非默认语言页面且与已存储偏好不同时，同样视为主动切换语言。
     if (locale !== defaultLocale && storedLocale !== locale) {
       writeStoredLocale(locale);
     }
