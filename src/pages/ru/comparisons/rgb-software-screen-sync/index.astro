@@ -1,0 +1,130 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Сравнение ПО для экранной синхронизации RGB";
+const PAGE_DESCRIPTION =
+  "Качественное сравнение режимов Screen Sync в популярных RGB‑контроллерах: субъективная задержка, плавность переходов, нагрузка на систему и сложность первичной настройки.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/comparisons/rgb-software-screen-sync/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Сравнение – экранная синхронизация RGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Сравнение ПО для экранной синхронизации RGB
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Экранные режимы подсветки сильно влияют на ощущение от игр и фильмов.
+            В этом материале мы на качественном уровне сравниваем, как чувствуется Screen Sync в разных
+            контроллерах, уделяя внимание задержке, плавности и удобству настройки.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Что важно для хорошей экранной синхронизации
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>задержка между изменением картинки и реакцией светодиодов;</li>
+            <li>плавность цветовых переходов без рывков и «ступенек»;</li>
+            <li>нагрузка на CPU/GPU и влияние на FPS;</li>
+            <li>насколько просто выбрать правильный монитор и зону захвата.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Skydimo, SignalRGB и другие решения
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            При корректной настройке и на современном железе Skydimo и SignalRGB способны выдавать
+            <strong class="font-semibold">низкую субъективную задержку и достаточно плавные</strong>
+            переходы. Фирменные утилиты и отдельные open‑source‑проекты тоже могут показать хороший
+            результат, но зачастую предлагают меньше настроек или требуют более ручной конфигурации.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Если экранная синхронизация — ваш главный приоритет, начните с сравнения
+            <a
+              href="/ru/comparisons/skydimo-vs-signalrgb/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB
+            </a>
+            , а затем загляните в
+            <a
+              href="/ru/guides/reduce-screen-sync-lag/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              гид по снижению задержки Screen Sync
+            </a>
+            , чтобы довести результат до идеала.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

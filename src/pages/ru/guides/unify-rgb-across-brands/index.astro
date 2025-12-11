@@ -1,0 +1,144 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Как синхронизировать подсветку устройств разных брендов";
+const PAGE_DESCRIPTION =
+  "Практический гид по объединению RGB‑подсветки, когда клавиатура, мышь, вентиляторы, ленты и материнская плата относятся к разным экосистемам. Выбор главного контроллера, схема группировки устройств и настройка экранной/музыкальной синхронизации.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/guides/unify-rgb-across-brands/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Гид – кросс‑брендовая RGB‑синхронизация
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Как синхронизировать подсветку устройств разных брендов
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Типичная ситуация: клавиатура и мышь от одного бренда, вентиляторы и ленты — от другого,
+            а материнская плата — от третьего. Ни одна программа не может волшебным образом решить
+            всё сразу, но с правильным подходом можно добиться достаточно цельной картинки.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Шаг 1 — выбрать «главный» контроллер
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Начните с выбора одного основного контроллера — чаще всего это Skydimo, SignalRGB или
+            OpenRGB. Старайтесь по максимуму передать ему управление устройствами, а в фирменных
+            утилитах по возможности отключить эффекты подсветки, чтобы избежать конфликтов за одни и
+            те же устройства.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Шаг 2 — группировать устройства по зонам
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Вместо того чтобы настраивать каждое устройство отдельно, подумайте о визуальных
+            зонах: «настольные периферийные устройства», «внутри корпуса», «подсветка вокруг стола».
+            Для каждой зоны выберите общую цветовую гамму и пару‑тройку эффектов — так система будет
+            выглядеть аккуратнее, даже если бренды разные.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Шаг 3 — настроить экранную и музыкальную синхронизацию
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Когда базовые цвета и зоны отстроены, включите Screen Sync и Music Sync в выбранном
+            контроллере и оцените задержку и плавность. Если эффекты выглядят «запаздывающими» или
+            дёргаными, воспользуйтесь
+            <a
+              href="/ru/guides/reduce-screen-sync-lag/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              нашим гидом по снижению задержки Screen Sync
+            </a>
+            и поэкспериментируйте с частотой обновления и параметрами сглаживания.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Если хотите глубже понять, почему экосистема RGB так фрагментирована, загляните в
+            <a
+              href="/ru/rgb-ecosystem/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              обзор RGB‑экосистемы
+            </a>
+            .
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

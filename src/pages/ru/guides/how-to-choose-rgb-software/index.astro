@@ -1,0 +1,163 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Как выбрать программу для управления RGB‑подсветкой";
+const PAGE_DESCRIPTION =
+  "Пошаговый фреймворк выбора RGB‑ПО: разбираем ваш набор устройств, нужные функции, производительность и вопросы приватности, чтобы не устанавливать по десять разных контроллеров подряд.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/guides/how-to-choose-rgb-software/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Гид – как выбрать RGB‑ПО
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Как выбрать программу для управления RGB‑подсветкой
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Вместо того чтобы по очереди ставить несколько RGB‑контроллеров и каждый раз заново
+            настраивать подсветку, используйте этот простой трёхшаговый фреймворк и сначала сузьте
+            круг кандидатов.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Шаг 1 — выписать своё железо
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Составьте короткий список устройств, подсветка которых вам действительно важна:
+            клавиатура, мышь, гарнитура, вентиляторы, ленты, СЖО, ОЗУ, видеокарта, зоны на
+            материнской плате. Этот список важнее любой маркетинговой страницы.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Затем проверьте официальный список совместимости каждого кандидата и нашу
+            <a
+              href="/ru/compatibility/device-support-matrix/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              матрицу поддержки устройств
+            </a>
+            , чтобы отбросить заведомо неподходящие варианты.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Шаг 2 — определиться с приоритетными функциями
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Кому‑то достаточно статических цветов и простых волн, а кто‑то переходит на стороннее
+            ПО ради экранной/музыкальной синхронизации и сложных пресетов.
+            Честно разделите функции на «обязательные» и «приятные бонусы».
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            На этом шаге помогут обзоры
+            <a
+              href="/ru/reviews/skydimo-review/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo
+            </a>
+            и
+            <a
+              href="/ru/reviews/openrgb-review/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              OpenRGB
+            </a>
+            — в них мы подробно разбираем функциональные различия.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Шаг 3 — учесть производительность и приватность
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            RGB‑контроллер не должен чувствоваться как ещё один тяжёлый лаунчер.
+            Отдавайте приоритет инструментам, которые честно говорят о потреблении ресурсов и
+            политике сбора данных, не навязывают рекламу и дополнительный софт.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Когда список кандидатов сузился до 2‑3 вариантов, используйте наши
+            <a
+              href="/ru/comparisons/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              статьи‑сравнения
+            </a>
+            (например Skydimo vs SignalRGB или Skydimo vs OpenRGB), чтобы принять окончательное
+            решение.
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

@@ -1,0 +1,134 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Skydimo vs OpenRGB — удобство против открытой гибкости";
+const PAGE_DESCRIPTION =
+  "Сравнение Skydimo и OpenRGB как RGB‑контроллеров: удобство установки и настройки, глубина настроек, влияние на производительность и то, для каких типов пользователей каждый вариант подходит лучше.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/comparisons/skydimo-vs-openrgb/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Сравнение — Skydimo vs OpenRGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Skydimo vs OpenRGB — удобство против открытой гибкости
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Обе программы стремятся заменить несколько фирменных утилит одним центральным
+            контроллером, но делают это по‑разному. Здесь мы коротко сравниваем их подходы, чтобы
+            вы могли выбрать вариант ближе к своим привычкам.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Когда логичнее выбрать Skydimo
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo лучше всего подходит, если вам нужен бесплатный контроллер без рекламы, который
+            быстро устанавливается, относительно просто настраивается и умеет выдавать
+            качественную экранную и музыкальную синхронизацию без долгих экспериментов.
+            Он рассчитан на пользователей, которым важен понятный интерфейс и «просто работает» для
+            сборок из устройств разных брендов.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Когда больше смысла в OpenRGB
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            OpenRGB имеет смысл выбирать, если вы цените открытое ПО, любите разбираться в тонких
+            настройках и готовы уделить время документации и сообществу. Он может раскрывать больше
+            низкоуровневых опций и особенно интересен энтузиастам, которые хотят максимального
+            контроля, автоматизации и интеграции с другими инструментами.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Подробные впечатления по каждой программе вы найдёте в обзорах
+            <a
+              href="/ru/reviews/skydimo-review/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo
+            </a>
+            и
+            <a
+              href="/ru/reviews/openrgb-review/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              OpenRGB
+            </a>
+            .
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

@@ -1,0 +1,154 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "OpenRGB – обзор: плюсы, минусы и для кого он подойдёт";
+const PAGE_DESCRIPTION =
+  "Обзор OpenRGB как контроллера RGB‑подсветки: сильные и слабые стороны, типичная нагрузка на систему и то, каким пользователям больше всего подходит этот открытый, независимый инструмент.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/reviews/openrgb-review/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Обзор – OpenRGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            OpenRGB: плюсы, минусы и кому он подойдёт
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            OpenRGB — это <strong class="font-semibold">открытый RGB‑контроллер</strong>, который
+            пытается заменить сразу несколько фирменных утилит одним кросс‑брендовым инструментом.
+            В умелых руках он очень мощный, но требует больше терпения и технической подготовки,
+            чем большинство коммерческих контроллеров.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Сильные стороны
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>Открытый исходный код и полностью бесплатное использование.</li>
+            <li>Нет навязчивых фоновых служб по умолчанию, часто низкая нагрузка на ресурсы.</li>
+            <li>Поддержка большого числа брендов и устройств, развиваемая сообществом.</li>
+            <li>Возможность автоматизации и скриптов для продвинутых пользователей.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            На что нужно быть готовым
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Использование OpenRGB почти всегда подразумевает чтение документации, форумов и
+            эксперименты с настройками. Некоторые устройства или эффекты могут работать только с
+            обходными путями или вовсе не поддерживаться.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Если вы хотите «поставил и забыл» с удобными мастерами и готовыми пресетами, то
+            Skydimo или SignalRGB чаще оказываются комфортнее.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Кому мы рекомендуем OpenRGB
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            В первую очередь OpenRGB подойдёт пользователям, которые:
+          </p>
+          <ul class="ml-5 list-disc space-y-1 text-sm text-offset sm:text-base">
+            <li>предпочитают open‑source и готовы делиться отзывами или помогать с тестированием;</li>
+            <li>не боятся более ручной настройки и потенциальных «танцев с бубном»;</li>
+            <li>
+              ценят гибкость и полный контроль над подсветкой выше, чем красивые готовые пресеты и
+              мастера.
+            </li>
+          </ul>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Для сравнения с альтернативами посмотрите
+            <a
+              href="/ru/comparisons/skydimo-vs-openrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs OpenRGB
+            </a>
+            и основной
+            <a
+              href="/ru/best-rgb-controller/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              гид по RGB‑контроллерам 2025 года
+            </a>
+            .
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

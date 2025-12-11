@@ -1,0 +1,136 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Что делать, если RGB‑подсветка на материнской плате не определяется";
+const PAGE_DESCRIPTION =
+  "Пошаговый чек‑лист, если контроллер не видит подсветку на материнской плате или подключённые к её разъёмам ленты: настройки BIOS, типы разъёмов, кабели, напряжение и проверка через фирменное ПО.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/compatibility/fix-rgb-not-detected/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Совместимость – подсветка не определяется
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Что делать, если RGB‑подсветка на материнской плате не определяется
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Если в контроллере не отображаются зоны подсветки материнской платы или ленты, которые
+            к ней подключены, не спешите списывать всё на «неподдерживаемое железо». Пройдитесь по
+            этой последовательности шагов, чтобы сначала исключить типичные конфигурационные
+            проблемы.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            1. Проверить настройки BIOS и прошивки
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            У многих плат в BIOS есть отдельные пункты для управления подсветкой и режимом работы
+            разъёмов. Убедитесь, что RGB не отключён целиком и не ограничен только фирменным ПО
+            производителя. Если вы давно не обновляли BIOS, имеет смысл перейти на актуальную
+            стабильную версию.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            2. Убедиться в правильном разъёме, напряжении и направлении
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Проверьте, к какому именно разъёму подключены ленты и хабы: 12V RGB или 5V ARGB.
+            Неправильное совпадение типов (например, подключение 5V ARGB к 12V RGB) может повредить
+            подсветку. Следите за стрелками и пометками «D»/«Data» на разъёмах — они указывают, как
+            ориентировать штекер.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Если вы не уверены в типе разъёмов, начните с
+            <a
+              href="/ru/compatibility/led-strip-guide/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              гида по LED‑лентам и ARGB
+            </a>
+            — там разобраны базовые отличия и распиновка.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            3. Протестировать подсветку через фирменное ПО
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Перед тем как винить сторонний контроллер, установите фирменную утилиту производителя
+            материнской платы (Aura Sync, Mystic Light, iCUE и т. п.) и проверьте, видит ли она
+            подсветку. Если даже официальное ПО не может управлять зонами, проблема почти наверняка
+            в железе, прошивке или подключении, а не в Skydimo, OpenRGB или другом контроллере.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

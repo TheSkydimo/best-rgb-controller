@@ -1,0 +1,128 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Гид по LED‑лентам: RGB против ARGB и безопасное подключение";
+const PAGE_DESCRIPTION =
+  "Разбираем различия между классическими 12V RGB и 5V ARGB‑лентами, типы разъёмов на материнских платах и контроллерах, а также базовые правила безопасного подключения подсветки к ПК.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/compatibility/led-strip-guide/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Совместимость – гид по LED‑лентам
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Гид по LED‑лентам: RGB против ARGB и безопасное подключение
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Прежде чем подключать любую ленту к материнской плате или контроллеру, важно понять,
+            чем отличаются классические 12V RGB и 5V ARGB, какие разъёмы за что отвечают и что
+            именно нельзя делать, чтобы не спалить подсветку.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            RGB и ARGB в двух словах
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">12V RGB</strong> — все светодиоды на ленте светят одним
+              и тем же цветом; обычно используется 4‑контактный разъём.
+            </li>
+            <li>
+              <strong class="font-semibold">5V ARGB</strong> — каждая (или группа) лампочек может
+              управляться отдельно; чаще всего это 3‑контактный разъём с отдельным пином данных.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Важные правила безопасности
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Никогда не подключайте 5V ARGB‑ленту к 12V RGB‑разъёму — это почти гарантированно
+            приведёт к её повреждению. Всегда сверяйте напряжение и распиновку, смотрите на
+            маркировку около разъёма и на самой ленте, обращайте внимание на стрелки и пометки «D»
+            (Data).
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Если после подключения лента по‑прежнему не определяется в ПО, совместно изучите этот
+            материал и
+            <a
+              href="/ru/compatibility/fix-rgb-not-detected/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              гид по устранению проблемы «подсветка не определяется»
+            </a>
+            .
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

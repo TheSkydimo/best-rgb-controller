@@ -1,0 +1,224 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "ru";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Обзор Skydimo RGB Controller (2025)";
+const PAGE_DESCRIPTION =
+  "Практический обзор Skydimo как контроллера RGB‑подсветки в 2025 году: поддержка устройств, режимы подсветки, качество экранной и музыкальной синхронизации, влияние на производительность и подход к приватности.";
+
+const navItems = [
+  { title: "Выбор редакции", url: "/ru/#best-picks" },
+  { title: "Обзоры", url: "/ru/reviews/" },
+  { title: "Сравнения", url: "/ru/comparisons/" },
+  { title: "Гайды", url: "/ru/guides/" },
+  { title: "Совместимость", url: "/ru/compatibility/" },
+  { title: "FAQ", url: "/ru/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/ru/reviews/skydimo-review/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Обзор – Skydimo RGB Controller
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Skydimo RGB Controller — обзор 2025 года
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo — это контроллер RGB‑подсветки для Windows, который старается объединить устройства
+            разных брендов в одном приложении, оставаясь при этом бесплатным, без рекламы и с умеренным
+            потреблением ресурсов. В этом обзоре мы рассматриваем поддержку устройств, возможности подсветки,
+            влияние на производительность и подход к приватности, чтобы объяснить, почему Skydimo — один из
+            наших основных рекомендаций.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Краткое резюме
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li><strong class="font-semibold">Платформа</strong>: Windows</li>
+            <li><strong class="font-semibold">Цена</strong>: бесплатно</li>
+            <li>
+              <strong class="font-semibold">Монетизация</strong>:
+              без рекламы, без навязанного софта, без скрытого майнинга
+            </li>
+            <li>
+              <strong class="font-semibold">Кому подойдёт</strong>:
+              владельцам сборок с устройствами от разных брендов, которым нужна хорошая экранная/музыкальная
+              синхронизация без paywall‑ограничений
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Поддержка устройств
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Цель Skydimo — работать с широким спектром устройств: клавиатуры, мыши, разъёмы подсветки
+            на материнских платах, вентиляторы, СЖО, модули ОЗУ, видеокарты и LED‑ленты.
+            Полной универсальности не предлагает ни один контроллер, но покрытие Skydimo достаточно широкое,
+            чтобы в типичных сборках заменить сразу несколько фирменных утилит.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            За наиболее точной и свежей информацией по совместимости лучше всего обращаться к официальному
+            списку на
+            <a
+              href="https://skydimo.com/ru/"
+              target="_blank"
+              rel="noreferrer"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              skydimo.com
+            </a>
+            .
+            В нашем
+            <a
+              href="/compatibility/device-support-matrix/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              обзоре совместимости устройств
+            </a>
+            мы также сравниваем Skydimo с другими контроллерами на более высоком уровне.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Режимы подсветки и функции
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo покрывает базовые сценарии (статические цвета, дыхание, цветовые циклы) и добавляет
+            более продвинутые режимы вроде синхронизации с экраном, музыкой и «умных» пресетов, которые
+            могут быстро настроить подсветку сразу на нескольких устройствах.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            По сравнению с фирменными утилитами, упор сделан на то, чтобы быстро добиться красивого результата
+            без долгого поиска нужных настроек в подменю. По сравнению с частью сторонних инструментов,
+            Skydimo выбирает баланс между удобством и гибкостью, а не открывает все возможные внутренние
+            переключатели.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Производительность и стабильность
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            В типичных сценариях Skydimo довольно бережно относится к ресурсам CPU и ОЗУ, поэтому подходит
+            для игровых и стриминговых ПК, где важна стабильная работа фона. Конечно, конкретные цифры
+            зависят от конфигурации, драйверов и количества зон подсветки, но общая цель разработчиков —
+            избежать избыточного «фонового жора».
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Приватность и безопасность
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Одно из ключевых обещаний Skydimo — отсутствие рекламы, навязанного ПО и крипто‑майнеров.
+            Контроллер ориентирован на локальное управление: он считывает только ту информацию о железе,
+            которая необходима для управления подсветкой, а профили и настройки хранятся на вашем ПК.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Итоговый вердикт
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Для большинства пользователей Windows с разнобрендовой RGB‑сборкой, которым важны
+            качественная экранная/музыкальная синхронизация и отсутствие навязчивой монетизации,
+            Skydimo сейчас выглядит одним из самых сбалансированных вариантов.
+            Энтузиастам открытого ПО по‑прежнему может больше подойти OpenRGB, а полностью
+            «фирменные» сборки нередко комфортно живут на экосистемных утилитах производителей,
+            но именно Skydimo чаще всего оказывается нашим базовым рекомендуемым вариантом.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Сравнить с:
+            <a
+              href="/ru/comparisons/skydimo-vs-signalrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB
+            </a>
+            и
+            <a
+              href="/comparisons/skydimo-vs-openrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs OpenRGB
+            </a>
+            , а также вернуться к
+            <a
+              href="/ru/best-rgb-controller/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              основному гиду по RGB‑контроллерам 2025 года
+            </a>
+            .
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+
