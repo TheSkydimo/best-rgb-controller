@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import Logomark from "~/icons/logomark.svg";
 import ContentSection from "~/components/content-section.astro";
 
 export interface Props {
@@ -15,7 +16,7 @@ const { title, leadHtml, ctas } = Astro.props;
 ---
 
 <ContentSection title={title} id="intro">
-  <Icon slot="eyebrow" name="logomark" class="size-32" />
+  <Logomark slot="eyebrow" class="size-32" aria-hidden="true" />
   <div slot="lead" class="contents" set:html={leadHtml} />
   <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
     <a
