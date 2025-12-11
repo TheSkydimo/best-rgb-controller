@@ -1,0 +1,145 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "SignalRGB İncelemesi: Özellikler, Performans ve Fiyatlandırma";
+const PAGE_DESCRIPTION =
+  "SignalRGB RGB denetleyicisini; ekran senkronu kalitesi, efekt kütüphanesi, kaynak kullanımı ve ücretsiz + abonelik modelinin günlük kullanıma etkisi açısından inceliyoruz.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/tr/reviews/signalrgb-review/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            İnceleme – SignalRGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            SignalRGB İncelemesi: freemium modele sahip güçlü bir RGB denetleyici
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            SignalRGB, tek bir arayüz altında pek çok cihazı birleştiren ve gelişmiş ekran
+            senkronu/efekt sistemleri sunan bir RGB platformudur. Bu incelemede aydınlatma
+            kalitesine, performans davranışına ve ücretsiz + abonelik modelinin günlük kullanım
+            üzerindeki etkilerine bakıyoruz.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">Öne çıkanlar</h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>Güçlü ekran senkronu ve esnek efekt sistemi.</li>
+            <li>Hazır profil ve efektlerden oluşan zengin bir kütüphane.</li>
+            <li>Ücretsiz + abonelik modeli; bazı düzenler ve gelişmiş efektler paywall arkasında.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Performans ve kullanım deneyimi
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Arayüzündeki görsel detaylar ve karmaşık efektler nedeniyle SignalRGB, daha sade
+            denetleyicilere göre genellikle daha fazla CPU/GPU kaynağı kullanır. Modern oyun
+            sistemlerinde bu çoğu zaman kabul edilebilir düzeydedir; ancak arka plan yazılımlarının
+            mümkün olduğunca hafif olmasını istiyorsan Skydimo veya OpenRGB gibi daha hafif
+            alternatifler sana daha uygun olabilir.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Fiyatlandırma ve paywall konuları
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            SignalRGB, temel senaryolar için yeterli olabilen bir ücretsiz katman sunar; ancak bazı
+            karmaşık düzenler ve ileri seviye efektler yalnızca abonelikle açılır. Topluluk
+            tartışmalarında zaman zaman, arayüzdeki “yalnızca premium” öğelerin görünürlüğünün yüksek
+            olduğundan şikâyet edildiğini görmek mümkün; bu yüzden seçimini yaparken bu noktayı da
+            dikkate almakta fayda var.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Özellikle ekran senkronu ile ilgileniyorsan, bu incelemeyi
+            <a
+              href="/tr/comparisons/rgb-software-screen-sync/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              ekran senkronu RGB yazılımları karşılaştırmamız
+            </a>
+            ve
+            <a
+              href="/tr/comparisons/skydimo-vs-signalrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB yazısıyla
+            </a>
+            birlikte okumanı öneririz.
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

@@ -1,0 +1,129 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB LED şerit rehberi: RGB ve ARGB arasındaki fark nedir?";
+const PAGE_DESCRIPTION =
+  "LED şeritleri anakart veya kontrolcüye bağlamadan önce; 12V RGB ile 5V ARGB arasındaki temel farkları, yaygın başlık tiplerini ve güvenli bağlantı için dikkat edilmesi gerekenleri açıklıyoruz.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/tr/compatibility/led-strip-guide/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Uyumluluk – RGB LED şerit rehberi
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB LED şerit rehberi: RGB ve ARGB arasındaki fark nedir?
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Bir LED şeridi anakart veya kontrolcüye takmadan önce 12V RGB ile 5V ARGB arasındaki
+            temel farkları anlamak, hem sorun yaşamamak hem de ekipmanı korumak açısından kritik
+            öneme sahiptir.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Bir dakikada RGB ve ARGB’yi ayırmak
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>
+              <strong class="font-semibold">12V RGB</strong>: Tüm şerit tek bir renk gibi davranır;
+              genellikle 4 pinli başlık kullanılır ve tüm LED’ler aynı renkte yanar.
+            </li>
+            <li>
+              <strong class="font-semibold">5V ARGB</strong>: Her bir (veya küçük gruplar hâlindeki)
+              LED ayrı ayrı kontrol edilebilir; çoğunlukla 3 pinli, veri hattına sahip başlık
+              kullanılır.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Güvenli bağlantı için ipuçları
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            5V ARGB şeridi 12V RGB başlığına takmaktan mutlaka kaçınmalısın; bu, şeridin kalıcı
+            olarak yanmasına yol açabilir. Bağlantı yapmadan önce voltaj ve pin diziliminin birebir
+            uyuştuğundan emin ol, başlık üzerindeki ok işaretlerini ve “D” (Data) gibi veri pini
+            işaretlerini mutlaka kontrol et.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Tüm bunlara rağmen şerit ya da başlık yazılımda hâlâ görünmüyorsa,
+            <a
+              href="/tr/compatibility/fix-rgb-not-detected/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              “RGB aydınlatma algılanmıyor” rehberi
+            </a>
+            ile birlikte okuyarak hem fiziksel bağlantıları hem de BIOS/yazılım tarafını tekrar
+            gözden geçirebilirsin.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

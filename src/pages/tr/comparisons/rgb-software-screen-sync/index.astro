@@ -1,0 +1,131 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Ekran senkronu RGB yazılımları: gecikme, akıcılık ve kullanım kolaylığı";
+const PAGE_DESCRIPTION =
+  "Skydimo, SignalRGB ve diğer RGB denetleyicilerinde ekran senkronu (Screen Sync) deneyimini; gecikme hissi, renk geçişlerinin akıcılığı, sistem yükü ve ilk kurulum zorluğu açısından kıyaslıyoruz.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/tr/comparisons/rgb-software-screen-sync/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Karşılaştırma – Ekran senkronu RGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Ekran senkronu RGB yazılımları: gecikme, akıcılık ve kullanım kolaylığı
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Ekranla senkron aydınlatma, oyun ve film deneyimini belirgin şekilde zenginleştirebilir.
+            Bu yazıda Skydimo, SignalRGB ve diğer çözümlerin Screen Sync modlarını; hissedilen
+            gecikme, renk geçişlerinin pürüzsüzlüğü, sistem kaynak kullanımı ve ilk kurulum
+            karmaşıklığı gibi açılardan niteliksel olarak karşılaştırıyoruz.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            İyi bir ekran senkronu deneyimi için hangi ölçütler önemli?
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>Görüntüdeki değişim ile LED’lerin tepki vermesi arasındaki gecikme.</li>
+            <li>Renk geçişlerinin ne kadar akıcı olduğu; takılma veya “kademe kademe” his verip vermediği.</li>
+            <li>CPU / GPU kaynak kullanımı ve FPS üzerindeki olası etkiler.</li>
+            <li>Doğru monitör ve örnekleme bölgesini seçmenin ne kadar kolay olduğu.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Skydimo, SignalRGB ve diğer çözümler
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Doğru yapılandırıldığında ve modern donanım üzerinde çalıştığında Skydimo ve SignalRGB,
+            <strong class="font-semibold">düşük hissedilen gecikme ve oldukça akıcı</strong>
+            renk geçişleri sunabilir. Bazı üretici yazılımları ve açık kaynak projeler de benzer
+            sonuçlara ulaşabilir; ancak çoğu zaman daha az ayar sunar ya da daha manuel bir kurulum
+            gerektirir.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Ekran senkronu senin için en önemli kriterse önce
+            <a
+              href="/tr/comparisons/skydimo-vs-signalrgb/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs SignalRGB karşılaştırmasını
+            </a>
+            incelemeni, ardından da
+            <a
+              href="/tr/guides/reduce-screen-sync-lag/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              ekran senkronu gecikmesini azaltma rehberimize
+            </a>
+            göz atmanı öneriyoruz; böylece deneyimi adım adım ideal seviyeye yaklaştırabilirsin.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

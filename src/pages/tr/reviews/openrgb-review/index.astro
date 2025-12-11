@@ -1,0 +1,154 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "OpenRGB İncelemesi: Artıları, Eksileri ve Kimler İçin Uygun?";
+const PAGE_DESCRIPTION =
+  "OpenRGB adlı açık kaynak RGB denetleyicinin güçlü ve zayıf yönlerine, tipik sistem yüküne ve hangi kullanıcı profili için daha anlamlı bir seçim olduğuna bakıyoruz.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/tr/reviews/openrgb-review/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            İnceleme – OpenRGB
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            OpenRGB İncelemesi: Artıları, Eksileri ve Kimler İçin Uygun?
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            OpenRGB, birden fazla üretici yazılımını tek bir <strong class="font-semibold">açık
+            kaynak RGB denetleyicisi</strong> ile değiştirmeyi hedefliyor. Doğru kullanıcı
+            profili için inanılmaz derecede esnek ve güçlü olabilir; ancak çoğu ticari araca
+            kıyasla daha fazla sabır ve teknik bilgi gerektirir.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Güçlü yönler
+          </h2>
+          <ul class="space-y-1 text-sm text-offset sm:text-base">
+            <li>Açık kaynak kodlu ve tamamen ücretsizdir.</li>
+            <li>Varsayılan olarak gereksiz arka plan servisleri çalıştırmaz; kaynak kullanımı çoğu zaman düşüktür.</li>
+            <li>Topluluk tarafından geliştirilen çok markalı, çok cihazlı destek sunar.</li>
+            <li>Gelişmiş kullanıcılar için otomasyon ve betik yazma imkânları sağlar.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Dikkat edilmesi gereken noktalar
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            OpenRGB kullanmak çoğu zaman belgeleri okuma, forumları takip etme ve ayarlarla
+            deneme‑yanılma yapma anlamına gelir. Bazı cihazlar veya efektler yalnızca geçici
+            çözümlerle çalışabilir ya da henüz hiç desteklenmiyor olabilir.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Eğer beklentin; sihirbazların seni yönlendirdiği, birkaç tıkla hazır profillere
+            ulaştığın bir deneyimse, Skydimo veya SignalRGB çoğu kullanıcı için daha konforlu
+            olacaktır.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            Kimler için mantıklı bir seçim?
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Biz özellikle şu profildeki kullanıcılara OpenRGB’yi öneriyoruz:
+          </p>
+          <ul class="ml-5 list-disc space-y-1 text-sm text-offset sm:text-base">
+            <li>Açık kaynak yazılımları tercih eden ve geri bildirim/test katkısı sunmaya istekli olanlar.</li>
+            <li>Daha manuel bir kurulum ve olası “uğraştırıcı” noktaları sorun etmeyenler.</li>
+            <li>
+              Hazır şablonlardan çok, aydınlatma üzerinde
+              <strong class="font-semibold">tam kontrol ve yüksek özelleştirme</strong>yi önemseyenler.
+            </li>
+          </ul>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Alternatiflerle kıyaslamak istersen
+            <a
+              href="/tr/comparisons/skydimo-vs-openrgb/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              Skydimo vs OpenRGB karşılaştırmasını
+            </a>
+            okuyabilir veya
+            <a
+              href="/tr/best-rgb-controller/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              2025 RGB denetleyici genel rehberine
+            </a>
+            geri dönebilirsin.
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+

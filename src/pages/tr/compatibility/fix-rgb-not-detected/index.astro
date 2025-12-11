@@ -1,0 +1,135 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "Anakart üzerindeki RGB aydınlatma yazılımda görünmüyorsa ne yapmalı?";
+const PAGE_DESCRIPTION =
+  "RGB aydınlatma denetleyicide hiç görünmüyorsa izlenebilecek adım adım kontrol listesi: BIOS ayarları, doğru başlık ve voltaj, kablo yönü ve üretici yazılımıyla test etme.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/tr/compatibility/fix-rgb-not-detected/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Uyumluluk – RGB aydınlatma algılanmıyor
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Anakart üzerindeki RGB aydınlatma yazılımda görünmüyorsa ne yapmalı?
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Denetleyicide anakart üzerindeki aydınlatma bölgelerini ya da anakart başlıklarına bağlı
+            şeritleri hiç göremiyorsan, hemen “desteklenmiyor” sonucuna atlamadan önce bu kontrol
+            listesindeki tipik yapılandırma sorunlarını adım adım ele almanı öneririz.
+          </p>
+        </header>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            1. BIOS ve firmware ayarlarını kontrol et
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Çoğu anakartta BIOS içinde aydınlatma ve başlıklarla ilgili ayrı seçenekler bulunur. RGB
+            aydınlatmanın tamamen kapalı olmadığından ve sadece üretici yazılımına özel bir moda
+            alınmadığından emin ol. Uzun süredir BIOS güncellemesi yapmadıysan, kararlı ve güncel bir
+            sürüme geçmek de nadir uyumluluk sorunlarını giderebilir.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            2. Doğru başlık, voltaj ve yönü doğrula
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Şeritlerin ve hub’ların hangi başlığa takılı olduğuna tekrar bak: 12V RGB mi, 5V ARGB mi?
+            5V ARGB şeridi 12V RGB başlığına takmak, şeridi kalıcı olarak bozabilir. Ayrıca
+            konnektörlerin üzerindeki ok işaretlerine ve “D”/“Data” gibi veri pini işaretlerine dikkat
+            et; fişin hangi yönde takılması gerektiğini gösterirler.
+          </p>
+          <p class="text-sm text-offset sm:text-base">
+            Başlık tiplerinden emin değilsen,
+            <a
+              href="/tr/compatibility/led-strip-guide/"
+              class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              RGB LED şerit ve ARGB rehberine
+            </a>
+            göz atarak temel farkları ve pin dizilimlerini incelemen iyi bir başlangıç olur.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg font-semibold tracking-tight sm:text-xl">
+            3. Önce üretici yazılımı ile test et
+          </h2>
+          <p class="text-sm text-offset sm:text-base">
+            Skydimo, OpenRGB veya başka bir denetleyiciyi suçlamadan önce, anakart üreticinin
+            sağladığı RGB yazılımını (Aura Sync, Mystic Light, iCUE vb.) kurup aydınlatmayı orada
+            test et. Eğer resmî yazılım bile bölgeleri göremiyorsa, sorun çok büyük ihtimalle
+            donanımda, firmware’de veya bağlantıda; üçüncü taraf kontrolcünün kendisinde değil.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+

@@ -1,0 +1,163 @@
+---
+import "@fontsource-variable/inter";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+const PAGE_TITLE = "RGB yazılımları ve cihaz sınıfları için uyumluluk matrisi (yüksek seviye bakış)";
+const PAGE_DESCRIPTION =
+  "Skydimo, OpenRGB, SignalRGB ve üretici yazılımlarının farklı cihaz kategorilerinde tipik kapsama alanına yüksek seviyeden bakıyoruz. Belirli modeller için her zaman resmî uyumluluk listelerini temel alın.";
+
+const navItems = [
+  { title: "Editörün seçimi", url: "/tr/#best-picks" },
+  { title: "İncelemeler", url: "/tr/reviews/" },
+  { title: "Karşılaştırmalar", url: "/tr/comparisons/" },
+  { title: "Rehberler", url: "/tr/guides/" },
+  { title: "Uyumluluk", url: "/tr/compatibility/" },
+  { title: "SSS", url: "/tr/faq/" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{PAGE_TITLE}</title>
+    <meta name="description" content={PAGE_DESCRIPTION} />
+    <meta property="og:title" content={PAGE_TITLE} />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content={PAGE_DESCRIPTION} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://best-rgb-controller.com/tr/compatibility/device-support-matrix/"
+    />
+
+    <GoogleAnalytics />
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <article class="mx-auto max-w-7xl space-y-8">
+        <header class="space-y-3">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Uyumluluk – cihaz matrisi
+          </p>
+          <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+            RGB yazılımları ve cihaz sınıfları için uyumluluk matrisi (yüksek seviye bakış)
+          </h1>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Bu tablo yalnızca farklı RGB denetleyicilerin cihaz kategorilerini ne ölçüde
+            <strong class="font-semibold">tipik olarak</strong> desteklediğine dair kabaca bir fikir
+            vermek için hazırlanmıştır. Satın alma kararı vermeden veya yazılım değişikliğine
+            gitmeden önce daima ilgili yazılımın resmî uyumluluk listesine bakın.
+          </p>
+        </header>
+
+        <section
+          class="overflow-x-auto rounded-2xl border border-slate-700/70 bg-offset/40 p-4 text-sm"
+        >
+          <table class="min-w-full text-left text-xs sm:text-sm">
+            <thead class="text-muted">
+              <tr>
+                <th class="py-2 pr-4 font-semibold text-offset">Cihaz kategorisi</th>
+                <th class="py-2 pr-4 font-semibold text-primary">Skydimo</th>
+                <th class="py-2 pr-4 font-semibold">OpenRGB</th>
+                <th class="py-2 pr-4 font-semibold">SignalRGB</th>
+                <th class="py-2 pr-0 font-semibold">Üretici yazılımları</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-700/60">
+              <tr>
+                <th class="py-2 pr-4 font-medium text-offset">Klavye ve fareler</th>
+                <td class="py-2 pr-4 text-primary">Geniş kapsama (markaya göre değişir)</td>
+                <td class="py-2 pr-4">Geniş</td>
+                <td class="py-2 pr-4">Geniş</td>
+                <td class="py-2 pr-0">Kendi ekosistemi içinde genelde en iyi deneyim</td>
+              </tr>
+              <tr>
+                <th class="py-2 pr-4 font-medium text-offset">Anakartlar ve RAM</th>
+                <td class="py-2 pr-4 text-primary">Popüler yonga setlerinde iyi</td>
+                <td class="py-2 pr-4">İyi</td>
+                <td class="py-2 pr-4">İyi</td>
+                <td class="py-2 pr-0">Kendi markası için çoğu zaman en iyi</td>
+              </tr>
+              <tr>
+                <th class="py-2 pr-4 font-medium text-offset">Fanlar ve sıvı soğutmalar</th>
+                <td class="py-2 pr-4 text-primary">İyi</td>
+                <td class="py-2 pr-4">İyi</td>
+                <td class="py-2 pr-4">İyi</td>
+                <td class="py-2 pr-0">Tek bir ekosistem içinde genelde çok iyi</td>
+              </tr>
+              <tr>
+                <th class="py-2 pr-4 font-medium text-offset">LED şeritler ve ambient aydınlatma</th>
+                <td class="py-2 pr-4 text-primary">
+                  Desteklenen kontrolcülerle birlikte kullanıldığında iyi
+                </td>
+                <td class="py-2 pr-4">İyi</td>
+                <td class="py-2 pr-4">İyi</td>
+                <td class="py-2 pr-0">Üreticiye göre değişken</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-3 text-[11px] text-muted">
+            Tablo bilerek <strong class="font-semibold">bulanık</strong> ve nitel bırakılmıştır:
+            amaç hızlıca sezgi kazandırmak, resmî uyumluluk listelerinin yerini almak değil. Karar
+            vermeden önce mutlaka yazılım geliştiricisinin sitesindeki güncel bilgilere bakın.
+          </p>
+        </section>
+
+        <footer class="border-t border-slate-700/60 pt-6 text-sm text-offset">
+          <p>
+            Buradan
+            <a
+              href="/tr/compatibility/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              uyumluluk merkezine
+            </a>
+            geri dönebilir veya
+            <a
+              href="/tr/best-rgb-controller/"
+              class="ml-1 underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+            >
+              2025 RGB denetleyici genel rehberine
+            </a>
+            göz atabilirsin.
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
+
+
