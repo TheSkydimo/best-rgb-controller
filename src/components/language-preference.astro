@@ -1,0 +1,55 @@
+---
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from "~/i18n/config";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const supportedLocales = Array.from(SUPPORTED_LOCALES);
+const defaultLocale = DEFAULT_LOCALE;
+const storageKey = "preferredLocale";
+---
+
+<script define:vars={{ storageKey, supportedLocales, defaultLocale, locale }}>
+  (function () {
+    const supportedLocaleSet = new Set(supportedLocales);
+
+    const safeNormalizeLocale = (value) => {
+      if (typeof value !== "string") return undefined;
+      const normalized = value.toLowerCase().split("-")[0];
+      return supportedLocaleSet.has(normalized) ? normalized : undefined;
+    };
+
+    const readStoredLocale = () => {
+      try {
+        return safeNormalizeLocale(
+          window.localStorage.getItem(storageKey) ?? undefined,
+        );
+      } catch {
+        return undefined;
+      }
+    };
+
+    const writeStoredLocale = (value) => {
+      if (!value) return;
+      try {
+        window.localStorage.setItem(storageKey, value);
+      } catch {
+        /* storage might be unavailable (private mode, etc.) */
+      }
+    };
+
+    // For this site, we avoid automatic redirects based on browser language
+    // to keep the English landing page as the default. We only remember the
+    // last chosen locale for potential future use.
+    const storedLocale = readStoredLocale();
+    if (!storedLocale) {
+      // First visit: remember the current page locale but do not redirect.
+      writeStoredLocale(locale);
+    } else if (storedLocale !== locale && locale !== defaultLocale) {
+      // Visiting a non-default locale: update stored preference.
+      writeStoredLocale(locale);
+    }
+  })();
+</script>

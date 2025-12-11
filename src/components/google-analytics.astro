@@ -1,0 +1,24 @@
+---
+// Only inject Google Analytics in production.
+const isProd = import.meta.env.PROD;
+const measurementId = "G-BKRDQSVM5G";
+
+if (!isProd) {
+  return null;
+}
+---
+
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    // eslint-disable-next-line no-undef
+    dataLayer.push(arguments);
+  }
+
+  gtag("js", new Date());
+  gtag("config", "G-BKRDQSVM5G", {
+    page_path: window.location.pathname,
+  });
+</script>
+

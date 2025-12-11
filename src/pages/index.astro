@@ -1,0 +1,677 @@
+---
+
+import "@fontsource-variable/inter";
+import { Image } from "astro:assets";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import moonImage from "~/assets/Screen.png";
+import { DEFAULT_LOCALE } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale = DEFAULT_LOCALE;
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+// English users should land on the English download page
+const DOWNLOAD_URL = "https://skydimo.com/en/download";
+
+const navItems = [
+  { title: "Lighting modes", url: "#modes" },
+  { title: "Device support", url: "#devices" },
+  { title: "Why Skydimo", url: "#why-skydimo" },
+  { title: "FAQ", url: "#faq" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{copy.meta.title}</title>
+    <meta name="description" content={copy.meta.description} />
+    <meta property="og:title" content={copy.meta.ogTitle} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={copy.meta.ogDescription} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={pageData.head.canonical} />
+
+    <GoogleAnalytics />
+
+    <!-- initialize theme -->
+    <script is:inline>
+      const themeSaved = localStorage.getItem("theme");
+
+      const applyTheme = (value) => {
+        document.documentElement.dataset.theme = value;
+      };
+
+      if (themeSaved) {
+        applyTheme(themeSaved);
+      } else {
+        applyTheme("dark");
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          if (!localStorage.getItem("theme")) {
+            applyTheme(event.matches ? "dark" : "light");
+          }
+        });
+    </script>
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      downloadUrl={DOWNLOAD_URL}
+      downloadLabel="Download"
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <!-- Hero -->
+      <section
+        class="mx-auto grid max-w-7xl gap-12 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 px-8 py-12 shadow-2xl lg:px-12 lg:py-16"
+        aria-labelledby="hero-heading"
+      >
+        <div class="flex flex-col justify-center gap-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            Best free RGB lighting software for Windows
+          </p>
+          <h1
+            id="hero-heading"
+            class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+          >
+            Free RGB Lighting Controller for All Your PC Devices
+          </h1>
+          <p class="max-w-xl text-balance text-sm text-offset sm:text-base">
+            Control 1000+ RGB devices from different brands with one free, safe lighting app.
+            Sync your lights with games, music and movies in seconds.
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <a
+              href={DOWNLOAD_URL}
+              class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+            >
+              Download Skydimo for Windows (Secure, ad-free)
+            </a>
+            <a
+              href="https://skydimo.com/en/"
+              class="inline-flex items-center justify-center rounded-full border border-offset px-6 py-3 text-sm font-semibold text-offset transition hover:border-primary hover:text-primary"
+            >
+              Learn why we recommend Skydimo &rarr;
+            </a>
+          </div>
+          <p class="mt-2 text-xs text-muted">
+            You’ll be redirected to skydimo.com for the official, secure download.
+          </p>
+          <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span>Trusted by 200,000+ users</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-sky-400" />
+              <span>100% free, no ads or crypto mining</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-violet-400" />
+              <span>Screen &amp; music sync</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-rose-400" />
+              <span>Supports 1000+ RGB devices</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="relative h-80 w-full max-w-2xl overflow-hidden rounded-3xl border border-slate-700/70 bg-slate-900/80 p-1 shadow-[0_0_80px_rgba(56,189,248,0.35)]">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.6),_transparent_55%),_radial-gradient(circle_at_bottom,_rgba(244,63,94,0.4),_transparent_55%)]" />
+            <div class="relative h-full w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-black/60">
+              <Image
+                src={moonImage}
+                alt="Abstract RGB lighting background"
+                class="h-full w-full object-cover opacity-90 mix-blend-screen"
+                loading="eager"
+              />
+              <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.65),_transparent_70%)]" />
+              <div class="pointer-events-none absolute inset-x-8 top-6 flex items-center justify-between text-[10px] font-medium text-slate-100/80">
+                <div class="flex items-center gap-1.5">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
+                  <span>Screen sync</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.8)]" />
+                  <span>Music sync</span>
+                </div>
+                <div class="hidden items-center gap-1.5 sm:flex">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-violet-400 shadow-[0_0_12px_rgba(139,92,246,0.8)]" />
+                  <span>AI lighting</span>
+                </div>
+              </div>
+              <div class="absolute inset-x-0 bottom-0 space-y-2 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 text-xs">
+                <p class="font-semibold text-white">
+                  RGB profile: <span class="text-primary">Game Night – Screen Sync</span>
+                </p>
+                <p class="text-[11px] text-slate-200">
+                  Screen sync, music sync and AI lighting active. Keyboard, mouse, fans and LED
+                  strips linked.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Device support / brands -->
+      <section
+        id="devices"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="devices-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="devices-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Works with the RGB gear you already own
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo is designed to replace multiple vendor apps by controlling RGB devices from
+            different brands in a single interface.
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Device types
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>Keyboards &amp; mice</li>
+              <li>Case fans &amp; AIO coolers</li>
+              <li>LED strips and light bars</li>
+              <li>RAM, GPUs and motherboard lighting</li>
+            </ul>
+          </div>
+          <div class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Broad brand support
+            </h3>
+            <p class="text-sm text-offset">
+              Skydimo supports devices from popular gaming and PC hardware brands. Examples include
+              Razer, ASUS Aura Sync, MSI Mystic Light, Corsair iCUE, HyperX, Redragon, Logitech G
+              and more.
+            </p>
+            <p class="mt-2 text-xs text-muted">
+              Exact compatibility varies by model. Check the official Skydimo site for the latest
+              supported devices.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lighting modes -->
+      <section
+        id="modes"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="modes-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="modes-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Lighting modes that go beyond basic effects
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo includes the most popular RGB effects plus powerful sync modes designed for
+            games, music and movies.
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Screen Sync</h3>
+            <p class="text-sm text-offset">
+              Match your RGB lights to the colors on your screen in real time. Create immersive
+              lighting for games, movies or everyday desktop use.
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Music Sync</h3>
+            <p class="text-sm text-offset">
+              Use beat-detection to make your RGB setup react to the music you play. Customize
+              colors, sensitivity and animation styles.
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">AI &amp; Smart Effects</h3>
+            <p class="text-sm text-offset">
+              Quickly apply intelligent lighting presets tailored to your game, mood or time of
+              day, without spending hours tweaking every setting.
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Flexible device control</h3>
+            <p class="text-sm text-offset">
+              Control a single supported device or sync multiple devices together with the same solid
+              color or basic effect for a unified look across your setup.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Trust & safety -->
+      <section
+        id="trust"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="trust-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="trust-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Safe, ad‑free and trusted by hundreds of thousands of users
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo focuses on being a reliable RGB controller you can install on your main
+            gaming or work PC without worrying about hidden extras.
+          </p>
+        </div>
+        <ul class="grid gap-4 md:grid-cols-2">
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            Trusted by hundreds of thousands of PC builders and gamers worldwide.
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            100% free to use – no ads, no bundled software and no crypto mining.
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            Lightweight on CPU and RAM, so your games and streams keep running smoothly.
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            Downloadable from trusted sources, including the official Skydimo website.
+          </li>
+        </ul>
+        <p class="text-xs text-muted">
+          Every release is scanned by leading antivirus engines before being published.
+        </p>
+      </section>
+
+      <!-- Why Skydimo / comparison -->
+      <section
+        id="why-skydimo"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="why-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="why-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Why we recommend Skydimo as your primary RGB controller
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            There are several RGB controller apps on the market. Many work well, but come with
+            trade‑offs such as limited device support, aggressive upsells or confusing interfaces.
+          </p>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo offers a strong balance for most Windows users:
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Wide device support
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>Works with 1000+ devices and multiple brands.</li>
+              <li>Frequent updates for new hardware.</li>
+            </ul>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Powerful, modern features
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>Screen sync, music sync and AI lighting.</li>
+              <li>Simple device‑wide control with solid colors and basic effects.</li>
+            </ul>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Safe and frustration‑free
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>No ads, no bundled junk, no crypto mining.</li>
+              <li>Clean UI that gets you from install to first effect in minutes.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-700/70 bg-offset/40 p-4">
+          <table class="min-w-full text-left text-xs sm:text-sm">
+            <thead class="text-muted">
+              <tr>
+                <th scope="col" class="py-2 pr-4 font-semibold text-offset">
+                  Feature
+                </th>
+                <th scope="col" class="py-2 pr-4 font-semibold text-primary">
+                  Skydimo
+                </th>
+                <th scope="col" class="py-2 pr-4 font-semibold">
+                  OpenRGB
+                </th>
+                <th scope="col" class="py-2 pr-0 font-semibold">
+                  SignalRGB
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-700/60">
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Price
+                </th>
+                <td class="py-2 pr-4 text-primary">Free</td>
+                <td class="py-2 pr-4">Free</td>
+                <td class="py-2 pr-0">Free + paid tiers</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Ads / mining
+                </th>
+                <td class="py-2 pr-4 text-primary">No ads, no mining</td>
+                <td class="py-2 pr-4">None</td>
+                <td class="py-2 pr-0">Upsells in some flows</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Screen sync
+                </th>
+                <td class="py-2 pr-4 text-primary">Excellent</td>
+                <td class="py-2 pr-4">Good</td>
+                <td class="py-2 pr-0">Good</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Music sync
+                </th>
+                <td class="py-2 pr-4 text-primary">Excellent</td>
+                <td class="py-2 pr-4">Basic</td>
+                <td class="py-2 pr-0">Good</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Brand support
+                </th>
+                <td class="py-2 pr-4 text-primary">Very broad</td>
+                <td class="py-2 pr-4">Broad</td>
+                <td class="py-2 pr-0">Broad</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Official website
+                </th>
+                <td class="py-2 pr-4">
+                  <a
+                    href="https://skydimo.com/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    skydimo.com
+                  </a>
+                </td>
+                <td class="py-2 pr-4">
+                  <a
+                    href="https://openrgb.org/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    openrgb.org
+                  </a>
+                </td>
+                <td class="py-2 pr-0">
+                  <a
+                    href="https://signalrgb.com/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    signalrgb.com
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-3 text-[11px] text-muted">
+            This comparison is based on public information and typical usage.
+            For the latest details, always check each project’s official website.
+          </p>
+        </div>
+        <div class="mt-6">
+          <a
+            href={DOWNLOAD_URL}
+            class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+          >
+            Download Skydimo for Windows (Secure, ad-free)
+          </a>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section
+        id="reviews"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="reviews-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="reviews-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            What users say
+          </h2>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “Skydimo replaced three different vendor apps on my PC. It’s the only RGB controller
+              I recommend to friends now.”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — PC builder from the US
+            </figcaption>
+          </figure>
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “Screen sync with movies looks amazing on my ultrawide monitor. Setup took less than
+              five minutes.”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — Gamer from the UK
+            </figcaption>
+          </figure>
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “I wanted something free, safe and not bloated with ads. Skydimo checks all the
+              boxes.”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — RGB enthusiast from India
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- FAQ + final CTA -->
+      <section
+        id="faq"
+        class="mx-auto mt-24 max-w-7xl space-y-8"
+        aria-labelledby="faq-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="faq-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Frequently asked questions
+          </h2>
+        </div>
+        <dl class="space-y-4 md:space-y-5">
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Is Skydimo really free to use?</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Yes. Skydimo is completely free to download and use. There are no ads, no
+                  subscriptions, and no bundled software.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Can I control RGB devices from different brands with Skydimo?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Yes. One of the main goals of Skydimo is to let you control RGB lighting from
+                  multiple brands in a single app, so you don’t have to juggle several vendor tools.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Is the RGB controller safe for my PC?</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Skydimo is designed to be lightweight and safe. It does not include ads,
+                  crypto‑mining, or additional bundled software. Each release is checked before
+                  being published on the official website.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Does the software collect any personal data from my PC?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  No. Skydimo does not actively collect, store or transmit any personal information
+                  from your computer. The software only reads hardware‑related data required to
+                  control your RGB devices (such as device IDs and lighting capabilities). No user
+                  identity, browsing data, files, applications or personal content are accessed or
+                  collected. Skydimo runs entirely on your machine and does not send usage data to
+                  external servers. Your lighting profiles and settings remain local to your PC at
+                  all times.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Does it work with games and music?</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Yes. Skydimo includes both screen sync for games and movies, and music sync that
+                  reacts to the audio playing on your PC.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Which systems are supported?</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Skydimo currently focuses on Windows PCs. You can download the latest Windows
+                  installer from the official website.
+                </dd>
+              </div>
+            </div>
+          </div>
+        </dl>
+
+        <div class="mt-8 rounded-3xl border border-primary/40 bg-primary/5 px-6 py-8 text-center">
+          <h3 class="text-lg font-semibold">
+            Ready to upgrade your RGB lighting?
+          </h3>
+          <p class="mt-2 text-sm text-offset">
+            Free, ad‑free and works with 1000+ devices.
+          </p>
+          <a
+            href={DOWNLOAD_URL}
+            class="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+          >
+            Download Skydimo for Windows (Secure, ad-free)
+          </a>
+    </div>
+      </section>
+
+      <!-- Privacy & Security -->
+      <section class="mx-auto mt-16 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
+          Privacy &amp; security
+        </h2>
+        <p class="mt-2 text-sm text-offset">
+          Skydimo is built to be safe and privacy‑respecting: no ads, no bundled software, no
+          crypto‑mining, and no collection of personal data or usage telemetry. The app runs
+          entirely on your PC, only reads the hardware information needed to control your RGB
+          devices, and keeps all lighting profiles and settings stored locally on your machine.
+        </p>
+      </section>
+
+      <!-- Footer note above global footer -->
+      <section class="mx-auto mt-16 max-w-7xl text-center text-[11px] text-muted">
+        <p>
+          © 2025 best-rgb-controller.com – Independent RGB controller comparison site.
+        </p>
+        <p class="mt-1">
+          This site recommends Skydimo as our preferred RGB controller and may link to the
+          official Skydimo website for downloads.
+        </p>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>

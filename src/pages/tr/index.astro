@@ -1,0 +1,689 @@
+
+---
+
+import "@fontsource-variable/inter";
+import { Image } from "astro:assets";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import moonImage from "~/assets/Screen.png";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "tr";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+// Türkçe kullanıcılar Türkçe indirme sayfasına gider
+const DOWNLOAD_URL = "https://skydimo.com/tr/download";
+
+const navItems = [
+  { title: "Aydınlatma modları", url: "#modes" },
+  { title: "Cihaz desteği", url: "#devices" },
+  { title: "Neden Skydimo", url: "#why-skydimo" },
+  { title: "SSS", url: "#faq" },
+];
+---
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{copy.meta.title}</title>
+    <meta name="description" content={copy.meta.description} />
+    <meta property="og:title" content={copy.meta.ogTitle} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={copy.meta.ogDescription} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={pageData.head.canonical} />
+
+    <GoogleAnalytics />
+
+    <!-- initialize theme -->
+    <script is:inline>
+      const themeSaved = localStorage.getItem("theme");
+
+      const applyTheme = (value) => {
+        document.documentElement.dataset.theme = value;
+      };
+
+      if (themeSaved) {
+        applyTheme(themeSaved);
+      } else {
+        applyTheme("dark");
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          if (!localStorage.getItem("theme")) {
+            applyTheme(event.matches ? "dark" : "light");
+          }
+        });
+    </script>
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      downloadUrl={DOWNLOAD_URL}
+      downloadLabel="İndir"
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+    <main class="px-8 pt-16 pb-24">
+      <!-- Hero -->
+      <section
+        class="mx-auto grid max-w-7xl gap-12 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 px-8 py-12 shadow-2xl lg:px-12 lg:py-16"
+        aria-labelledby="hero-heading"
+      >
+        <div class="flex flex-col justify-center gap-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            Windows için en iyi ücretsiz RGB aydınlatma yazılımı
+          </p>
+          <h1
+            id="hero-heading"
+            class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+          >
+            Tüm PC cihazların için ücretsiz RGB aydınlatma denetleyicisi
+          </h1>
+          <p class="max-w-2xl text-balance text-sm text-offset sm:text-base">
+            Farklı markalara ait 1000+ RGB cihazı, tek bir ücretsiz ve güvenli aydınlatma uygulamasıyla kontrol edin.
+            Işıkları oyunlar, müzik ve filmlerle saniyeler içinde senkronize edin.
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <a
+              href={DOWNLOAD_URL}
+              class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+            >
+              Skydimo’yu Windows için indir (güvenli, reklamsız)
+            </a>
+            <a
+              href="https://skydimo.com/tr/"
+              class="inline-flex items-center justify-center rounded-full border border-offset px-6 py-3 text-sm font-semibold text-offset transition hover:border-primary hover:text-primary"
+            >
+              Neden Skydimo’yu önerdiğimizi öğren &rarr;
+            </a>
+          </div>
+          <p class="mt-2 text-xs text-muted">
+            Güvenli indirme için resmi site skydimo.com adresine yönlendirileceksin.
+          </p>
+          <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span>Dünya çapında 200.000+ kullanıcı tarafından tercih ediliyor</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-sky-400" />
+              <span>%100 ücretsiz, reklam ve kripto madenciliği yok</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-violet-400" />
+              <span>Ekran ve müzik senkronu desteği</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-rose-400" />
+              <span>1000+ RGB cihaz desteği</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="relative h-80 w-full max-w-2xl overflow-hidden rounded-3xl border border-slate-700/70 bg-slate-900/80 p-1 shadow-[0_0_80px_rgba(56,189,248,0.35)]">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.6),_transparent_55%),_radial-gradient(circle_at_bottom,_rgba(244,63,94,0.4),_transparent_55%)]" />
+            <div class="relative h-full w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-black/60">
+              <Image
+                src={moonImage}
+                alt="Soyut RGB aydınlatma arka planı"
+                class="h-full w-full object-cover opacity-90 mix-blend-screen"
+                loading="eager"
+              />
+              <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.65),_transparent_70%)]" />
+              <div class="pointer-events-none absolute inset-x-8 top-6 flex items-center justify-between text-[10px] font-medium text-slate-100/80">
+                <div class="flex items-center gap-1.5">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
+                  <span>Ekran senkronu</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.8)]" />
+                  <span>Müzik senkronu</span>
+                </div>
+                <div class="hidden items-center gap-1.5 sm:flex">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-violet-400 shadow-[0_0_12px_rgba(139,92,246,0.8)]" />
+                  <span>Yapay zekâ aydınlatma</span>
+                </div>
+              </div>
+              <div class="absolute inset-x-0 bottom-0 space-y-2 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 text-xs">
+                <p class="font-semibold text-white">
+                  RGB profili: <span class="text-primary">Game Night – Ekran senkronizasyonu</span>
+                </p>
+                <p class="text-[11px] text-slate-200">
+                  Ekran senkronizasyonu, müzik senkronu ve AI aydınlatma etkin. Klavye, fare, fanlar ve LED şeritler bağlandı.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Privacy & Security -->
+      <section class="mx-auto mt-16 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
+          Gizlilik ve güvenlik
+        </h2>
+        <p class="mt-2 max-w-3xl text-sm text-offset">
+          Skydimo, güvenlik ve gizliliğe saygı gösterilecek şekilde tasarlanmıştır: reklam yok,
+          ek yazılım yok, kripto madenciliği yok ve kişisel veri veya kullanım telemetrisi
+          toplanmaz. Uygulama tamamen senin PC’inde çalışır, yalnızca RGB cihazlarını kontrol etmek
+          için gereken donanım bilgilerini okur ve tüm aydınlatma profilleri ile ayarların yalnızca
+          senin bilgisayarında yerel olarak saklanır.
+        </p>
+      </section>
+
+      <!-- Device support / brands -->
+      <section
+        id="devices"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="devices-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="devices-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Zaten sahip olduğun RGB ekipmanlarla uyumlu
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo, farklı markaların birden fazla uygulaması yerine geçerek RGB cihazlarını tek bir arayüzden yönetmen için tasarlandı.
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Cihaz türleri
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>Klavye ve fareler</li>
+              <li>Kasa fanları ve sıvı soğutmalar (AIO)</li>
+              <li>LED şeritler ve ışık barları</li>
+              <li>RAM, GPU ve anakart aydınlatması</li>
+            </ul>
+          </div>
+          <div class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Geniş marka desteği
+            </h3>
+            <p class="text-sm text-offset">
+              Skydimo, popüler oyun çevre birimi ve donanım markalarının birçok cihazını destekler ve düzenli olarak yeni modeller eklenir.
+              Örnek olarak Razer, ASUS Aura Sync, MSI Mystic Light, Corsair iCUE, HyperX, Redragon, Logitech G ve daha fazlası sayılabilir.
+            </p>
+            <p class="mt-2 text-xs text-muted">
+              Kesin uyumluluk modele göre değişir. En güncel destekli cihaz listesini resmi Skydimo sitesinden kontrol edebilirsin.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lighting modes -->
+      <section
+        id="modes"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="modes-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="modes-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Basit efektlerin ötesine geçen aydınlatma modları
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo, popüler RGB efektlerinin yanı sıra oyunlar, müzik ve filmler için tasarlanmış güçlü senkron modları içerir.
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Ekran senkronu</h3>
+            <p class="text-sm text-offset">
+              RGB ışıklarını, ekrandaki renklere gerçek zamanlı olarak uydur.
+              Oyunlar, filmler veya günlük kullanım için ortam aydınlatmasıyla daha sürükleyici bir deneyim oluştur.
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Müzik senkronu</h3>
+            <p class="text-sm text-offset">
+              Vuruş algılama sayesinde RGB kurulumun çalan müziğe tepki verir.
+              Renkleri, hassasiyeti ve animasyon stillerini zevkine göre özelleştir.
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Yapay zekâ ve akıllı efektler</h3>
+            <p class="text-sm text-offset">
+              Oyununa, ruh hâline veya günün saatine göre akıllı aydınlatma hazır ayarlarını hızlıca uygula;
+              her ayarı tek tek kurcalamak zorunda kalma.
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">Esnek cihaz kontrolü</h3>
+            <p class="text-sm text-offset">
+              İstersen tek bir cihazın aydınlatmasını ayrı ayrı ayarla, istersen birden fazla cihazı
+              aynı sabit renk veya temel efektle senkronize ederek tüm sisteminde bütünlüklü bir görünüm yakala.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Trust & safety -->
+      <section
+        id="trust"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="trust-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="trust-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Güvenli, reklamsız ve yüz binlerce kullanıcı tarafından tercih ediliyor
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo, ana oyun veya çalışma bilgisayarına gönül rahatlığıyla kurabileceğin güvenilir bir RGB denetleyicisi olmayı hedefler;
+            gizli sürprizler olmadan.
+          </p>
+        </div>
+        <ul class="grid gap-4 md:grid-cols-2">
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            Skydimo, dünya çapında yüz binlerce PC toplayıcısı ve oyuncu tarafından kullanılıyor.
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            %100 ücretsiz – reklam yok, ek yazılım yok, kripto madenciliği yok.
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            CPU ve RAM üzerinde hafif çalışır; oyunlarınız ve yayınlarınız akıcı kalır.
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            Resmi Skydimo sitesi dâhil güvenilir kaynaklardan indirilebilir.
+          </li>
+        </ul>
+        <p class="text-xs text-muted">
+          Her sürüm, yayımlanmadan önce önde gelen antivirüs motorlarıyla taranır.
+        </p>
+      </section>
+
+      <!-- Why Skydimo / comparison -->
+      <section
+        id="why-skydimo"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="why-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="why-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Neden ana RGB denetleyicisi olarak Skydimo’yu öneriyoruz?
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Piyasada farklı RGB denetleyici uygulamaları var.
+            Birçoğu iyi çalışsa da, sınırlı cihaz desteği, agresif satış taktikleri veya karmaşık arayüz gibi dezavantajlarla gelebiliyor.
+          </p>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Çoğu Windows kullanıcısı için Skydimo, özellikler, cihaz desteği ve kullanım kolaylığı arasında güçlü bir denge sunar:
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Geniş cihaz desteği
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>1000+ cihaz ve birden fazla marka ile çalışır.</li>
+              <li>Yeni donanımlar için düzenli güncellemeler.</li>
+            </ul>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Güçlü, modern özellikler
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>Ekran senkronu, müzik senkronu ve yapay zekâ aydınlatma.</li>
+              <li>Cihaz bazında tek renk ve temel efektlerle basit, tutarlı denetim.</li>
+            </ul>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              Güvenli ve sorunsuz deneyim
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>Reklam yok, gereksiz ek yazılım yok, kripto madenciliği yok.</li>
+              <li>Temiz arayüz sayesinde kurulumdan ilk efekti ayarlamaya kadar yalnızca birkaç dakika gerekiyor.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-700/70 bg-offset/40 p-4">
+          <table class="min-w-full text-left text-xs sm:text-sm">
+            <thead class="text-muted">
+              <tr>
+                <th scope="col" class="py-2 pr-4 font-semibold text-offset">
+                  Özellik
+                </th>
+                <th scope="col" class="py-2 pr-4 font-semibold text-primary">
+                  Skydimo
+                </th>
+                <th scope="col" class="py-2 pr-4 font-semibold">
+                  OpenRGB
+                </th>
+                <th scope="col" class="py-2 pr-0 font-semibold">
+                  SignalRGB
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-700/60">
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Fiyat
+                </th>
+                <td class="py-2 pr-4 text-primary">Ücretsiz</td>
+                <td class="py-2 pr-4">Ücretsiz</td>
+                <td class="py-2 pr-0">Ücretsiz + ücretli katmanlar</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Reklam / madencilik
+                </th>
+                <td class="py-2 pr-4 text-primary">Reklam ve madencilik yok</td>
+                <td class="py-2 pr-4">Yok</td>
+                <td class="py-2 pr-0">Bazı akışlarda satış yönlendirmeleri</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Ekran senkronu
+                </th>
+                <td class="py-2 pr-4 text-primary">Mükemmel</td>
+                <td class="py-2 pr-4">İyi</td>
+                <td class="py-2 pr-0">İyi</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Müzik senkronu
+                </th>
+                <td class="py-2 pr-4 text-primary">Mükemmel</td>
+                <td class="py-2 pr-4">Temel</td>
+                <td class="py-2 pr-0">İyi</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Marka desteği
+                </th>
+                <td class="py-2 pr-4 text-primary">Çok geniş</td>
+                <td class="py-2 pr-4">Geniş</td>
+                <td class="py-2 pr-0">Geniş</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  Resmî site
+                </th>
+                <td class="py-2 pr-4">
+                  <a
+                    href="https://skydimo.com/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    skydimo.com
+                  </a>
+                </td>
+                <td class="py-2 pr-4">
+                  <a
+                    href="https://openrgb.org/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    openrgb.org
+                  </a>
+                </td>
+                <td class="py-2 pr-0">
+                  <a
+                    href="https://signalrgb.com/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    signalrgb.com
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-3 text-[11px] text-muted">
+            Bu karşılaştırma, herkese açık bilgiler ve tipik kullanım senaryolarına dayanır.
+            En güncel detaylar için her projenin resmi sitesini kontrol etmek en iyisidir.
+          </p>
+        </div>
+        <div class="mt-6">
+          <a
+            href={DOWNLOAD_URL}
+            class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+          >
+            Skydimo’yu Windows için indir (güvenli, reklamsız)
+          </a>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section
+        id="reviews"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="reviews-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="reviews-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Kullanıcılar ne diyor?
+          </h2>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “Skydimo, PC’imdeki üç farklı üretici uygulamasının yerini aldı.
+              Artık arkadaşlarıma önerdiğim tek RGB denetleyicisi bu.”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — ABD’li PC toplayıcısı
+            </figcaption>
+          </figure>
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “Filmlerle ekran senkronu, ultra geniş monitörümde harika görünüyor.
+              Kurulum beş dakikadan kısa sürdü.”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — Birleşik Krallık’tan bir oyuncu
+            </figcaption>
+          </figure>
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “Ücretsiz, güvenli ve reklam çöplüğü olmayan bir şey istiyordum.
+              Skydimo, tüm bu kutuları işaretliyor.”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — Hindistanlı bir RGB meraklısı
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- FAQ + final CTA -->
+      <section
+        id="faq"
+        class="mx-auto mt-24 max-w-7xl space-y-8"
+        aria-labelledby="faq-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="faq-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            Sık sorulan sorular
+          </h2>
+        </div>
+        <dl class="space-y-4 md:space-y-5">
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Skydimo gerçekten ücretsiz mi?</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Evet. Skydimo’yu tamamen ücretsiz olarak indirip kullanabilirsin.
+                  Reklam, abonelik veya ek yazılım yoktur.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Skydimo ile farklı markaların RGB cihazlarını birlikte kontrol edebilir miyim?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Evet. Skydimo’nun en büyük hedeflerinden biri, birden fazla üreticinin aracını
+                  kullanmak zorunda kalmadan, çok markalı RGB aydınlatmayı tek uygulamadan
+                  yönetmene izin vermektir.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Bu RGB denetleyicisi bilgisayarım için güvenli mi?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Skydimo hafif ve güvenli olacak şekilde tasarlanmıştır.
+                  Reklam, kripto madenciliği veya istenmeyen ek yazılım içermez.
+                  Her sürüm, resmi sitede yayımlanmadan önce kontrol edilir.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Yazılım, bilgisayarımdan herhangi bir kişisel veri topluyor mu?
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Hayır. Skydimo, bilgisayarından herhangi bir kişisel bilgiyi aktif olarak
+                  toplamaz, saklamaz veya iletmez. Uygulama yalnızca RGB cihazlarını kontrol etmek
+                  için gereken donanım verilerini okur (cihaz kimlikleri ve aydınlatma yetenekleri
+                  gibi). Kullanıcı kimliği, gezinme geçmişi, dosyalar, uygulamalar veya kişisel
+                  içeriklere erişilmez ve bunlar toplanmaz. Skydimo tamamen senin bilgisayarında
+                  çalışır ve kullanım verilerini harici sunuculara göndermez. Aydınlatma
+                  profillerin ve ayarların her zaman yerel olarak PC’inde kalır.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Oyunlar ve müzikle çalışıyor mu?</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Evet. Skydimo, oyunlar ve filmler için ekran senkronu
+                  ve PC’de çalan sese tepki veren müzik senkronu içerir.
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Hangi sistemler destekleniyor?</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Şu anda Skydimo, öncelikli olarak Windows PC’lere odaklanır.
+                  En güncel Windows kurulum dosyasını resmi siteden indirebilirsin.
+                </dd>
+              </div>
+            </div>
+          </div>
+        </dl>
+
+        <div class="mt-8 rounded-3xl border border-primary/40 bg-primary/5 px-6 py-8 text-center">
+          <h3 class="text-lg font-semibold">
+            RGB aydınlatma deneyimini yükseltmeye hazır mısın?
+          </h3>
+          <p class="mt-2 text-sm text-offset">
+            Ücretsiz, reklamsız ve 1000+ cihazla uyumlu.
+          </p>
+          <a
+            href={DOWNLOAD_URL}
+            class="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+          >
+            Skydimo’yu Windows için indir (güvenli, reklamsız)
+          </a>
+        </div>
+      </section>
+
+      <!-- Privacy & Security -->
+      <section class="mx-auto mt-16 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
+          Gizlilik ve güvenlik
+        </h2>
+        <p class="mt-2 text-sm text-offset">
+          Skydimo, güvenlik ve gizliliğe saygı gösterilecek şekilde tasarlanmıştır: reklam yok,
+          ek yazılım yok, kripto madenciliği yok ve kişisel veri veya kullanım telemetrisi
+          toplanmaz. Uygulama tamamen senin PC’inde çalışır, yalnızca RGB cihazlarını kontrol etmek
+          için gereken donanım bilgilerini okur ve tüm aydınlatma profilleri ile ayarların yalnızca
+          senin bilgisayarında yerel olarak saklanır.
+        </p>
+      </section>
+
+      <!-- Footer note above global footer -->
+      <section class="mx-auto mt-16 max-w-7xl text-center text-[11px] text-muted">
+        <p>
+          © 2025 best-rgb-controller.com – Bağımsız RGB denetleyici karşılaştırma sitesi.
+        </p>
+        <p class="mt-1">
+          Bu site, önerilen RGB denetleyicisi olarak Skydimo’yu tavsiye eder ve indirme için resmi Skydimo web sitesine yönlendirebilir.
+        </p>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+

@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon/components";
+import HeroImage from "~/components/hero-image.astro";
+
+const circleButtonClasses =
+  "flex size-16 items-center justify-center rounded-full border-2 border-current p-4 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current hover:border-primary hover:text-primary";
+
+const linkDefinitions = [
+  {
+    key: "home",
+    url: "https://skydimo.com/",
+    iconName: "mdi:home",
+  },
+  {
+    key: "wechat",
+    iconPath: "/svg/wechat.svg",
+    tooltipImage: "/group.webp",
+    tooltipAlt: "Skydimo WeChat QR code",
+  },
+  {
+    key: "discord",
+    url: "https://discord.com/invite/4rvFuQKB97",
+    iconName: "fa-brands:discord",
+  },
+] as const;
+
+const tooltipClasses =
+  "pointer-events-none absolute bottom-full left-1/2 hidden w-44 -translate-x-1/2 -translate-y-4 flex-col items-center rounded-xl bg-white/95 p-3 text-xs text-slate-900 shadow-lg ring-1 ring-black/10 transition group-hover:flex group-focus-within:flex dark:bg-slate-900/95 dark:text-white dark:ring-white/10";
+
+const createMaskStyle = (iconPath: string) =>
+  `mask: url(${iconPath}) center/contain no-repeat; -webkit-mask: url(${iconPath}) center/contain no-repeat;`;
+
+export interface Props {
+  linkLabels: Record<(typeof linkDefinitions)[number]["key"], string>;
+}
+
+const { linkLabels } = Astro.props;
+---
+
+<footer class="relative flex h-64 items-center justify-center">
+  <div class="absolute inset-0 overflow-hidden opacity-40">
+    <HeroImage />
+  </div>
+  <ul class="relative grid grid-cols-2 gap-4 sm:grid-cols-3">
+    {
+      linkDefinitions.map((link) => (
+        <li class="flex justify-center">
+          {"url" in link ? (
+            <a class={circleButtonClasses} href={link.url}>
+              <span class="sr-only">{linkLabels[link.key]}</span>
+              <Icon aria-hidden="true" class="size-full" name={link.iconName} />
+            </a>
+          ) : (
+            <div class="group relative flex">
+              <button type="button" class={circleButtonClasses}>
+                <span class="sr-only">{linkLabels[link.key]}</span>
+                <span
+                  aria-hidden="true"
+                  class="inline-block size-8 bg-current"
+                  style={createMaskStyle(link.iconPath)}
+                />
+              </button>
+              <figure
+                class={tooltipClasses}
+              >
+                <img
+                  src={link.tooltipImage}
+                  alt={link.tooltipAlt}
+                  class="h-40 w-40 rounded-lg object-cover"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</footer>

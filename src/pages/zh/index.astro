@@ -1,0 +1,666 @@
+
+---
+
+import "@fontsource-variable/inter";
+import { Image } from "astro:assets";
+import Footer from "~/components/footer.astro";
+import GoogleAnalytics from "~/components/google-analytics.astro";
+import Header from "~/components/header.astro";
+import LanguagePreference from "~/components/language-preference.astro";
+import moonImage from "~/assets/Screen.png";
+import type { Locale } from "~/i18n/config";
+import { buildPageData } from "~/i18n/page-data";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const locale: Locale = "zh";
+const pageData = buildPageData(locale, site);
+const { copy, languageOptions } = pageData;
+
+// 中文用户跳转到中文下载页
+const DOWNLOAD_URL = "https://skydimo.com/zh/download";
+
+const navItems = [
+  { title: "灯光模式", url: "#modes" },
+  { title: "设备兼容性", url: "#devices" },
+  { title: "为什么选 Skydimo", url: "#why-skydimo" },
+  { title: "常见问题", url: "#faq" },
+];
+---
+
+<!doctype html>
+<html lang={locale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <LanguagePreference locale={locale} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {generator && <meta name="generator" content={generator} />}
+    <title>{copy.meta.title}</title>
+    <meta name="description" content={copy.meta.description} />
+    <meta property="og:title" content={copy.meta.ogTitle} />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={copy.meta.ogDescription} />
+    <meta property="og:image" content={pageData.head.image} />
+    <meta property="og:url" content={pageData.head.canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={pageData.head.canonical} />
+
+    <GoogleAnalytics />
+
+    <!-- initialize theme -->
+    <script is:inline>
+      const themeSaved = localStorage.getItem("theme");
+
+      const applyTheme = (value) => {
+        document.documentElement.dataset.theme = value;
+      };
+
+      if (themeSaved) {
+        applyTheme(themeSaved);
+      } else {
+        applyTheme("dark");
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          if (!localStorage.getItem("theme")) {
+            applyTheme(event.matches ? "dark" : "light");
+          }
+        });
+    </script>
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default pt-24 text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header
+      navItems={navItems}
+      downloadUrl={DOWNLOAD_URL}
+      downloadLabel="下载"
+      locale={locale}
+      navLabel={copy.nav.ariaLabel}
+      openLabel={copy.nav.openLabel}
+      closeLabel={copy.nav.closeLabel}
+      languageLabel={copy.language.label}
+      languageOptions={languageOptions}
+    />
+
+    <main class="px-8 pt-16 pb-24">
+      <!-- Hero -->
+      <section
+        class="mx-auto grid max-w-7xl gap-12 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 px-8 py-12 shadow-2xl lg:px-12 lg:py-16"
+        aria-labelledby="hero-heading"
+      >
+        <div class="flex flex-col justify-center gap-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            Windows 上最佳免费 RGB 灯光控制软件
+          </p>
+          <h1
+            id="hero-heading"
+            class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+          >
+            免费控制你整套 PC RGB 设备的灯光
+          </h1>
+          <p class="max-w-2xl text-balance text-sm text-offset sm:text-base">
+            一个免费、安全的灯光应用，即可控制上千款来自不同品牌的 RGB 设备。
+            支持与游戏、音乐和电影联动，几秒内完成灯光同步。
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <a
+              href={DOWNLOAD_URL}
+              class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+            >
+              下载 Skydimo Windows 版（安全、无广告）
+            </a>
+            <a
+              href="https://skydimo.com/zh/"
+              class="inline-flex items-center justify-center rounded-full border border-offset px-6 py-3 text-sm font-semibold text-offset transition hover:border-primary hover:text-primary"
+            >
+              了解我们为何推荐 Skydimo &rarr;
+            </a>
+          </div>
+          <p class="mt-2 text-xs text-muted">
+            点击后将跳转到 skydimo.com 官方站点完成安全下载。
+          </p>
+          <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span>全球 200,000+ 用户信任使用</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-sky-400" />
+              <span>完全免费，无广告、无挖矿</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-violet-400" />
+              <span>支持屏幕同步与音乐律动</span>
+            </div>
+            <div class="inline-flex items-center gap-1">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-rose-400" />
+              <span>兼容 1000+ 款 RGB 设备</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="relative h-80 w-full max-w-2xl overflow-hidden rounded-3xl border border-slate-700/70 bg-slate-900/80 p-1 shadow-[0_0_80px_rgba(56,189,248,0.35)]">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.6),_transparent_55%),_radial-gradient(circle_at_bottom,_rgba(244,63,94,0.4),_transparent_55%)]" />
+            <div class="relative h-full w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-black/60">
+              <Image
+                src={moonImage}
+                alt="抽象的 RGB 灯光背景"
+                class="h-full w-full object-cover opacity-90 mix-blend-screen"
+                loading="eager"
+              />
+              <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.65),_transparent_70%)]" />
+              <div class="pointer-events-none absolute inset-x-8 top-6 flex items-center justify-between text-[10px] font-medium text-slate-100/80">
+                <div class="flex items-center gap-1.5">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
+                  <span>屏幕同步</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.8)]" />
+                  <span>音乐律动</span>
+                </div>
+                <div class="hidden items-center gap-1.5 sm:flex">
+                  <span class="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-violet-400 shadow-[0_0_12px_rgba(139,92,246,0.8)]" />
+                  <span>AI 灯光</span>
+                </div>
+              </div>
+              <div class="absolute inset-x-0 bottom-0 space-y-2 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 text-xs">
+                <p class="font-semibold text-white">
+                  灯光预设：<span class="text-primary">Game Night – 屏幕同步</span>
+                </p>
+                <p class="text-[11px] text-slate-200">
+                  正在启用屏幕同步、音乐律动与 AI 灯光效果。键盘、鼠标、风扇和灯带已联动。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Privacy & Security -->
+      <section class="mx-auto mt-16 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
+          隐私与安全
+        </h2>
+        <p class="mt-2 max-w-3xl text-sm text-offset">
+          Skydimo 从一开始就按照安全、尊重隐私的原则设计：无广告、无捆绑软件、无挖矿，也不会收集你的个人数据或使用遥测信息。
+          应用完全在本地电脑上运行，只读取控制 RGB 设备所需的硬件信息，你的灯光配置和所有设置始终保存在自己的电脑里。
+        </p>
+      </section>
+
+      <!-- Device support / brands -->
+      <section
+        id="devices"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="devices-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="devices-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            兼容你已经在用的大多数 RGB 设备
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo 的目标是替代多个品牌各自的灯光控制软件，
+            让你在一个统一界面里管理不同品牌的 RGB 设备。
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              设备类型
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>机械键盘与鼠标</li>
+              <li>机箱风扇与一体式水冷</li>
+              <li>RGB 灯带与灯条</li>
+              <li>内存、显卡与主板灯光</li>
+            </ul>
+          </div>
+          <div class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              广泛品牌支持
+            </h3>
+            <p class="text-sm text-offset">
+              支持主流游戏外设与 PC 硬件品牌的众多设备，并持续适配新的型号。
+              例如 Razer 雷蛇、ASUS Aura Sync、MSI Mystic Light、Corsair iCUE、HyperX、Redragon、Logitech G 等。
+            </p>
+            <p class="mt-2 text-xs text-muted">
+              具体兼容情况会因型号而异，请在 Skydimo 官网查看最新支持列表。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lighting modes -->
+      <section
+        id="modes"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="modes-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="modes-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            不止基础光效的灯光模式
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo 内置主流 RGB 效果，并提供为游戏、音乐和电影设计的强大联动模式。
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">屏幕同步（Screen Sync）</h3>
+            <p class="text-sm text-offset">
+              实时捕捉屏幕颜色，让桌面 RGB 灯光与画面同步变化，为游戏、电影或日常使用提供包围式沉浸体验。
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">音乐律动（Music Sync）</h3>
+            <p class="text-sm text-offset">
+              基于节拍检测，让灯光跟随音乐节奏跳动，可自定义颜色、灵敏度与动画风格。
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">AI 与智能灯效</h3>
+            <p class="text-sm text-offset">
+              使用智能预设为不同游戏、心情或时间段快速匹配灯光方案，无需花很长时间微调每一个参数。
+            </p>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-base font-semibold">灵活的设备控制</h3>
+            <p class="text-sm text-offset">
+              既可以对单个设备独立设置灯光，也可以一键让多台设备统一为同一种单色或基础效果，让整机风格高度一致。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Trust & safety -->
+      <section
+        id="trust"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="trust-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="trust-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
+            安全、无广告，被全球数十万玩家信任
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            Skydimo 专注于做一款你可以放心装在主力游戏 / 办公电脑上的 RGB 控制软件，
+            不搞任何隐藏“惊喜”。
+          </p>
+        </div>
+        <ul class="grid gap-4 md:grid-cols-2">
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            全球已有数十万装机玩家和游戏玩家在使用 Skydimo。
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            100% 免费使用——无广告、无捆绑推广软件，也不进行任何挖矿。
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            对 CPU 与内存占用极低，不影响你的游戏帧数与直播流畅度。
+          </li>
+          <li class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            可从官方 Skydimo 网站等可信渠道下载与更新。
+          </li>
+        </ul>
+        <p class="text-xs text-muted">
+          每一个版本在发布前都会通过主流杀毒引擎扫描。
+        </p>
+      </section>
+
+      <!-- Why Skydimo / comparison -->
+      <section
+        id="why-skydimo"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="why-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="why-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            为什么我们推荐用 Skydimo 作为主力 RGB 控制软件
+          </h2>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            市面上有不少 RGB 控制软件，其中很多功能不错，但常常存在兼容设备少、
+            收费/广告激进或界面复杂难用等问题。
+          </p>
+          <p class="max-w-3xl text-sm text-offset sm:text-base">
+            对于大多数 Windows 用户来说，Skydimo 在功能、兼容性与体验之间提供了很好的平衡：
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              更广的设备支持
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>兼容 1000+ 不同品牌的 RGB 设备。</li>
+              <li>持续更新以适配新硬件。</li>
+            </ul>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              强大、现代的灯光功能
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>屏幕同步、音乐律动与 AI 智能灯效。</li>
+              <li>支持为每个设备设置统一的颜色和基础效果。</li>
+            </ul>
+          </article>
+          <article class="space-y-2 rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-primary">
+              安心、无负担的体验
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm text-offset">
+              <li>无广告、无捆绑垃圾软件、也不挖矿。</li>
+              <li>界面简洁，从安装到点亮第一套灯效只需几分钟。</li>
+            </ul>
+          </article>
+        </div>
+        <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-700/70 bg-offset/40 p-4">
+          <table class="min-w-full text-left text-xs sm:text-sm">
+            <thead class="text-muted">
+              <tr>
+                <th scope="col" class="py-2 pr-4 font-semibold text-offset">
+                  功能对比
+                </th>
+                <th scope="col" class="py-2 pr-4 font-semibold text-primary">
+                  Skydimo
+                </th>
+                <th scope="col" class="py-2 pr-4 font-semibold">
+                  OpenRGB
+                </th>
+                <th scope="col" class="py-2 pr-0 font-semibold">
+                  SignalRGB
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-700/60">
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  价格
+                </th>
+                <td class="py-2 pr-4 text-primary">免费</td>
+                <td class="py-2 pr-4">免费</td>
+                <td class="py-2 pr-0">免费 + 付费高级版</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  广告 / 挖矿
+                </th>
+                <td class="py-2 pr-4 text-primary">无广告、无挖矿</td>
+                <td class="py-2 pr-4">无</td>
+                <td class="py-2 pr-0">部分流程中有付费提示</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  屏幕同步
+                </th>
+                <td class="py-2 pr-4 text-primary">出色</td>
+                <td class="py-2 pr-4">良好</td>
+                <td class="py-2 pr-0">良好</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  音乐律动
+                </th>
+                <td class="py-2 pr-4 text-primary">出色</td>
+                <td class="py-2 pr-4">基础</td>
+                <td class="py-2 pr-0">良好</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  品牌覆盖
+                </th>
+                <td class="py-2 pr-4 text-primary">非常广</td>
+                <td class="py-2 pr-4">较广</td>
+                <td class="py-2 pr-0">较广</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-2 pr-4 font-medium text-offset">
+                  官方官网
+                </th>
+                <td class="py-2 pr-4">
+                  <a
+                    href="https://skydimo.com/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-primary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    skydimo.com
+                  </a>
+                </td>
+                <td class="py-2 pr-4">
+                  <a
+                    href="https://openrgb.org/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    openrgb.org
+                  </a>
+                </td>
+                <td class="py-2 pr-0">
+                  <a
+                    href="https://signalrgb.com/"
+                    class="underline decoration-slate-500/60 decoration-dotted underline-offset-2 hover:text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    signalrgb.com
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-3 text-[11px] text-muted">
+            上述比较基于公开信息和典型使用场景，具体细节请以各项目官网为准。
+          </p>
+        </div>
+        <div class="mt-6">
+          <a
+            href={DOWNLOAD_URL}
+            class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+          >
+            下载 Skydimo Windows 客户端（安全、无广告）
+          </a>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section
+        id="reviews"
+        class="mx-auto mt-24 max-w-7xl space-y-6"
+        aria-labelledby="reviews-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="reviews-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            用户怎么说
+          </h2>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “Skydimo 帮我替代了电脑上三个不同厂商的灯光软件，现在我只推荐这一个。”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — 来自美国的装机发烧友
+            </figcaption>
+          </figure>
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “用超宽屏看电影时开启屏幕同步效果非常惊艳，整个桌面都亮了起来，几分钟就能完成设置。”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — 来自英国的玩家
+            </figcaption>
+          </figure>
+          <figure class="flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-offset/40 p-5 text-sm text-offset">
+            <blockquote class="mb-3">
+              “我只想要一款免费、安全、不卡顿、没广告的灯光软件，Skydimo 完全符合我的预期。”
+            </blockquote>
+            <figcaption class="text-xs text-muted">
+              — 来自印度的 RGB 爱好者
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- FAQ + final CTA -->
+      <section
+        id="faq"
+        class="mx-auto mt-24 max-w-7xl space-y-8"
+        aria-labelledby="faq-heading"
+      >
+        <div class="space-y-3">
+          <h2
+            id="faq-heading"
+            class="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            常见问题
+          </h2>
+        </div>
+        <dl class="space-y-4 md:space-y-5">
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Skydimo 真的完全免费吗？</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  是的。Skydimo 可以免费下载安装与使用，没有广告、没有订阅费，也不会捆绑其他软件。
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">
+                  Skydimo 能同时控制不同品牌的 RGB 设备吗？
+                </dt>
+                <dd class="mt-2 text-sm text-offset">
+                  可以。Skydimo 的核心目标之一就是让你用一个软件统一控制多品牌灯光，
+                  不再来回切换各家厂商自带工具。
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">这款 RGB 软件对电脑安全吗？</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  Skydimo 设计得非常轻量、安全，不包含广告、挖矿模块或任何额外捆绑程序。
+                  每个安装包在官网发布前都会经过检查。
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">软件会从我的电脑收集任何个人数据吗？</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  不会。Skydimo 不会主动收集、存储或传输你电脑中的任何个人信息。
+                  应用只会读取控制 RGB 设备所必需的硬件相关信息（例如设备 ID 和灯光能力）。
+                  不会访问或收集用户身份、浏览记录、文件、应用程序或个人内容。
+                  Skydimo 完全在本机本地运行，不会向外部服务器发送使用数据，
+                  你的灯光配置和设置始终保留在自己的电脑中。
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">能和游戏、音乐联动吗？</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  可以。Skydimo 支持根据屏幕内容同步灯光，也支持根据电脑播放的音乐节奏做灯光律动。
+                </dd>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/70 bg-offset/40 p-5">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
+                ?
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">当前支持哪些系统？</dt>
+                <dd class="mt-2 text-sm text-offset">
+                  目前 Skydimo 主要面向 Windows PC。你可以在官方站点下载最新的 Windows 安装包。
+                </dd>
+              </div>
+            </div>
+          </div>
+        </dl>
+
+        <div class="mt-8 rounded-3xl border border-primary/40 bg-primary/5 px-6 py-8 text-center">
+          <h3 class="text-lg font-semibold">
+            准备好升级你的 RGB 灯光体验了吗？
+          </h3>
+          <p class="mt-2 text-sm text-offset">
+            完全免费、无广告，兼容上千款设备。
+          </p>
+          <a
+            href={DOWNLOAD_URL}
+            class="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/40 transition hover:bg-primary/90"
+          >
+            下载 Skydimo Windows 版（安全、无广告）
+          </a>
+        </div>
+      </section>
+
+      <!-- Privacy & Security -->
+      <section class="mx-auto mt-16 max-w-7xl rounded-3xl border border-slate-700/70 bg-offset/40 px-6 py-6">
+        <h2 class="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
+          隐私与安全
+        </h2>
+        <p class="mt-2 text-sm text-offset">
+          Skydimo 从一开始就按照安全、尊重隐私的原则设计：无广告、无捆绑软件、无挖矿，也不会收集你的个人数据或使用遥测信息。
+          应用完全在本地电脑上运行，只读取控制 RGB 设备所需的硬件信息，你的灯光配置和所有设置始终保存在自己的电脑里。
+        </p>
+      </section>
+
+      <!-- Footer note above global footer -->
+      <section class="mx-auto mt-16 max-w-7xl text-center text-[11px] text-muted">
+        <p>
+          © 2025 best-rgb-controller.com – 独立 RGB 控制软件推荐站点。
+        </p>
+        <p class="mt-1">
+          本站推荐 Skydimo 作为首选 RGB 控制软件，并可能跳转到 Skydimo 官网进行下载。
+        </p>
+      </section>
+    </main>
+
+    <Footer linkLabels={copy.footer.links} />
+  </body>
+</html>
+
